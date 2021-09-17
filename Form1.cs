@@ -33,21 +33,11 @@ namespace DigitGraphics
                         Convert.ToInt32(tbx2.Text),
                         Convert.ToInt32(tby2.Text));
                 }
-                catch (Exception ex)
+                catch (FormatException ex)
                 {
-                    MessageBox.Show("Ne arbaiten", "Achtung-Box!", 0, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Неверно заданы координаты.\nВведите целое число", "Ошибка!", 0, MessageBoxIcon.Exclamation);
                 }
             }
-        }
-
-        private void cbBrez_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cbDDA_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

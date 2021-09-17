@@ -56,7 +56,6 @@ namespace DigitGraphics
             this.cbBrez.TabIndex = 0;
             this.cbBrez.Text = "Алгоритм Брезенхем";
             this.cbBrez.UseVisualStyleBackColor = true;
-            this.cbBrez.CheckedChanged += new System.EventHandler(this.cbBrez_CheckedChanged);
             // 
             // cbDDA
             // 
@@ -68,7 +67,6 @@ namespace DigitGraphics
             this.cbDDA.TabIndex = 1;
             this.cbDDA.Text = "Алгоритм ЦДА";
             this.cbDDA.UseVisualStyleBackColor = true;
-            this.cbDDA.CheckedChanged += new System.EventHandler(this.cbDDA_CheckedChanged);
             // 
             // pbMainFrame
             // 
