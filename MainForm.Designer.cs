@@ -90,7 +90,7 @@ namespace DigitGraphics
             // lbx1
             // 
             this.lbx1.AutoSize = true;
-            this.lbx1.Location = new System.Drawing.Point(800, 335);
+            this.lbx1.Location = new System.Drawing.Point(802, 330);
             this.lbx1.Name = "lbx1";
             this.lbx1.Size = new System.Drawing.Size(22, 17);
             this.lbx1.TabIndex = 6;
@@ -107,7 +107,7 @@ namespace DigitGraphics
             // lby1
             // 
             this.lby1.AutoSize = true;
-            this.lby1.Location = new System.Drawing.Point(800, 358);
+            this.lby1.Location = new System.Drawing.Point(802, 356);
             this.lby1.Name = "lby1";
             this.lby1.Size = new System.Drawing.Size(23, 17);
             this.lby1.TabIndex = 8;
@@ -116,7 +116,7 @@ namespace DigitGraphics
             // lbx2
             // 
             this.lbx2.AutoSize = true;
-            this.lbx2.Location = new System.Drawing.Point(801, 386);
+            this.lbx2.Location = new System.Drawing.Point(802, 382);
             this.lbx2.Name = "lbx2";
             this.lbx2.Size = new System.Drawing.Size(22, 17);
             this.lbx2.TabIndex = 9;
@@ -125,7 +125,7 @@ namespace DigitGraphics
             // lby2
             // 
             this.lby2.AutoSize = true;
-            this.lby2.Location = new System.Drawing.Point(801, 412);
+            this.lby2.Location = new System.Drawing.Point(802, 407);
             this.lby2.Name = "lby2";
             this.lby2.Size = new System.Drawing.Size(23, 17);
             this.lby2.TabIndex = 10;
@@ -133,7 +133,7 @@ namespace DigitGraphics
             // 
             // tby2
             // 
-            this.tby2.Location = new System.Drawing.Point(851, 407);
+            this.tby2.Location = new System.Drawing.Point(852, 407);
             this.tby2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tby2.Name = "tby2";
             this.tby2.Size = new System.Drawing.Size(89, 22);
@@ -150,7 +150,7 @@ namespace DigitGraphics
             // cbline
             // 
             this.cbline.AutoSize = true;
-            this.cbline.Location = new System.Drawing.Point(852, 170);
+            this.cbline.Location = new System.Drawing.Point(851, 171);
             this.cbline.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbline.Name = "cbline";
             this.cbline.Size = new System.Drawing.Size(165, 21);

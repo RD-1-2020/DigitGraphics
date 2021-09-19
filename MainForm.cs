@@ -13,7 +13,6 @@ namespace DigitGraphics
 {
     public partial class MainForm : Form
     {
-        private static int CELLS_SIZE = 20;
 
         public MainForm()
         {
@@ -22,13 +21,12 @@ namespace DigitGraphics
 
         private void pbMainFrame_Paint(object sender, PaintEventArgs e)
         {
-            //Graphics graphicCells = pbMainFrame.CreateGraphics();
             Graphics graphicCells = e.Graphics;
             graphicCells.Clear(Color.White);
             for (int CellsNumber = 0; CellsNumber < 29; CellsNumber++)
             {
-                graphicCells.DrawLine(Settings.Instance.CellsColor, CellsNumber * CELLS_SIZE, 360, CellsNumber * CELLS_SIZE, 0);
-                graphicCells.DrawLine(Settings.Instance.CellsColor, 560, CellsNumber * CELLS_SIZE, 0, CellsNumber * CELLS_SIZE);
+                graphicCells.DrawLine(Settings.Instance.CellsColor, CellsNumber * Settings.CELLS_SIZE, pbMainFrame.ClientSize.Height, CellsNumber * Settings.CELLS_SIZE, 0);
+                graphicCells.DrawLine(Settings.Instance.CellsColor, pbMainFrame.ClientSize.Width, CellsNumber * Settings.CELLS_SIZE, 0, CellsNumber * Settings.CELLS_SIZE);
             }
         }
 
@@ -41,9 +39,76 @@ namespace DigitGraphics
 
             try
             {
-                graphic.DrawLine(Settings.Instance.NormalLineColor, Convert.ToInt32(tbx1.Text) * CELLS_SIZE , Convert.ToInt32(tby1.Text) * CELLS_SIZE,
-                    Convert.ToInt32(tbx2.Text) * CELLS_SIZE,
-                    Convert.ToInt32(tby2.Text) * CELLS_SIZE);
+                graphic.DrawLine(Settings.Instance.NormalLineColor, Convert.ToInt32(tbx1.Text) * Settings.CELLS_SIZE, Convert.ToInt32(tby1.Text) * Settings.CELLS_SIZE,
+                    Convert.ToInt32(tbx2.Text) * Settings.CELLS_SIZE,
+                    Convert.ToInt32(tby2.Text) * Settings.CELLS_SIZE);
+            } catch (FormatException ex)
+            {
+                MessageBox.Show("Неверно заданы координаты.\nВведите целое число", "Ошибка!", 0, MessageBoxIcon.Exclamation);
+
+                Logger.error("Пользователь ввёл неверные данные в поля с точками", ex);
+            }
+        }
+
+        public void drawBrez(Graphics graphicBrez)
+        {
+            if (!cbBrez.Checked)
+            {
+                return;
+            }
+
+            try
+            {
+
+                int deltaX = Convert.ToInt32(tbx2.Text) * Settings.CELLS_SIZE - Convert.ToInt32(tbx1.Text) * Settings.CELLS_SIZE;
+                int deltaY = Convert.ToInt32(tby2.Text) * Settings.CELLS_SIZE - Convert.ToInt32(tby1.Text) * Settings.CELLS_SIZE;
+                int absDeltaX = Math.Abs(deltaX);
+                int absDeltaY = Math.Abs(deltaY);
+
+                int accretion = 0;
+
+                if (absDeltaX >= absDeltaY)
+                {
+                    int y = Convert.ToInt32(tby1.Text) * Settings.CELLS_SIZE;
+                    int direction = deltaY != 0 ? (deltaY > 0 ? 1 : -1) : 0;
+                    for (int x = Convert.ToInt32(tbx1.Text) * Settings.CELLS_SIZE; deltaX > 0 ? x <= Convert.ToInt32(tbx2.Text) * Settings.CELLS_SIZE : x >= Convert.ToInt32(tbx2.Text) * Settings.CELLS_SIZE; )
+                    {
+                        graphicBrez.FillRectangle(Settings.Instance.BrezBrush, x, y, Settings.CELLS_SIZE, Settings.CELLS_SIZE);
+                        accretion += absDeltaY;
+
+                        if (accretion >= absDeltaX)
+                        {
+                            accretion -= absDeltaX;
+                            y += direction * Settings.CELLS_SIZE;
+                        }
+                        if (deltaX > 0)
+                        {
+                            x += Settings.CELLS_SIZE;
+                        }
+                        else x -= Settings.CELLS_SIZE;
+                    }
+                }
+                else
+                {
+                    int x = Convert.ToInt32(tbx1.Text) * Settings.CELLS_SIZE;
+                    int direction = deltaX != 0 ? (deltaX > 0 ? 1 : -1) : 0;
+                    for (int y = Convert.ToInt32(tby1.Text) * Settings.CELLS_SIZE; deltaY > 0 ? y <= Convert.ToInt32(tby2.Text) * Settings.CELLS_SIZE : y >= Convert.ToInt32(tby2.Text) * Settings.CELLS_SIZE; )
+                    {
+                        graphicBrez.FillRectangle(Settings.Instance.BrezBrush, x, y, Settings.CELLS_SIZE, Settings.CELLS_SIZE);
+                        accretion += absDeltaX;
+                        if (accretion >= absDeltaY)
+                        {
+                            accretion -= absDeltaY;
+                            x += direction * Settings.CELLS_SIZE;
+                        }
+
+                        if (deltaY > 0)
+                        {
+                            y += Settings.CELLS_SIZE;
+                        }
+                        else y -= Settings.CELLS_SIZE;
+                    }
+                }
             }
             catch (FormatException ex)
             {
@@ -57,53 +122,15 @@ namespace DigitGraphics
         {
             Refresh();
 
-            
-
             //TODO: Добавить более точное указание, где именно пользователь ошибся(с логированием (class Logger))
             using (Graphics graphic = pbMainFrame.CreateGraphics())
             {
                 drawNormalLine(graphic);
             }
 
-            if (!cbBrez.Checked)
-            {
-                return;
-            }
-
             using (Graphics graphicBrez = pbMainFrame.CreateGraphics())
             {
-                SolidBrush FillBrezColor = new SolidBrush (Color.Aqua);
-                try
-                {
-                    int X = Convert.ToInt32(tbx1.Text);
-                    int Y = Convert.ToInt32(tby1.Text);
-                    int Px = Convert.ToInt32(tbx2.Text) - Convert.ToInt32(tbx1.Text);
-                    int Py = Convert.ToInt32(tby2.Text) - Convert.ToInt32(tby1.Text);
-                    int E = 2 * Py - Px;
-                    int i = Px;
-                    //graphicBrez.DrawRectangle(Settings.Instance.BrezColor, Convert.ToInt32(tbx1.Text), Convert.ToInt32(tby1.Text), 20, 20);
-                    graphicBrez.FillRectangle(FillBrezColor, Convert.ToInt32(tbx1.Text), Convert.ToInt32(tby1.Text), 20, 20);
-                    //while (i = i - 1)
-                    //{
-                    //    if (E >= 0)
-                    //    {
-                    //        X = X + 1;
-                    //        Y = Y + 1;
-                    //        E = E + 2 * (Py - Px);
-                    //    }
-                    //    else
-                    //        X = X + 1;
-                    //    E = E + 2 * Py;
-                    //    graphicBrez.DrawRectangle(Settings.Instance.BrezColor, Convert.ToInt32(tbx1.Text), Convert.ToInt32(tby1.Text), 20, 20);
-                    //    graphicBrez.FillRectangle(FillBrezColor, Convert.ToInt32(tbx1.Text), Convert.ToInt32(tby1.Text), 20, 20);
-                    //}
-                }
-                catch (FormatException ex)
-                {
-                    MessageBox.Show("Неверно заданы координаты.\nВведите целое число", "Ошибка!", 0, MessageBoxIcon.Exclamation);
-
-                    Logger.error("Пользователь ввёл неверные данные в поля с точками", ex);
-                }
+                drawBrez(graphicBrez);
             }
         }
     }
