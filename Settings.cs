@@ -17,6 +17,33 @@ namespace DigitGraphics
             get { return instanceHolder.Value; }
         }
 
+        private static Pen _cellsColor = new Pen(Color.Black);
+
+        public Pen CellsColor {
+            get
+            {
+                return _cellsColor;
+            }
+            set
+            {
+                _cellsColor = value;
+            }
+        }
+
+        private static Pen _brezColor = new Pen(Color.Aqua);
+
+        public Pen BrezColor
+        {
+            get
+            {
+                return _brezColor;
+            }
+            set
+            {
+                _brezColor = value;
+            }
+        }
+
         private static Pen _normalLineColor = new Pen(Color.DeepPink);
 
         public Pen NormalLineColor {

@@ -49,10 +49,10 @@ namespace DigitGraphics
             // cbBrez
             // 
             this.cbBrez.AutoSize = true;
-            this.cbBrez.Location = new System.Drawing.Point(638, 119);
-            this.cbBrez.Margin = new System.Windows.Forms.Padding(2);
+            this.cbBrez.Location = new System.Drawing.Point(851, 146);
+            this.cbBrez.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbBrez.Name = "cbBrez";
-            this.cbBrez.Size = new System.Drawing.Size(134, 17);
+            this.cbBrez.Size = new System.Drawing.Size(167, 21);
             this.cbBrez.TabIndex = 0;
             this.cbBrez.Text = "Алгоритм Брезенхем";
             this.cbBrez.UseVisualStyleBackColor = true;
@@ -60,10 +60,10 @@ namespace DigitGraphics
             // cbDDA
             // 
             this.cbDDA.AutoSize = true;
-            this.cbDDA.Location = new System.Drawing.Point(638, 99);
-            this.cbDDA.Margin = new System.Windows.Forms.Padding(2);
+            this.cbDDA.Location = new System.Drawing.Point(851, 122);
+            this.cbDDA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDDA.Name = "cbDDA";
-            this.cbDDA.Size = new System.Drawing.Size(102, 17);
+            this.cbDDA.Size = new System.Drawing.Size(127, 21);
             this.cbDDA.TabIndex = 1;
             this.cbDDA.Text = "Алгоритм ЦДА";
             this.cbDDA.UseVisualStyleBackColor = true;
@@ -71,102 +71,99 @@ namespace DigitGraphics
             // pbMainFrame
             // 
             this.pbMainFrame.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbMainFrame.Location = new System.Drawing.Point(24, 18);
-            this.pbMainFrame.Margin = new System.Windows.Forms.Padding(2);
+            this.pbMainFrame.Location = new System.Drawing.Point(32, 22);
+            this.pbMainFrame.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pbMainFrame.Name = "pbMainFrame";
-            this.pbMainFrame.Size = new System.Drawing.Size(565, 360);
+            this.pbMainFrame.Size = new System.Drawing.Size(752, 448);
             this.pbMainFrame.TabIndex = 4;
             this.pbMainFrame.TabStop = false;
+            this.pbMainFrame.Paint += new System.Windows.Forms.PaintEventHandler(this.pbMainFrame_Paint);
             // 
             // tbx1
             // 
-            this.tbx1.Location = new System.Drawing.Point(639, 268);
-            this.tbx1.Margin = new System.Windows.Forms.Padding(2);
+            this.tbx1.Location = new System.Drawing.Point(852, 330);
+            this.tbx1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbx1.Name = "tbx1";
-            this.tbx1.Size = new System.Drawing.Size(68, 20);
+            this.tbx1.Size = new System.Drawing.Size(89, 22);
             this.tbx1.TabIndex = 5;
             // 
             // lbx1
             // 
             this.lbx1.AutoSize = true;
-            this.lbx1.Location = new System.Drawing.Point(600, 272);
-            this.lbx1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbx1.Location = new System.Drawing.Point(800, 335);
             this.lbx1.Name = "lbx1";
-            this.lbx1.Size = new System.Drawing.Size(18, 13);
+            this.lbx1.Size = new System.Drawing.Size(22, 17);
             this.lbx1.TabIndex = 6;
             this.lbx1.Text = "x1";
             // 
             // tby1
             // 
-            this.tby1.Location = new System.Drawing.Point(639, 289);
-            this.tby1.Margin = new System.Windows.Forms.Padding(2);
+            this.tby1.Location = new System.Drawing.Point(852, 356);
+            this.tby1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tby1.Name = "tby1";
-            this.tby1.Size = new System.Drawing.Size(68, 20);
+            this.tby1.Size = new System.Drawing.Size(89, 22);
             this.tby1.TabIndex = 7;
             // 
             // lby1
             // 
             this.lby1.AutoSize = true;
-            this.lby1.Location = new System.Drawing.Point(600, 291);
-            this.lby1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lby1.Location = new System.Drawing.Point(800, 358);
             this.lby1.Name = "lby1";
-            this.lby1.Size = new System.Drawing.Size(18, 13);
+            this.lby1.Size = new System.Drawing.Size(23, 17);
             this.lby1.TabIndex = 8;
             this.lby1.Text = "y1";
             // 
             // lbx2
             // 
             this.lbx2.AutoSize = true;
-            this.lbx2.Location = new System.Drawing.Point(601, 314);
-            this.lbx2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbx2.Location = new System.Drawing.Point(801, 386);
             this.lbx2.Name = "lbx2";
-            this.lbx2.Size = new System.Drawing.Size(18, 13);
+            this.lbx2.Size = new System.Drawing.Size(22, 17);
             this.lbx2.TabIndex = 9;
             this.lbx2.Text = "x2";
             // 
             // lby2
             // 
             this.lby2.AutoSize = true;
-            this.lby2.Location = new System.Drawing.Point(601, 335);
-            this.lby2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lby2.Location = new System.Drawing.Point(801, 412);
             this.lby2.Name = "lby2";
-            this.lby2.Size = new System.Drawing.Size(18, 13);
+            this.lby2.Size = new System.Drawing.Size(23, 17);
             this.lby2.TabIndex = 10;
             this.lby2.Text = "y2";
             // 
             // tby2
             // 
-            this.tby2.Location = new System.Drawing.Point(638, 331);
-            this.tby2.Margin = new System.Windows.Forms.Padding(2);
+            this.tby2.Location = new System.Drawing.Point(851, 407);
+            this.tby2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tby2.Name = "tby2";
-            this.tby2.Size = new System.Drawing.Size(68, 20);
+            this.tby2.Size = new System.Drawing.Size(89, 22);
             this.tby2.TabIndex = 11;
             // 
             // tbx2
             // 
-            this.tbx2.Location = new System.Drawing.Point(639, 310);
-            this.tbx2.Margin = new System.Windows.Forms.Padding(2);
+            this.tbx2.Location = new System.Drawing.Point(852, 382);
+            this.tbx2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbx2.Name = "tbx2";
-            this.tbx2.Size = new System.Drawing.Size(68, 20);
+            this.tbx2.Size = new System.Drawing.Size(89, 22);
             this.tbx2.TabIndex = 12;
             // 
             // cbline
             // 
             this.cbline.AutoSize = true;
-            this.cbline.Location = new System.Drawing.Point(639, 138);
-            this.cbline.Margin = new System.Windows.Forms.Padding(2);
+            this.cbline.Location = new System.Drawing.Point(852, 170);
+            this.cbline.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbline.Name = "cbline";
-            this.cbline.Size = new System.Drawing.Size(132, 17);
+            this.cbline.Size = new System.Drawing.Size(165, 21);
             this.cbline.TabIndex = 2;
             this.cbline.Text = "Нормальный график";
             this.cbline.UseVisualStyleBackColor = true;
             // 
             // btDraw
             // 
-            this.btDraw.Location = new System.Drawing.Point(615, 213);
-            this.btDraw.Margin = new System.Windows.Forms.Padding(2);
+            this.btDraw.Location = new System.Drawing.Point(820, 262);
+            this.btDraw.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btDraw.Name = "btDraw";
-            this.btDraw.Size = new System.Drawing.Size(123, 32);
+            this.btDraw.Size = new System.Drawing.Size(164, 39);
             this.btDraw.TabIndex = 3;
             this.btDraw.Text = "Отрисовка";
             this.btDraw.UseVisualStyleBackColor = true;
@@ -174,9 +171,9 @@ namespace DigitGraphics
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.tbx2);
             this.Controls.Add(this.tby2);
             this.Controls.Add(this.lby2);
@@ -191,6 +188,7 @@ namespace DigitGraphics
             this.Controls.Add(this.cbDDA);
             this.Controls.Add(this.cbBrez);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.Text = "Digit Graphic";
             ((System.ComponentModel.ISupportInitialize)(this.pbMainFrame)).EndInit();
