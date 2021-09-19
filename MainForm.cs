@@ -13,6 +13,8 @@ namespace DigitGraphics
 {
     public partial class MainForm : Form
     {
+        private static int CELLS_SIZE = 20;
+
         public MainForm()
         {
             InitializeComponent();
@@ -23,11 +25,31 @@ namespace DigitGraphics
             //Graphics graphicCells = pbMainFrame.CreateGraphics();
             Graphics graphicCells = e.Graphics;
             graphicCells.Clear(Color.White);
-            int CellsSize = 20;
             for (int CellsNumber = 0; CellsNumber < 29; CellsNumber++)
             {
-                graphicCells.DrawLine(Settings.Instance.CellsColor, CellsNumber * CellsSize, 360, CellsNumber * CellsSize, 0);
-                graphicCells.DrawLine(Settings.Instance.CellsColor, 560, CellsNumber * CellsSize, 0, CellsNumber * CellsSize);
+                graphicCells.DrawLine(Settings.Instance.CellsColor, CellsNumber * CELLS_SIZE, 360, CellsNumber * CELLS_SIZE, 0);
+                graphicCells.DrawLine(Settings.Instance.CellsColor, 560, CellsNumber * CELLS_SIZE, 0, CellsNumber * CELLS_SIZE);
+            }
+        }
+
+        public void drawNormalLine(Graphics graphic)
+        {
+            if (!cbline.Checked)
+            {
+                return;
+            }
+
+            try
+            {
+                graphic.DrawLine(Settings.Instance.NormalLineColor, Convert.ToInt32(tbx1.Text) * CELLS_SIZE , Convert.ToInt32(tby1.Text) * CELLS_SIZE,
+                    Convert.ToInt32(tbx2.Text) * CELLS_SIZE,
+                    Convert.ToInt32(tby2.Text) * CELLS_SIZE);
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show("Неверно заданы координаты.\nВведите целое число", "Ошибка!", 0, MessageBoxIcon.Exclamation);
+
+                Logger.error("Пользователь ввёл неверные данные в поля с точками", ex);
             }
         }
 
@@ -35,27 +57,12 @@ namespace DigitGraphics
         {
             Refresh();
 
-            if (!cbline.Checked)
-            {
-                return;
-            }
+            
 
             //TODO: Добавить более точное указание, где именно пользователь ошибся(с логированием (class Logger))
             using (Graphics graphic = pbMainFrame.CreateGraphics())
             {
-                //graphic.Clear(Color.White);
-                try
-                {
-                    graphic.DrawLine(Settings.Instance.NormalLineColor, Convert.ToInt32(tbx1.Text), Convert.ToInt32(tby1.Text),
-                        Convert.ToInt32(tbx2.Text),
-                        Convert.ToInt32(tby2.Text));
-                }
-                catch (FormatException ex)
-                {
-                    MessageBox.Show("Неверно заданы координаты.\nВведите целое число", "Ошибка!", 0, MessageBoxIcon.Exclamation);
-
-                    Logger.error("Пользователь ввёл неверные данные в поля с точками", ex);
-                }
+                drawNormalLine(graphic);
             }
 
             if (!cbBrez.Checked)
@@ -74,7 +81,7 @@ namespace DigitGraphics
                     int Py = Convert.ToInt32(tby2.Text) - Convert.ToInt32(tby1.Text);
                     int E = 2 * Py - Px;
                     int i = Px;
-                    graphicBrez.DrawRectangle(Settings.Instance.BrezColor, Convert.ToInt32(tbx1.Text), Convert.ToInt32(tby1.Text), 20, 20);
+                    //graphicBrez.DrawRectangle(Settings.Instance.BrezColor, Convert.ToInt32(tbx1.Text), Convert.ToInt32(tby1.Text), 20, 20);
                     graphicBrez.FillRectangle(FillBrezColor, Convert.ToInt32(tbx1.Text), Convert.ToInt32(tby1.Text), 20, 20);
                     //while (i = i - 1)
                     //{
