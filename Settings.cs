@@ -17,6 +17,49 @@ namespace DigitGraphics
             get { return instanceHolder.Value; }
         }
 
+        public static int CELLS_SIZE = 20;
+
+        private static Pen _cellsColor = new Pen(Color.Black);
+
+        public Pen CellsColor {
+            get
+            {
+                return _cellsColor;
+            }
+            set
+            {
+                _cellsColor = value;
+            }
+        }
+
+        private static Color _brezColor = Color.FromArgb(70, Color.Aqua);
+
+        public Color BrezColor
+        {
+            get
+            {
+                return _brezColor;
+            }
+            set
+            {
+                _brezColor = value;
+            }
+        }
+
+        private static SolidBrush _brezBrush = new SolidBrush(Settings.Instance.BrezColor);
+
+        public SolidBrush BrezBrush
+        {
+            get
+            {
+                return _brezBrush;
+            }
+            set
+            {
+                _brezBrush = value;
+            }
+        }
+
         private static Pen _normalLineColor = new Pen(Color.DeepPink);
 
         public Pen NormalLineColor {
