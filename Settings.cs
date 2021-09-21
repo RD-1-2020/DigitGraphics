@@ -32,6 +32,34 @@ namespace DigitGraphics
             }
         }
 
+        private static Color _cdaColor = Color.FromArgb(70, Color.Chocolate);
+
+        public Color CDAColor
+        {
+            get
+            {
+                return _cdaColor;
+            }
+            set
+            {
+                _cdaColor = value;
+            }
+        }
+
+        private static SolidBrush _cdaBrush = new SolidBrush(Settings.Instance.CDAColor);
+
+        public SolidBrush CDABrush
+        {
+            get
+            {
+                return _cdaBrush;
+            }
+            set
+            {
+                _cdaBrush = value;
+            }
+        }
+
         private static Color _brezColor = Color.FromArgb(70, Color.Aqua);
 
         public Color BrezColor

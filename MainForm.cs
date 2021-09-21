@@ -50,6 +50,46 @@ namespace DigitGraphics
             }
         }
 
+
+        public void drawCDA(Graphics graphicCDA)
+        {
+            if (!cbDDA.Checked)
+            {
+                return;
+            }
+
+            try
+            {
+
+                int dy = Convert.ToInt32(tby2.Text) - Convert.ToInt32(tby1.Text), dx = Convert.ToInt32(tbx2.Text) - Convert.ToInt32(tbx1.Text), deltaX = Math.Abs(dx), deltaY = Math.Abs(dy);
+                int len;
+                double Px, Py, X = Convert.ToInt32(tbx1.Text), Y = Convert.ToInt32(tby1.Text);
+                if (deltaX >= deltaY) len = deltaX;
+                else len = deltaY;
+                Px = dx / (double)len;
+                Py = dy / (double)len;
+                X = (Convert.ToInt32(tbx1.Text));
+                Y = (Convert.ToInt32(tby1.Text));
+                int i = 1;
+                while (i <= len)
+                {
+                    if (dx > 0) 
+                        graphicCDA.FillRectangle(Settings.Instance.CDABrush, (int)Math.Truncate(X) * Settings.CELLS_SIZE, (int)Math.Truncate(Y) * Settings.CELLS_SIZE, Settings.CELLS_SIZE, Settings.CELLS_SIZE); //отрисовка кубиков
+                    else 
+                        graphicCDA.FillRectangle(Settings.Instance.CDABrush, (int)Math.Truncate(X) * Settings.CELLS_SIZE - Settings.CELLS_SIZE, (int)Math.Truncate(Y) * Settings.CELLS_SIZE, Settings.CELLS_SIZE, Settings.CELLS_SIZE); //отрисовка кубиков
+                    X += Px;
+                    Y += Py;
+                    i++;
+                }
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show("Неверно заданы координаты.\nВведите целое число", "Ошибка!", 0, MessageBoxIcon.Exclamation);
+
+                Logger.error("Пользователь ввёл неверные данные в поля с точками", ex);
+            }
+        }
+
         public void drawBrez(Graphics graphicBrez)
         {
             if (!cbBrez.Checked)
@@ -122,7 +162,6 @@ namespace DigitGraphics
         {
             Refresh();
 
-            //TODO: Добавить более точное указание, где именно пользователь ошибся(с логированием (class Logger))
             using (Graphics graphic = pbMainFrame.CreateGraphics())
             {
                 drawNormalLine(graphic);
@@ -131,6 +170,11 @@ namespace DigitGraphics
             using (Graphics graphicBrez = pbMainFrame.CreateGraphics())
             {
                 drawBrez(graphicBrez);
+            }
+
+            using (Graphics graphicCDA = pbMainFrame.CreateGraphics())
+            {
+                drawCDA(graphicCDA);
             }
         }
     }
