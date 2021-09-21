@@ -37,21 +37,12 @@ namespace DigitGraphics
 
         public void drawNormalLine()
         {
-            try
-            {
-                field.DrawLine(Settings.Instance.NormalLineColor, 
-                    fPoint.X * Settings.CELLS_SIZE,
-                    fPoint.Y * Settings.CELLS_SIZE,
+            field.DrawLine(Settings.Instance.NormalLineColor, 
+            fPoint.X * Settings.CELLS_SIZE,
+            fPoint.Y * Settings.CELLS_SIZE,
 
-                    scPoint.Y * Settings.CELLS_SIZE,
-                    scPoint.X * Settings.CELLS_SIZE);
-            }
-            catch (FormatException ex)
-            {
-                MessageBox.Show("Неверно заданы координаты.\nВведите целое число", "Ошибка!", 0, MessageBoxIcon.Exclamation);
-
-                Logger.error("Пользователь ввёл неверные данные в поля с точками", ex);
-            }
+            scPoint.Y * Settings.CELLS_SIZE,
+            scPoint.X * Settings.CELLS_SIZE);
         }
 
         public void drawCdaLine()
@@ -80,8 +71,8 @@ namespace DigitGraphics
                 if (dX > 0)
                 {
                     field.FillRectangle(Settings.Instance.CDABrush, 
-                        (int)Math.Truncate(X * Settings.CELLS_SIZE),
-                        (int)Math.Truncate(Y * Settings.CELLS_SIZE), 
+                        (int)Math.Truncate(X) * Settings.CELLS_SIZE,
+                        (int)Math.Truncate(Y) * Settings.CELLS_SIZE, 
 
                         Settings.CELLS_SIZE, 
                         Settings.CELLS_SIZE);
@@ -89,8 +80,8 @@ namespace DigitGraphics
                 else
                 {
                     field.FillRectangle(Settings.Instance.CDABrush, 
-                        (int)Math.Truncate(X * Settings.CELLS_SIZE - Settings.CELLS_SIZE),
-                        (int)Math.Truncate(Y * Settings.CELLS_SIZE), 
+                        (int)Math.Truncate(X) * Settings.CELLS_SIZE - Settings.CELLS_SIZE,
+                        (int)Math.Truncate(Y) * Settings.CELLS_SIZE, 
 
                         Settings.CELLS_SIZE, 
                         Settings.CELLS_SIZE);
@@ -105,65 +96,70 @@ namespace DigitGraphics
         {
             double accretion = 0;
 
-            Point scaleTmpFtPoint = new Point(fPoint.X * Settings.CELLS_SIZE, fPoint.Y * Settings.CELLS_SIZE);
+            float X1 = fPoint.X * Settings.CELLS_SIZE;
+            float Y1 = fPoint.Y * Settings.CELLS_SIZE;
 
-            Point scaleTmpScPoint = new Point(fPoint.X * Settings.CELLS_SIZE, fPoint.Y * Settings.CELLS_SIZE);
+            float X2 = scPoint.X * Settings.CELLS_SIZE;
+            float Y2 = scPoint.Y * Settings.CELLS_SIZE;
 
             if (absDeltaX >= absDeltaY)
             {
                 int direction = dY != 0 ? (dY > 0 ? 1 : -1) : 0;
-                for (; dX > 0 ? scaleTmpFtPoint.X <= scaleTmpScPoint.X : scaleTmpFtPoint.X >= scaleTmpScPoint.X;)
+                while ( dX > 0 ? X1 <= X2 : X1 >= X2)
                 {
-                    field.FillRectangle(Settings.Instance.BrezBrush, 
-                        scaleTmpFtPoint.X, 
-                        scaleTmpFtPoint.Y,
+                    field.FillRectangle(Settings.Instance.BrezBrush,
+                        X1,
+                        Y1,
 
                         Settings.CELLS_SIZE, 
                         Settings.CELLS_SIZE);
-                    accretion += absDeltaY;
 
-                    if (accretion >= absDeltaX)
+                    accretion += absDeltaY * Settings.CELLS_SIZE;
+
+                    if (accretion >= absDeltaX * Settings.CELLS_SIZE)
                     {
-                        accretion -= absDeltaX;
+                        accretion -= absDeltaX * Settings.CELLS_SIZE;
 
-                        scaleTmpFtPoint = new Point(scaleTmpFtPoint.X, scaleTmpFtPoint.Y + direction * Settings.CELLS_SIZE);
+                        Y1 += direction * Settings.CELLS_SIZE;
                     }
                     if (dX > 0)
                     {
-                        scaleTmpFtPoint = new Point(scaleTmpFtPoint.X + Settings.CELLS_SIZE, scaleTmpFtPoint.Y);
+                        X1 += Settings.CELLS_SIZE;
                     }
                     else
                     {
-                        scaleTmpFtPoint = new Point(scaleTmpFtPoint.X - direction * Settings.CELLS_SIZE, scaleTmpFtPoint.Y);
+                        X1 -= Settings.CELLS_SIZE;
                     }
                 }
             }
             else
             {
                 int direction = dX != 0 ? (dX > 0 ? 1 : -1) : 0;
-                while(dY > 0 ? scaleTmpFtPoint.Y <= scaleTmpScPoint.Y : scaleTmpFtPoint.Y >= scaleTmpScPoint.Y)
+                while(dY > 0 ? Y1 <= Y2 : Y1 >= Y2)
                 {
                     field.FillRectangle(Settings.Instance.BrezBrush,
-                        scaleTmpFtPoint.X,
-                        scaleTmpFtPoint.Y,
+                        X1,
+                        Y1,
 
                         Settings.CELLS_SIZE,
                         Settings.CELLS_SIZE);
 
-                    accretion += absDeltaX;
-                    if (accretion >= absDeltaY)
+                    accretion += absDeltaX * Settings.CELLS_SIZE;
+
+                    if (accretion >= absDeltaY * Settings.CELLS_SIZE)
                     {
-                        accretion -= absDeltaY;
-                        scaleTmpFtPoint = new Point(scaleTmpFtPoint.X + direction * Settings.CELLS_SIZE, scaleTmpFtPoint.Y);
+                        accretion -= absDeltaY * Settings.CELLS_SIZE;
+
+                        X1 += direction * Settings.CELLS_SIZE;
                     }
 
                     if (dY > 0)
                     {
-                        scaleTmpFtPoint = new Point(scaleTmpFtPoint.X, scaleTmpFtPoint.Y + Settings.CELLS_SIZE);
+                        Y1 += Settings.CELLS_SIZE;
                     }
                     else
                     {
-                        scaleTmpFtPoint = new Point(scaleTmpFtPoint.X, scaleTmpFtPoint.Y - Settings.CELLS_SIZE);
+                        Y1 -= Settings.CELLS_SIZE;
                     }
                 }
             }
