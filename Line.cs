@@ -108,8 +108,8 @@ namespace DigitGraphics
                 while ( dX > 0 ? X1 <= X2 : X1 >= X2)
                 {
                     field.FillRectangle(Settings.Instance.BrezBrush,
-                        X1,
                         Y1,
+                        X1,
 
                         Settings.CELLS_SIZE, 
                         Settings.CELLS_SIZE);
@@ -138,8 +138,8 @@ namespace DigitGraphics
                 while(dY > 0 ? Y1 <= Y2 : Y1 >= Y2)
                 {
                     field.FillRectangle(Settings.Instance.BrezBrush,
-                        X1,
                         Y1,
+                        X1,
 
                         Settings.CELLS_SIZE,
                         Settings.CELLS_SIZE);
