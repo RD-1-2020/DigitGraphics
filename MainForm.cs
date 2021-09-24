@@ -13,168 +13,68 @@ namespace DigitGraphics
 {
     public partial class MainForm : Form
     {
+        private Point fPoint;
+
+        private Point scPoint;
 
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void pbMainFrame_Paint(object sender, PaintEventArgs e)
+        public void drawField(Graphics field)
         {
-            Graphics graphicCells = e.Graphics;
-            graphicCells.Clear(Color.White);
+            field.Clear(Color.White);
             for (int CellsNumber = 0; CellsNumber < 29; CellsNumber++)
             {
-                graphicCells.DrawLine(Settings.Instance.CellsColor, CellsNumber * Settings.CELLS_SIZE, pbMainFrame.ClientSize.Height, CellsNumber * Settings.CELLS_SIZE, 0);
-                graphicCells.DrawLine(Settings.Instance.CellsColor, pbMainFrame.ClientSize.Width, CellsNumber * Settings.CELLS_SIZE, 0, CellsNumber * Settings.CELLS_SIZE);
+                field.DrawLine(Settings.Instance.CellsColor, CellsNumber * Settings.CELLS_SIZE, pbMainFrame.ClientSize.Height, CellsNumber * Settings.CELLS_SIZE, 0);
+                field.DrawLine(Settings.Instance.CellsColor, pbMainFrame.ClientSize.Width, CellsNumber * Settings.CELLS_SIZE, 0, CellsNumber * Settings.CELLS_SIZE);
             }
         }
 
-        public void drawNormalLine(Graphics graphic)
+        private void pbMainFrame_Paint(object sender, PaintEventArgs e)
         {
-            if (!cbline.Checked)
-            {
-                return;
-            }
-
-            try
-            {
-                graphic.DrawLine(Settings.Instance.NormalLineColor, Convert.ToInt32(tbx1.Text) * Settings.CELLS_SIZE, Convert.ToInt32(tby1.Text) * Settings.CELLS_SIZE,
-                    Convert.ToInt32(tbx2.Text) * Settings.CELLS_SIZE,
-                    Convert.ToInt32(tby2.Text) * Settings.CELLS_SIZE);
-            } catch (FormatException ex)
-            {
-                MessageBox.Show("Неверно заданы координаты.\nВведите целое число", "Ошибка!", 0, MessageBoxIcon.Exclamation);
-
-                Logger.error("Пользователь ввёл неверные данные в поля с точками", ex);
-            }
-        }
-
-
-        public void drawCDA(Graphics graphicCDA)
-        {
-            if (!cbDDA.Checked)
-            {
-                return;
-            }
-
-            try
-            {
-
-                int dy = Convert.ToInt32(tby2.Text) - Convert.ToInt32(tby1.Text), dx = Convert.ToInt32(tbx2.Text) - Convert.ToInt32(tbx1.Text), deltaX = Math.Abs(dx), deltaY = Math.Abs(dy);
-                int len;
-                double Px, Py, X = Convert.ToInt32(tbx1.Text), Y = Convert.ToInt32(tby1.Text);
-                if (deltaX >= deltaY) len = deltaX;
-                else len = deltaY;
-                Px = dx / (double)len;
-                Py = dy / (double)len;
-                X = (Convert.ToInt32(tbx1.Text));
-                Y = (Convert.ToInt32(tby1.Text));
-                int i = 1;
-                while (i <= len)
-                {
-                    if (dx > 0) 
-                        graphicCDA.FillRectangle(Settings.Instance.CDABrush, (int)Math.Truncate(X) * Settings.CELLS_SIZE, (int)Math.Truncate(Y) * Settings.CELLS_SIZE, Settings.CELLS_SIZE, Settings.CELLS_SIZE); //отрисовка кубиков
-                    else 
-                        graphicCDA.FillRectangle(Settings.Instance.CDABrush, (int)Math.Truncate(X) * Settings.CELLS_SIZE - Settings.CELLS_SIZE, (int)Math.Truncate(Y) * Settings.CELLS_SIZE, Settings.CELLS_SIZE, Settings.CELLS_SIZE); //отрисовка кубиков
-                    X += Px;
-                    Y += Py;
-                    i++;
-                }
-            }
-            catch (FormatException ex)
-            {
-                MessageBox.Show("Неверно заданы координаты.\nВведите целое число", "Ошибка!", 0, MessageBoxIcon.Exclamation);
-
-                Logger.error("Пользователь ввёл неверные данные в поля с точками", ex);
-            }
-        }
-
-        public void drawBrez(Graphics graphicBrez)
-        {
-            if (!cbBrez.Checked)
-            {
-                return;
-            }
-
-            try
-            {
-
-                int deltaX = Convert.ToInt32(tbx2.Text) * Settings.CELLS_SIZE - Convert.ToInt32(tbx1.Text) * Settings.CELLS_SIZE;
-                int deltaY = Convert.ToInt32(tby2.Text) * Settings.CELLS_SIZE - Convert.ToInt32(tby1.Text) * Settings.CELLS_SIZE;
-                int absDeltaX = Math.Abs(deltaX);
-                int absDeltaY = Math.Abs(deltaY);
-
-                int accretion = 0;
-
-                if (absDeltaX >= absDeltaY)
-                {
-                    int y = Convert.ToInt32(tby1.Text) * Settings.CELLS_SIZE;
-                    int direction = deltaY != 0 ? (deltaY > 0 ? 1 : -1) : 0;
-                    for (int x = Convert.ToInt32(tbx1.Text) * Settings.CELLS_SIZE; deltaX > 0 ? x <= Convert.ToInt32(tbx2.Text) * Settings.CELLS_SIZE : x >= Convert.ToInt32(tbx2.Text) * Settings.CELLS_SIZE; )
-                    {
-                        graphicBrez.FillRectangle(Settings.Instance.BrezBrush, x, y, Settings.CELLS_SIZE, Settings.CELLS_SIZE);
-                        accretion += absDeltaY;
-
-                        if (accretion >= absDeltaX)
-                        {
-                            accretion -= absDeltaX;
-                            y += direction * Settings.CELLS_SIZE;
-                        }
-                        if (deltaX > 0)
-                        {
-                            x += Settings.CELLS_SIZE;
-                        }
-                        else x -= Settings.CELLS_SIZE;
-                    }
-                }
-                else
-                {
-                    int x = Convert.ToInt32(tbx1.Text) * Settings.CELLS_SIZE;
-                    int direction = deltaX != 0 ? (deltaX > 0 ? 1 : -1) : 0;
-                    for (int y = Convert.ToInt32(tby1.Text) * Settings.CELLS_SIZE; deltaY > 0 ? y <= Convert.ToInt32(tby2.Text) * Settings.CELLS_SIZE : y >= Convert.ToInt32(tby2.Text) * Settings.CELLS_SIZE; )
-                    {
-                        graphicBrez.FillRectangle(Settings.Instance.BrezBrush, x, y, Settings.CELLS_SIZE, Settings.CELLS_SIZE);
-                        accretion += absDeltaX;
-                        if (accretion >= absDeltaY)
-                        {
-                            accretion -= absDeltaY;
-                            x += direction * Settings.CELLS_SIZE;
-                        }
-
-                        if (deltaY > 0)
-                        {
-                            y += Settings.CELLS_SIZE;
-                        }
-                        else y -= Settings.CELLS_SIZE;
-                    }
-                }
-            }
-            catch (FormatException ex)
-            {
-                MessageBox.Show("Неверно заданы координаты.\nВведите целое число", "Ошибка!", 0, MessageBoxIcon.Exclamation);
-
-                Logger.error("Пользователь ввёл неверные данные в поля с точками", ex);
-            }
+            drawField(e.Graphics);
         }
 
         private void btDraw_Click(object sender, EventArgs e)
         {
             Refresh();
-
-            using (Graphics graphic = pbMainFrame.CreateGraphics())
+            try
             {
-                drawNormalLine(graphic);
+                fPoint = new Point(Convert.ToInt32(tbx1.Text), Convert.ToInt32(tby1.Text));
+
+                scPoint = new Point(Convert.ToInt32(tbx2.Text), Convert.ToInt32(tby2.Text));
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show("Проверьте данные в полях с точками");
+
+                Logger.error("В полях точек невалидные данные", ex);
+
+                return;
             }
 
-            using (Graphics graphicBrez = pbMainFrame.CreateGraphics())
-            {
-                drawBrez(graphicBrez);
-            }
+            
 
-            using (Graphics graphicCDA = pbMainFrame.CreateGraphics())
+            using (Graphics field = pbMainFrame.CreateGraphics())
             {
-                drawCDA(graphicCDA);
+                Line line = new Line(fPoint, scPoint, field);
+
+                if (cbline.Checked)
+                {
+                    line.drawNormalLine();
+                }
+
+                if (cbBrez.Checked)
+                {
+                    line.drawBrezLine();
+                }
+
+                if (cbCDA.Checked)
+                {
+                    line.drawCdaLine();
+                }
             }
         }
     }

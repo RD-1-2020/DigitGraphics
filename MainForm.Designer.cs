@@ -31,7 +31,7 @@ namespace DigitGraphics
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.cbBrez = new System.Windows.Forms.CheckBox();
-            this.cbDDA = new System.Windows.Forms.CheckBox();
+            this.cbCDA = new System.Windows.Forms.CheckBox();
             this.pbMainFrame = new System.Windows.Forms.PictureBox();
             this.tbx1 = new System.Windows.Forms.TextBox();
             this.lbx1 = new System.Windows.Forms.Label();
@@ -57,16 +57,16 @@ namespace DigitGraphics
             this.cbBrez.Text = "Алгоритм Брезенхем";
             this.cbBrez.UseVisualStyleBackColor = true;
             // 
-            // cbDDA
+            // cbCDA
             // 
-            this.cbDDA.AutoSize = true;
-            this.cbDDA.Location = new System.Drawing.Point(851, 122);
-            this.cbDDA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbDDA.Name = "cbDDA";
-            this.cbDDA.Size = new System.Drawing.Size(127, 21);
-            this.cbDDA.TabIndex = 1;
-            this.cbDDA.Text = "Алгоритм ЦДА";
-            this.cbDDA.UseVisualStyleBackColor = true;
+            this.cbCDA.AutoSize = true;
+            this.cbCDA.Location = new System.Drawing.Point(851, 122);
+            this.cbCDA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbCDA.Name = "cbCDA";
+            this.cbCDA.Size = new System.Drawing.Size(127, 21);
+            this.cbCDA.TabIndex = 1;
+            this.cbCDA.Text = "Алгоритм ЦДА";
+            this.cbCDA.UseVisualStyleBackColor = true;
             // 
             // pbMainFrame
             // 
@@ -185,7 +185,7 @@ namespace DigitGraphics
             this.Controls.Add(this.pbMainFrame);
             this.Controls.Add(this.btDraw);
             this.Controls.Add(this.cbline);
-            this.Controls.Add(this.cbDDA);
+            this.Controls.Add(this.cbCDA);
             this.Controls.Add(this.cbBrez);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -200,7 +200,7 @@ namespace DigitGraphics
         #endregion
 
         private System.Windows.Forms.CheckBox cbBrez;
-        private System.Windows.Forms.CheckBox cbDDA;
+        private System.Windows.Forms.CheckBox cbCDA;
         private System.Windows.Forms.PictureBox pbMainFrame;
         private System.Windows.Forms.TextBox tbx1;
         private System.Windows.Forms.Label lbx1;
