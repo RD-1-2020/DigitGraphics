@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using DigitGraphics.Utils;
 
-namespace DigitGraphics
+namespace DigitGraphics.Lines
 {
-    public partial class MainForm : Form
+    public partial class LinesForm : Form
     {
         private Point fPoint;
 
         private Point scPoint;
 
-        public MainForm()
+        public LinesForm()
         {
             InitializeComponent();
         }
