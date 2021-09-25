@@ -1,17 +1,17 @@
-п»ї
-namespace DigitGraphics
+
+namespace DigitGraphics.Lines
 {
-    partial class MainForm
+    partial class LinesForm
     {
         /// <summary>
-        /// РћР±СЏР·Р°С‚РµР»СЊРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°.
+        /// Обязательная переменная конструктора.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// РћСЃРІРѕР±РѕРґРёС‚СЊ РІСЃРµ РёСЃРїРѕР»СЊР·СѓРµРјС‹Рµ СЂРµСЃСѓСЂСЃС‹.
+        /// Освободить все используемые ресурсы.
         /// </summary>
-        /// <param name="disposing">РёСЃС‚РёРЅРЅРѕ, РµСЃР»Рё СѓРїСЂР°РІР»СЏРµРјС‹Р№ СЂРµСЃСѓСЂСЃ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СѓРґР°Р»РµРЅ; РёРЅР°С‡Рµ Р»РѕР¶РЅРѕ.</param>
+        /// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,15 +21,15 @@ namespace DigitGraphics
             base.Dispose(disposing);
         }
 
-        #region РљРѕРґ, Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё СЃРѕР·РґР°РЅРЅС‹Р№ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂРѕРј С„РѕСЂРј Windows
+        #region Код, автоматически созданный конструктором форм Windows
 
         /// <summary>
-        /// РўСЂРµР±СѓРµРјС‹Р№ РјРµС‚РѕРґ РґР»СЏ РїРѕРґРґРµСЂР¶РєРё РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° вЂ” РЅРµ РёР·РјРµРЅСЏР№С‚Рµ 
-        /// СЃРѕРґРµСЂР¶РёРјРѕРµ СЌС‚РѕРіРѕ РјРµС‚РѕРґР° СЃ РїРѕРјРѕС‰СЊСЋ СЂРµРґР°РєС‚РѕСЂР° РєРѕРґР°.
+        /// Требуемый метод для поддержки конструктора — не изменяйте 
+        /// содержимое этого метода с помощью редактора кода.
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LinesForm));
             this.cbBrez = new System.Windows.Forms.CheckBox();
             this.cbCDA = new System.Windows.Forms.CheckBox();
             this.pbMainFrame = new System.Windows.Forms.PictureBox();
@@ -54,7 +54,7 @@ namespace DigitGraphics
             this.cbBrez.Name = "cbBrez";
             this.cbBrez.Size = new System.Drawing.Size(167, 21);
             this.cbBrez.TabIndex = 0;
-            this.cbBrez.Text = "РђР»РіРѕСЂРёС‚Рј Р‘СЂРµР·РµРЅС…РµРј";
+            this.cbBrez.Text = "Алгоритм Брезенхем";
             this.cbBrez.UseVisualStyleBackColor = true;
             // 
             // cbCDA
@@ -65,7 +65,7 @@ namespace DigitGraphics
             this.cbCDA.Name = "cbCDA";
             this.cbCDA.Size = new System.Drawing.Size(127, 21);
             this.cbCDA.TabIndex = 1;
-            this.cbCDA.Text = "РђР»РіРѕСЂРёС‚Рј Р¦Р”Рђ";
+            this.cbCDA.Text = "Алгоритм ЦДА";
             this.cbCDA.UseVisualStyleBackColor = true;
             // 
             // pbMainFrame
@@ -155,7 +155,7 @@ namespace DigitGraphics
             this.cbline.Name = "cbline";
             this.cbline.Size = new System.Drawing.Size(165, 21);
             this.cbline.TabIndex = 2;
-            this.cbline.Text = "РќРѕСЂРјР°Р»СЊРЅС‹Р№ РіСЂР°С„РёРє";
+            this.cbline.Text = "Нормальный график";
             this.cbline.UseVisualStyleBackColor = true;
             // 
             // btDraw
@@ -165,11 +165,11 @@ namespace DigitGraphics
             this.btDraw.Name = "btDraw";
             this.btDraw.Size = new System.Drawing.Size(164, 39);
             this.btDraw.TabIndex = 3;
-            this.btDraw.Text = "РћС‚СЂРёСЃРѕРІРєР°";
+            this.btDraw.Text = "Отрисовка";
             this.btDraw.UseVisualStyleBackColor = true;
             this.btDraw.Click += new System.EventHandler(this.btDraw_Click);
             // 
-            // MainForm
+            // LinesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -189,7 +189,7 @@ namespace DigitGraphics
             this.Controls.Add(this.cbBrez);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "MainForm";
+            this.Name = "LinesForm";
             this.Text = "Digit Graphic";
             ((System.ComponentModel.ISupportInitialize)(this.pbMainFrame)).EndInit();
             this.ResumeLayout(false);
