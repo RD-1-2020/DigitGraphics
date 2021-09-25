@@ -16,19 +16,9 @@ namespace DigitGraphics.Lines
             InitializeComponent();
         }
 
-        public void drawField(Graphics field)
-        {
-            field.Clear(Color.White);
-            for (int CellsNumber = 0; CellsNumber < 29; CellsNumber++)
-            {
-                field.DrawLine(Settings.Instance.CellsColor, CellsNumber * Settings.CELLS_SIZE, pbMainFrame.ClientSize.Height, CellsNumber * Settings.CELLS_SIZE, 0);
-                field.DrawLine(Settings.Instance.CellsColor, pbMainFrame.ClientSize.Width, CellsNumber * Settings.CELLS_SIZE, 0, CellsNumber * Settings.CELLS_SIZE);
-            }
-        }
-
         private void pbMainFrame_Paint(object sender, PaintEventArgs e)
         {
-            drawField(e.Graphics);
+            DrawTools.drawField(e.Graphics, pbMainFrame.ClientSize.Width, pbMainFrame.ClientSize.Height);
         }
 
         private void btDraw_Click(object sender, EventArgs e)

@@ -47,7 +47,6 @@ namespace DigitGraphics
             // 
             this.spMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.spMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spMain.IsSplitterFixed = true;
             this.spMain.Location = new System.Drawing.Point(0, 0);
             this.spMain.Name = "spMain";
             this.spMain.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -60,8 +59,8 @@ namespace DigitGraphics
             // spMain.Panel2
             // 
             this.spMain.Panel2.Controls.Add(this.spMenu);
-            this.spMain.Size = new System.Drawing.Size(595, 238);
-            this.spMain.SplitterDistance = 155;
+            this.spMain.Size = new System.Drawing.Size(595, 277);
+            this.spMain.SplitterDistance = 242;
             this.spMain.SplitterWidth = 1;
             this.spMain.TabIndex = 0;
             // 
@@ -80,16 +79,20 @@ namespace DigitGraphics
             // spMenu.Panel2
             // 
             this.spMenu.Panel2.Controls.Add(this.btStart);
-            this.spMenu.Size = new System.Drawing.Size(595, 82);
+            this.spMenu.Size = new System.Drawing.Size(595, 34);
             this.spMenu.SplitterDistance = 323;
             this.spMenu.SplitterWidth = 1;
             this.spMenu.TabIndex = 0;
             // 
             // cbFormsList
             // 
+            this.cbFormsList.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cbFormsList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbFormsList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbFormsList.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cbFormsList.FormattingEnabled = true;
+            this.cbFormsList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cbFormsList.ItemHeight = 22;
             this.cbFormsList.Location = new System.Drawing.Point(0, 0);
             this.cbFormsList.Name = "cbFormsList";
             this.cbFormsList.Size = new System.Drawing.Size(321, 30);
@@ -98,12 +101,13 @@ namespace DigitGraphics
             // btStart
             // 
             this.btStart.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btStart.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btStart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btStart.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btStart.ForeColor = System.Drawing.Color.OrangeRed;
             this.btStart.Location = new System.Drawing.Point(0, 0);
             this.btStart.Name = "btStart";
-            this.btStart.Size = new System.Drawing.Size(269, 80);
+            this.btStart.Size = new System.Drawing.Size(269, 32);
             this.btStart.TabIndex = 0;
             this.btStart.Text = "Открыть для себя Digit!";
             this.btStart.UseVisualStyleBackColor = false;
@@ -114,7 +118,7 @@ namespace DigitGraphics
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(595, 238);
+            this.ClientSize = new System.Drawing.Size(595, 277);
             this.Controls.Add(this.spMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MenuForm";

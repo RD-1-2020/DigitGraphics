@@ -3,12 +3,12 @@ using System.Drawing;
 
 namespace DigitGraphics.Utils
 {
-     class Settings
+     class LinesSettings
     {
-        private static readonly Lazy<Settings> instanceHolder =
-            new Lazy<Settings>(() => new Settings());
+        private static readonly Lazy<LinesSettings> instanceHolder =
+            new Lazy<LinesSettings>(() => new LinesSettings());
 
-        public static Settings Instance
+        public static LinesSettings Instance
         {
             get { return instanceHolder.Value; }
         }
@@ -16,6 +16,16 @@ namespace DigitGraphics.Utils
         public static int CELLS_SIZE = 20;
 
         private static Pen _cellsColor = new Pen(Color.Black);
+
+        private static Color _cdaColor = Color.FromArgb(70, Color.Chocolate);
+
+        private static Color _brezColor = Color.FromArgb(70, Color.Aqua);
+
+        private static Pen _normalColor = new Pen(Color.DeepPink);
+
+        private static SolidBrush _cdaBrush = new SolidBrush(_cdaColor);
+
+        private static SolidBrush _brezBrush = new SolidBrush(_brezColor);
 
         public Pen CellsColor {
             get
@@ -27,8 +37,6 @@ namespace DigitGraphics.Utils
                 _cellsColor = value;
             }
         }
-
-        private static Color _cdaColor = Color.FromArgb(70, Color.Chocolate);
 
         public Color CDAColor
         {
@@ -42,8 +50,6 @@ namespace DigitGraphics.Utils
             }
         }
 
-        private static SolidBrush _cdaBrush = new SolidBrush(Settings.Instance.CDAColor);
-
         public SolidBrush CDABrush
         {
             get
@@ -56,7 +62,7 @@ namespace DigitGraphics.Utils
             }
         }
 
-        private static Color _brezColor = Color.FromArgb(70, Color.Aqua);
+        
 
         public Color BrezColor
         {
@@ -70,8 +76,6 @@ namespace DigitGraphics.Utils
             }
         }
 
-        private static SolidBrush _brezBrush = new SolidBrush(Settings.Instance.BrezColor);
-
         public SolidBrush BrezBrush
         {
             get
@@ -84,16 +88,14 @@ namespace DigitGraphics.Utils
             }
         }
 
-        private static Pen _normalLineColor = new Pen(Color.DeepPink);
-
-        public Pen NormalLineColor {
+        public Pen NormalColor {
             get
             {
-                return _normalLineColor;
+                return _normalColor;
             }
             set
             {
-                _normalLineColor = value;
+                _normalColor = value;
             }
         }
     }
