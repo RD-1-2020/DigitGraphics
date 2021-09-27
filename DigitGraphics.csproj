@@ -63,6 +63,12 @@
     <Compile Include="MenuForm.Designer.cs">
       <DependentUpon>MenuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Shapes\FormModalRadiusDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shapes\FormModalRadiusDialog.Designer.cs">
+      <DependentUpon>FormModalRadiusDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Shapes\Shape.cs" />
     <Compile Include="Shapes\ShapesForm.cs">
       <SubType>Form</SubType>
@@ -90,6 +96,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Shapes\FormModalRadiusDialog.resx">
+      <DependentUpon>FormModalRadiusDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Shapes\ShapesForm.resx">
       <DependentUpon>ShapesForm.cs</DependentUpon>
     </EmbeddedResource>

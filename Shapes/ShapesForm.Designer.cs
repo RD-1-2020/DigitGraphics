@@ -34,12 +34,12 @@ namespace DigitGraphics.Shapes
             this.spMain = new System.Windows.Forms.SplitContainer();
             this.pbMain = new System.Windows.Forms.PictureBox();
             this.spMenu = new System.Windows.Forms.SplitContainer();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.cbNormal = new System.Windows.Forms.CheckBox();
-            this.cbLine = new System.Windows.Forms.CheckBox();
-            this.cbSpiral = new System.Windows.Forms.CheckBox();
-            this.btDraw = new System.Windows.Forms.Button();
             this.spShapeSettings = new System.Windows.Forms.SplitContainer();
+            this.btDraw = new System.Windows.Forms.Button();
+            this.cbSpiral = new System.Windows.Forms.CheckBox();
+            this.cbLine = new System.Windows.Forms.CheckBox();
+            this.cbNormal = new System.Windows.Forms.CheckBox();
+            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             ((System.ComponentModel.ISupportInitialize)(this.spMain)).BeginInit();
             this.spMain.Panel1.SuspendLayout();
             this.spMain.Panel2.SuspendLayout();
@@ -89,6 +89,7 @@ namespace DigitGraphics.Shapes
             this.pbMain.TabIndex = 0;
             this.pbMain.TabStop = false;
             this.pbMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pbMain_Paint);
+            this.pbMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pbMain_MouseClick);
             // 
             // spMenu
             // 
@@ -112,39 +113,28 @@ namespace DigitGraphics.Shapes
             this.spMenu.SplitterDistance = 303;
             this.spMenu.TabIndex = 0;
             // 
-            // propertyGrid1
+            // spShapeSettings
             // 
-            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid1.Location = new System.Drawing.Point(0, 0);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(461, 399);
-            this.propertyGrid1.TabIndex = 0;
+            this.spShapeSettings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spShapeSettings.IsSplitterFixed = true;
+            this.spShapeSettings.Location = new System.Drawing.Point(0, 69);
+            this.spShapeSettings.Name = "spShapeSettings";
+            this.spShapeSettings.Size = new System.Drawing.Size(461, 183);
+            this.spShapeSettings.SplitterDistance = 110;
+            this.spShapeSettings.SplitterWidth = 1;
+            this.spShapeSettings.TabIndex = 4;
             // 
-            // cbNormal
+            // btDraw
             // 
-            this.cbNormal.AutoSize = true;
-            this.cbNormal.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cbNormal.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cbNormal.Location = new System.Drawing.Point(0, 0);
-            this.cbNormal.Name = "cbNormal";
-            this.cbNormal.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.cbNormal.Size = new System.Drawing.Size(461, 23);
-            this.cbNormal.TabIndex = 0;
-            this.cbNormal.Text = "Стандартная отрисовка";
-            this.cbNormal.UseVisualStyleBackColor = true;
-            // 
-            // cbLine
-            // 
-            this.cbLine.AutoSize = true;
-            this.cbLine.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cbLine.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cbLine.Location = new System.Drawing.Point(0, 23);
-            this.cbLine.Name = "cbLine";
-            this.cbLine.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.cbLine.Size = new System.Drawing.Size(461, 23);
-            this.cbLine.TabIndex = 1;
-            this.cbLine.Text = "Отрисовка строками";
-            this.cbLine.UseVisualStyleBackColor = true;
+            this.btDraw.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btDraw.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btDraw.Location = new System.Drawing.Point(0, 252);
+            this.btDraw.Name = "btDraw";
+            this.btDraw.Size = new System.Drawing.Size(461, 51);
+            this.btDraw.TabIndex = 3;
+            this.btDraw.Text = "Начни свой путь в Digit!";
+            this.btDraw.UseVisualStyleBackColor = true;
+            this.btDraw.Click += new System.EventHandler(this.button1_Click);
             // 
             // cbSpiral
             // 
@@ -159,28 +149,39 @@ namespace DigitGraphics.Shapes
             this.cbSpiral.Text = "Отрисовка спиралью";
             this.cbSpiral.UseVisualStyleBackColor = true;
             // 
-            // btDraw
+            // cbLine
             // 
-            this.btDraw.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btDraw.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btDraw.Location = new System.Drawing.Point(0, 252);
-            this.btDraw.Name = "btDraw";
-            this.btDraw.Size = new System.Drawing.Size(461, 51);
-            this.btDraw.TabIndex = 3;
-            this.btDraw.Text = "Начни свой путь в Digit!";
-            this.btDraw.UseVisualStyleBackColor = true;
-            this.btDraw.Click += new System.EventHandler(this.button1_Click);
+            this.cbLine.AutoSize = true;
+            this.cbLine.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cbLine.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbLine.Location = new System.Drawing.Point(0, 23);
+            this.cbLine.Name = "cbLine";
+            this.cbLine.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.cbLine.Size = new System.Drawing.Size(461, 23);
+            this.cbLine.TabIndex = 1;
+            this.cbLine.Text = "Отрисовка строками";
+            this.cbLine.UseVisualStyleBackColor = true;
             // 
-            // spShapeSettings
+            // cbNormal
             // 
-            this.spShapeSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spShapeSettings.IsSplitterFixed = true;
-            this.spShapeSettings.Location = new System.Drawing.Point(0, 69);
-            this.spShapeSettings.Name = "spShapeSettings";
-            this.spShapeSettings.Size = new System.Drawing.Size(461, 183);
-            this.spShapeSettings.SplitterDistance = 110;
-            this.spShapeSettings.SplitterWidth = 1;
-            this.spShapeSettings.TabIndex = 4;
+            this.cbNormal.AutoSize = true;
+            this.cbNormal.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cbNormal.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbNormal.Location = new System.Drawing.Point(0, 0);
+            this.cbNormal.Name = "cbNormal";
+            this.cbNormal.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.cbNormal.Size = new System.Drawing.Size(461, 23);
+            this.cbNormal.TabIndex = 0;
+            this.cbNormal.Text = "Стандартная отрисовка";
+            this.cbNormal.UseVisualStyleBackColor = true;
+            // 
+            // propertyGrid1
+            // 
+            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid1.Location = new System.Drawing.Point(0, 0);
+            this.propertyGrid1.Name = "propertyGrid1";
+            this.propertyGrid1.Size = new System.Drawing.Size(461, 399);
+            this.propertyGrid1.TabIndex = 0;
             // 
             // ShapesForm
             // 

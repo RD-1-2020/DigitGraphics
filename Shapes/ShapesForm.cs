@@ -1,11 +1,15 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
+using DigitGraphics.Properties;
 using DigitGraphics.Utils;
 
 namespace DigitGraphics.Shapes
 {
     public partial class ShapesForm : Form
     {
+        private Shape shape;
+
         public ShapesForm()
         {
             InitializeComponent();
@@ -27,6 +31,22 @@ namespace DigitGraphics.Shapes
             int fieldHeight = pbMain.ClientSize.Height;
 
             DrawTools.drawField(e.Graphics, fieldWidth, fieldHeight);
+        }
+
+        private void pbMain_MouseClick(object sender, MouseEventArgs e)
+        {
+            FormModalRadiusDialog radiusForm = new FormModalRadiusDialog();
+            DialogResult formDialogResult = radiusForm.ShowDialog();
+            shape = new Shape((int)e.X, (int)e.Y, pbMain.CreateGraphics());
+
+            if (formDialogResult == DialogResult.OK)
+            {
+                int RadiusInCircle = Convert.ToInt32(radiusForm.textBox1.Text);
+
+                shape.RadiusInCircle = LinesSettings.CELLS_SIZE * RadiusInCircle;
+            }
+
+            shape.drawNormal();
         }
     }
 }
