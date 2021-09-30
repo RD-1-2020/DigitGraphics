@@ -11,11 +11,15 @@ namespace DigitGraphics.Shapes
 {
     class Shape
     {
-        private int radiusInCircle;
+        private int radiusOutCircle;
 
         private int x0;
 
         private int y0;
+
+        private int x0scale;
+        private int y0scale;
+        private int radiusScale;
 
         private Graphics field;
         
@@ -27,20 +31,32 @@ namespace DigitGraphics.Shapes
 
         public Shape(int x0, int y0, Graphics field)
         {
-            this.x0 = x0;
-            this.y0 = y0;
+            X0 = x0;
+            Y0 = y0;
             this.field = field;
         }
 
+        /// <summary>
+        /// В данной функции создаётся массив из 6 точек
+        /// Для построения правильного шестиугольника
+        /// Так как отклонение угла каждой точки от
+        /// предыдущий равен пи на 3 мы берём и в цикле
+        /// Используя полярные координаты получаем x;y
+        /// Нашего многоугольника
+        /// </summary>
         public void drawNormal()
         {
             List<Point> points = new List<Point>();
 
             for (int i = 1; i < 7; i++)
             {
-                points.Add(new Point((int)(Math.Cos(i*Math.PI/3)* radiusInCircle) + x0, (int)(Math.Sin(i * Math.PI / 3) * radiusInCircle) + y0));
+                points.Add(
+                    new Point(
+                        (int)(Math.Cos(i*Math.PI/3)* radiusScale) + x0scale, 
+                        (int)(Math.Sin(i * Math.PI / 3) * radiusScale) + y0scale
+                        ));
             }
-            field.DrawPolygon(LinesSettings.Instance.NormalColor,points.ToArray());
+            field.DrawPolygon(Settings.Instance.NormalColor,points.ToArray());
         }
 
         //TODO: Релизовать
@@ -53,22 +69,33 @@ namespace DigitGraphics.Shapes
         {
         }
 
-        public int RadiusInCircle
+        public int RadiusOutCircle
         {
-            get => radiusInCircle;
-            set => radiusInCircle = value;
+            get => radiusOutCircle;
+            set
+            {
+                radiusOutCircle = value;
+                radiusScale = value * Settings.CELLS_SIZE;
+            }
         }
 
         public int X0
         {
             get => x0;
-            set => x0 = value;
+            set
+            {
+                x0 = value;
+                x0scale = value * Settings.CELLS_SIZE;
+            }
         }
 
         public int Y0
         {
             get => y0;
-            set => y0 = value;
+            set { 
+            y0 = value;
+            y0scale = value * Settings.CELLS_SIZE;
+            }
         }
     }
 }
