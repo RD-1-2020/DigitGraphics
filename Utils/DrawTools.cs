@@ -12,14 +12,14 @@ namespace DigitGraphics.Utils
         public static void drawField(Graphics field, int width, int height)
         {
             field.Clear(Color.White);
-            for (int CellsNumber = 0; CellsNumber * LinesSettings.CELLS_SIZE <  width; CellsNumber++)
+            for (int CellsNumber = 0; CellsNumber * Settings.CELLS_SIZE <  width; CellsNumber++)
             {
-                field.DrawLine(LinesSettings.Instance.CellsColor, CellsNumber * LinesSettings.CELLS_SIZE, height, CellsNumber * LinesSettings.CELLS_SIZE, 0);
+                field.DrawLine(Settings.Instance.CellsColor, CellsNumber * Settings.CELLS_SIZE, height, CellsNumber * Settings.CELLS_SIZE, 0);
             }
 
-            for (int CellsNumber = 0; CellsNumber * LinesSettings.CELLS_SIZE < height; CellsNumber++)
+            for (int CellsNumber = 0; CellsNumber * Settings.CELLS_SIZE < height; CellsNumber++)
             {
-                field.DrawLine(LinesSettings.Instance.CellsColor, 0, CellsNumber * LinesSettings.CELLS_SIZE, width, CellsNumber * LinesSettings.CELLS_SIZE);
+                field.DrawLine(Settings.Instance.CellsColor, 0, CellsNumber * Settings.CELLS_SIZE, width, CellsNumber * Settings.CELLS_SIZE);
             }
         }
     }

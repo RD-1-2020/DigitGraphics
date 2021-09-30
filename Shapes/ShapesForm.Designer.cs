@@ -34,12 +34,14 @@ namespace DigitGraphics.Shapes
             this.spMain = new System.Windows.Forms.SplitContainer();
             this.pbMain = new System.Windows.Forms.PictureBox();
             this.spMenu = new System.Windows.Forms.SplitContainer();
-            this.spShapeSettings = new System.Windows.Forms.SplitContainer();
+            this.spHelp = new System.Windows.Forms.SplitContainer();
             this.btDraw = new System.Windows.Forms.Button();
             this.cbSpiral = new System.Windows.Forms.CheckBox();
             this.cbLine = new System.Windows.Forms.CheckBox();
             this.cbNormal = new System.Windows.Forms.CheckBox();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.pgShapeSettings = new System.Windows.Forms.PropertyGrid();
+            this.lbHelpTitle = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.spMain)).BeginInit();
             this.spMain.Panel1.SuspendLayout();
             this.spMain.Panel2.SuspendLayout();
@@ -49,8 +51,10 @@ namespace DigitGraphics.Shapes
             this.spMenu.Panel1.SuspendLayout();
             this.spMenu.Panel2.SuspendLayout();
             this.spMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spShapeSettings)).BeginInit();
-            this.spShapeSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spHelp)).BeginInit();
+            this.spHelp.Panel1.SuspendLayout();
+            this.spHelp.Panel2.SuspendLayout();
+            this.spHelp.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -100,7 +104,7 @@ namespace DigitGraphics.Shapes
             // 
             // spMenu.Panel1
             // 
-            this.spMenu.Panel1.Controls.Add(this.spShapeSettings);
+            this.spMenu.Panel1.Controls.Add(this.spHelp);
             this.spMenu.Panel1.Controls.Add(this.btDraw);
             this.spMenu.Panel1.Controls.Add(this.cbSpiral);
             this.spMenu.Panel1.Controls.Add(this.cbLine);
@@ -108,40 +112,48 @@ namespace DigitGraphics.Shapes
             // 
             // spMenu.Panel2
             // 
-            this.spMenu.Panel2.Controls.Add(this.propertyGrid1);
+            this.spMenu.Panel2.Controls.Add(this.pgShapeSettings);
             this.spMenu.Size = new System.Drawing.Size(461, 706);
             this.spMenu.SplitterDistance = 303;
             this.spMenu.TabIndex = 0;
             // 
-            // spShapeSettings
+            // spHelp
             // 
-            this.spShapeSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spShapeSettings.IsSplitterFixed = true;
-            this.spShapeSettings.Location = new System.Drawing.Point(0, 69);
-            this.spShapeSettings.Name = "spShapeSettings";
-            this.spShapeSettings.Size = new System.Drawing.Size(461, 183);
-            this.spShapeSettings.SplitterDistance = 110;
-            this.spShapeSettings.SplitterWidth = 1;
-            this.spShapeSettings.TabIndex = 4;
+            this.spHelp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spHelp.Location = new System.Drawing.Point(0, 0);
+            this.spHelp.Name = "spHelp";
+            this.spHelp.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // spHelp.Panel1
+            // 
+            this.spHelp.Panel1.Controls.Add(this.lbHelpTitle);
+            // 
+            // spHelp.Panel2
+            // 
+            this.spHelp.Panel2.Controls.Add(this.label1);
+            this.spHelp.Size = new System.Drawing.Size(461, 183);
+            this.spHelp.SplitterDistance = 56;
+            this.spHelp.SplitterWidth = 1;
+            this.spHelp.TabIndex = 1;
             // 
             // btDraw
             // 
             this.btDraw.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btDraw.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btDraw.Location = new System.Drawing.Point(0, 252);
+            this.btDraw.Location = new System.Drawing.Point(0, 183);
             this.btDraw.Name = "btDraw";
             this.btDraw.Size = new System.Drawing.Size(461, 51);
             this.btDraw.TabIndex = 3;
             this.btDraw.Text = "Начни свой путь в Digit!";
             this.btDraw.UseVisualStyleBackColor = true;
-            this.btDraw.Click += new System.EventHandler(this.button1_Click);
+            this.btDraw.Click += new System.EventHandler(this.btDraw_Click);
             // 
             // cbSpiral
             // 
             this.cbSpiral.AutoSize = true;
-            this.cbSpiral.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cbSpiral.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.cbSpiral.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cbSpiral.Location = new System.Drawing.Point(0, 46);
+            this.cbSpiral.Location = new System.Drawing.Point(0, 234);
             this.cbSpiral.Name = "cbSpiral";
             this.cbSpiral.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.cbSpiral.Size = new System.Drawing.Size(461, 23);
@@ -152,9 +164,9 @@ namespace DigitGraphics.Shapes
             // cbLine
             // 
             this.cbLine.AutoSize = true;
-            this.cbLine.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cbLine.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.cbLine.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cbLine.Location = new System.Drawing.Point(0, 23);
+            this.cbLine.Location = new System.Drawing.Point(0, 257);
             this.cbLine.Name = "cbLine";
             this.cbLine.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.cbLine.Size = new System.Drawing.Size(461, 23);
@@ -165,9 +177,9 @@ namespace DigitGraphics.Shapes
             // cbNormal
             // 
             this.cbNormal.AutoSize = true;
-            this.cbNormal.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cbNormal.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.cbNormal.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cbNormal.Location = new System.Drawing.Point(0, 0);
+            this.cbNormal.Location = new System.Drawing.Point(0, 280);
             this.cbNormal.Name = "cbNormal";
             this.cbNormal.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.cbNormal.Size = new System.Drawing.Size(461, 23);
@@ -175,13 +187,39 @@ namespace DigitGraphics.Shapes
             this.cbNormal.Text = "Стандартная отрисовка";
             this.cbNormal.UseVisualStyleBackColor = true;
             // 
-            // propertyGrid1
+            // pgShapeSettings
             // 
-            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid1.Location = new System.Drawing.Point(0, 0);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(461, 399);
-            this.propertyGrid1.TabIndex = 0;
+            this.pgShapeSettings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pgShapeSettings.Location = new System.Drawing.Point(0, 0);
+            this.pgShapeSettings.Name = "pgShapeSettings";
+            this.pgShapeSettings.Size = new System.Drawing.Size(461, 399);
+            this.pgShapeSettings.TabIndex = 0;
+            this.pgShapeSettings.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.pgShapeSettings_PropertyValueChanged);
+            // 
+            // lbHelpTitle
+            // 
+            this.lbHelpTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbHelpTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbHelpTitle.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbHelpTitle.Location = new System.Drawing.Point(0, 0);
+            this.lbHelpTitle.Name = "lbHelpTitle";
+            this.lbHelpTitle.Size = new System.Drawing.Size(461, 56);
+            this.lbHelpTitle.TabIndex = 0;
+            this.lbHelpTitle.Text = "Подсказка";
+            this.lbHelpTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(461, 126);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Пожалуйста нажмите мышкой на поле, а затем введите радиус описанной окружности, а" +
+    " затем выберите тип отрисовки.\r\n";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ShapesForm
             // 
@@ -193,7 +231,6 @@ namespace DigitGraphics.Shapes
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ShapesForm";
             this.Text = "Отрисовка шестиугольника";
-            this.Load += new System.EventHandler(this.ShapesForm_Load);
             this.spMain.Panel1.ResumeLayout(false);
             this.spMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spMain)).EndInit();
@@ -204,8 +241,10 @@ namespace DigitGraphics.Shapes
             this.spMenu.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spMenu)).EndInit();
             this.spMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.spShapeSettings)).EndInit();
-            this.spShapeSettings.ResumeLayout(false);
+            this.spHelp.Panel1.ResumeLayout(false);
+            this.spHelp.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spHelp)).EndInit();
+            this.spHelp.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,7 +260,9 @@ namespace DigitGraphics.Shapes
         private System.Windows.Forms.CheckBox cbSpiral;
         private System.Windows.Forms.CheckBox cbLine;
         private System.Windows.Forms.CheckBox cbNormal;
-        private System.Windows.Forms.PropertyGrid propertyGrid1;
-        private System.Windows.Forms.SplitContainer spShapeSettings;
+        private System.Windows.Forms.PropertyGrid pgShapeSettings;
+        private System.Windows.Forms.SplitContainer spHelp;
+        private System.Windows.Forms.Label lbHelpTitle;
+        private System.Windows.Forms.Label label1;
     }
 }

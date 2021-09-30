@@ -63,11 +63,11 @@
     <Compile Include="MenuForm.Designer.cs">
       <DependentUpon>MenuForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Shapes\FormModalRadiusDialog.cs">
+    <Compile Include="Shapes\FormRadius.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Shapes\FormModalRadiusDialog.Designer.cs">
-      <DependentUpon>FormModalRadiusDialog.cs</DependentUpon>
+    <Compile Include="Shapes\FormRadius.Designer.cs">
+      <DependentUpon>FormRadius.cs</DependentUpon>
     </Compile>
     <Compile Include="Shapes\Shape.cs" />
     <Compile Include="Shapes\ShapesForm.cs">
@@ -79,7 +79,7 @@
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\LinesSettings.cs" />
+    <Compile Include="Utils\Settings.cs" />
     <Compile Include="Utils\DrawTools.cs" />
     <EmbeddedResource Include="Lines\LinesForm.resx">
       <DependentUpon>LinesForm.cs</DependentUpon>
@@ -96,8 +96,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Shapes\FormModalRadiusDialog.resx">
-      <DependentUpon>FormModalRadiusDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Shapes\FormRadius.resx">
+      <DependentUpon>FormRadius.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shapes\ShapesForm.resx">
       <DependentUpon>ShapesForm.cs</DependentUpon>
