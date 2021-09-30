@@ -33,12 +33,12 @@ namespace DigitGraphics.Lines
 
         public void drawNormalLine()
         {
-            field.DrawLine(LinesSettings.Instance.NormalColor, 
-            fPoint.X * LinesSettings.CELLS_SIZE,
-            fPoint.Y * LinesSettings.CELLS_SIZE,
+            field.DrawLine(Settings.Instance.NormalColor, 
+            fPoint.X * Settings.CELLS_SIZE,
+            fPoint.Y * Settings.CELLS_SIZE,
 
-            scPoint.Y * LinesSettings.CELLS_SIZE,
-            scPoint.X * LinesSettings.CELLS_SIZE);
+            scPoint.Y * Settings.CELLS_SIZE,
+            scPoint.X * Settings.CELLS_SIZE);
         }
 
         public void drawCdaLine()
@@ -66,21 +66,21 @@ namespace DigitGraphics.Lines
             {
                 if (dX > 0)
                 {
-                    field.FillRectangle(LinesSettings.Instance.CDABrush, 
-                        (int)Math.Truncate(X) * LinesSettings.CELLS_SIZE,
-                        (int)Math.Truncate(Y) * LinesSettings.CELLS_SIZE, 
+                    field.FillRectangle(Settings.Instance.CDABrush, 
+                        (int)Math.Truncate(X) * Settings.CELLS_SIZE,
+                        (int)Math.Truncate(Y) * Settings.CELLS_SIZE, 
 
-                        LinesSettings.CELLS_SIZE, 
-                        LinesSettings.CELLS_SIZE);
+                        Settings.CELLS_SIZE, 
+                        Settings.CELLS_SIZE);
                 }
                 else
                 {
-                    field.FillRectangle(LinesSettings.Instance.CDABrush, 
-                        (int)Math.Truncate(X) * LinesSettings.CELLS_SIZE - LinesSettings.CELLS_SIZE,
-                        (int)Math.Truncate(Y) * LinesSettings.CELLS_SIZE, 
+                    field.FillRectangle(Settings.Instance.CDABrush, 
+                        (int)Math.Truncate(X) * Settings.CELLS_SIZE - Settings.CELLS_SIZE,
+                        (int)Math.Truncate(Y) * Settings.CELLS_SIZE, 
 
-                        LinesSettings.CELLS_SIZE, 
-                        LinesSettings.CELLS_SIZE);
+                        Settings.CELLS_SIZE, 
+                        Settings.CELLS_SIZE);
                 }
 
                 X += Py;
@@ -92,39 +92,39 @@ namespace DigitGraphics.Lines
         {
             double accretion = 0;
 
-            float X1 = fPoint.X * LinesSettings.CELLS_SIZE;
-            float Y1 = fPoint.Y * LinesSettings.CELLS_SIZE;
+            float X1 = fPoint.X * Settings.CELLS_SIZE;
+            float Y1 = fPoint.Y * Settings.CELLS_SIZE;
 
-            float X2 = scPoint.X * LinesSettings.CELLS_SIZE;
-            float Y2 = scPoint.Y * LinesSettings.CELLS_SIZE;
+            float X2 = scPoint.X * Settings.CELLS_SIZE;
+            float Y2 = scPoint.Y * Settings.CELLS_SIZE;
 
             if (absDeltaX >= absDeltaY)
             {
                 int direction = dY != 0 ? (dY > 0 ? 1 : -1) : 0;
                 while ( dX > 0 ? X1 <= X2 : X1 >= X2)
                 {
-                    field.FillRectangle(LinesSettings.Instance.BrezBrush,
+                    field.FillRectangle(Settings.Instance.BrezBrush,
                         Y1,
                         X1,
 
-                        LinesSettings.CELLS_SIZE, 
-                        LinesSettings.CELLS_SIZE);
+                        Settings.CELLS_SIZE, 
+                        Settings.CELLS_SIZE);
 
-                    accretion += absDeltaY * LinesSettings.CELLS_SIZE;
+                    accretion += absDeltaY * Settings.CELLS_SIZE;
 
-                    if (accretion >= absDeltaX * LinesSettings.CELLS_SIZE)
+                    if (accretion >= absDeltaX * Settings.CELLS_SIZE)
                     {
-                        accretion -= absDeltaX * LinesSettings.CELLS_SIZE;
+                        accretion -= absDeltaX * Settings.CELLS_SIZE;
 
-                        Y1 += direction * LinesSettings.CELLS_SIZE;
+                        Y1 += direction * Settings.CELLS_SIZE;
                     }
                     if (dX > 0)
                     {
-                        X1 += LinesSettings.CELLS_SIZE;
+                        X1 += Settings.CELLS_SIZE;
                     }
                     else
                     {
-                        X1 -= LinesSettings.CELLS_SIZE;
+                        X1 -= Settings.CELLS_SIZE;
                     }
                 }
             }
@@ -133,29 +133,29 @@ namespace DigitGraphics.Lines
                 int direction = dX != 0 ? (dX > 0 ? 1 : -1) : 0;
                 while(dY > 0 ? Y1 <= Y2 : Y1 >= Y2)
                 {
-                    field.FillRectangle(LinesSettings.Instance.BrezBrush,
+                    field.FillRectangle(Settings.Instance.BrezBrush,
                         Y1,
                         X1,
 
-                        LinesSettings.CELLS_SIZE,
-                        LinesSettings.CELLS_SIZE);
+                        Settings.CELLS_SIZE,
+                        Settings.CELLS_SIZE);
 
-                    accretion += absDeltaX * LinesSettings.CELLS_SIZE;
+                    accretion += absDeltaX * Settings.CELLS_SIZE;
 
-                    if (accretion >= absDeltaY * LinesSettings.CELLS_SIZE)
+                    if (accretion >= absDeltaY * Settings.CELLS_SIZE)
                     {
-                        accretion -= absDeltaY * LinesSettings.CELLS_SIZE;
+                        accretion -= absDeltaY * Settings.CELLS_SIZE;
 
-                        X1 += direction * LinesSettings.CELLS_SIZE;
+                        X1 += direction * Settings.CELLS_SIZE;
                     }
 
                     if (dY > 0)
                     {
-                        Y1 += LinesSettings.CELLS_SIZE;
+                        Y1 += Settings.CELLS_SIZE;
                     }
                     else
                     {
-                        Y1 -= LinesSettings.CELLS_SIZE;
+                        Y1 -= Settings.CELLS_SIZE;
                     }
                 }
             }

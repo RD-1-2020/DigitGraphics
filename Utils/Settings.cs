@@ -3,12 +3,12 @@ using System.Drawing;
 
 namespace DigitGraphics.Utils
 {
-     class LinesSettings
+     class Settings
     {
-        private static readonly Lazy<LinesSettings> instanceHolder =
-            new Lazy<LinesSettings>(() => new LinesSettings());
+        private static readonly Lazy<Settings> instanceHolder =
+            new Lazy<Settings>(() => new Settings());
 
-        public static LinesSettings Instance
+        public static Settings Instance
         {
             get { return instanceHolder.Value; }
         }

@@ -60,7 +60,7 @@ namespace DigitGraphics
             // 
             this.spMain.Panel2.Controls.Add(this.spMenu);
             this.spMain.Size = new System.Drawing.Size(595, 277);
-            this.spMain.SplitterDistance = 242;
+            this.spMain.SplitterDistance = 241;
             this.spMain.SplitterWidth = 1;
             this.spMain.TabIndex = 0;
             // 
@@ -79,7 +79,7 @@ namespace DigitGraphics
             // spMenu.Panel2
             // 
             this.spMenu.Panel2.Controls.Add(this.btStart);
-            this.spMenu.Size = new System.Drawing.Size(595, 34);
+            this.spMenu.Size = new System.Drawing.Size(595, 35);
             this.spMenu.SplitterDistance = 323;
             this.spMenu.SplitterWidth = 1;
             this.spMenu.TabIndex = 0;
@@ -107,7 +107,7 @@ namespace DigitGraphics
             this.btStart.ForeColor = System.Drawing.Color.OrangeRed;
             this.btStart.Location = new System.Drawing.Point(0, 0);
             this.btStart.Name = "btStart";
-            this.btStart.Size = new System.Drawing.Size(269, 32);
+            this.btStart.Size = new System.Drawing.Size(269, 33);
             this.btStart.TabIndex = 0;
             this.btStart.Text = "Открыть для себя Digit!";
             this.btStart.UseVisualStyleBackColor = false;
@@ -120,6 +120,7 @@ namespace DigitGraphics
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(595, 277);
             this.Controls.Add(this.spMain);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MenuForm";
             this.Text = "MenuForm";
