@@ -32,7 +32,6 @@ namespace DigitGraphics.Shapes
             this.field = field;
         }
 
-        //TODO: Релизовать
         public void drawNormal()
         {
             List<Point> points = new List<Point>();
