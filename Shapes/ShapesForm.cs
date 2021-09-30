@@ -38,8 +38,6 @@ namespace DigitGraphics.Shapes
             int fieldHeight = pbMain.ClientSize.Height;
 
             DrawTools.drawField(e.Graphics, fieldWidth, fieldHeight);
-
-            btDraw_Click(sender, EventArgs.Empty);
         }
 
         private void pbMain_MouseClick(object sender, MouseEventArgs e)
