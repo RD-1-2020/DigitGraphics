@@ -26,8 +26,6 @@ namespace DigitGraphics.Shapes
 
         private Graphics field;
 
-        private byte[][] map;
-
         private List<Point> points = new List<Point>();
         public Shape(Graphics field)
         {
@@ -39,64 +37,6 @@ namespace DigitGraphics.Shapes
             X0 = x0;
             Y0 = y0;
             this.field = field;
-        }
-
-        private void drawCircleOnMap()
-        {
-            if (radiusOut < 0)
-            {
-                return;
-            }
-
-            int d = 2 * radiusOut;
-
-            map = new byte[d][];
-
-            for (var i = 0; i < map.Length; i++)
-            {
-                map[i] = new byte[d];
-            }
-
-            for (int x = 0; x < d; x++)
-            {
-                for (int rad = 0; rad < radiusOut; rad++)
-                {
-                    try
-                    {
-                        int tmpy = (int) Math.Sqrt(rad * rad - (x - radiusOut) * (x - radiusOut)) + radiusOut;
-                        map[x][tmpy] = 1;
-                        tmpy = - (int)Math.Sqrt(rad * rad - (x - radiusOut) * (x - radiusOut)) + radiusOut;
-                        map[x][tmpy] = 1;
-                    } catch (Exception inored){}
-                }
-            }
-
-            for (int x = 0; x < d; x++)
-            {
-                int lastIndex = -1;
-                for (int y = 0; y < d; y++)
-                {
-                    if (map[x][y] == 1)
-                    {
-                        lastIndex = d - y;
-
-                        for (int y1 = y; y1 < lastIndex; y1++)
-                        {
-                            map[x][y1] = 1;
-                        }
-                        break;
-                    }
-                }
-            }
-
-            foreach (byte[] b in map)
-            {
-                foreach (byte b1 in b)
-                {
-                    Debug.Write(b1 == 1 ? "*" : " ");
-                }
-                Debug.Write("\n");
-            }
         }
 
         /// <summary>
@@ -135,33 +75,30 @@ namespace DigitGraphics.Shapes
             bool even=false; //Если шаг четный, то меняется направление и увеличивается range
             bool isx = true; //true - движение по Х, false - движение по Y
             int direction = 1; //Множитель, который будет определять, какие квадраты закрашивать
-            float[] linekb = new float[12];
-            for (int i = 0, j=0; i < 11; i+=2)
+            float[] linek = new float[6];
+            float[] lineb = new float[6];
+            for (int i = 0; i < 6; i++)
             {
-                linekb[i] = (points[(j + 1)%6].Y - points[j].Y) / (points[(j + 1)%6].X - points[j].X);
-                linekb[i+1] = -(points[j].X * points[(j + 1)%6].Y - points[(j + 1)%6].X * points[j].Y)/ (points[(j + 1)%6].X - points[j].X);
-                j++;
+                linek[i] = (float)(points[(i + 1)%6].Y - points[i].Y) / (float)(points[(i + 1)%6].X - points[i].X); 
+                lineb[i] = -(float)(points[i].X * points[(i + 1)%6].Y - points[(i + 1)%6].X * points[i].Y)/ (float)(points[(i + 1)%6].X - points[i].X);
             }
 
-            while (x1 > (x0scale - (radiusOut * (Settings.CELLS_SIZE-1))) && 
-                   y1 > (y0scale - (radiusOut * Settings.CELLS_SIZE)) &&
-                   x1 < (x0scale + (radiusOut * Settings.CELLS_SIZE)) &&
-                   y1 < (y0scale + (radiusOut * Settings.CELLS_SIZE)))
+            while (x1>points[2].X && x1<points[5].X)
             {
                 for (int i = 0; i < range; i++)
                 {
-                    if (x1 * linekb[0] - linekb[1] - y1 < 0 &&
-                        x1 * linekb[2] - linekb[3] - y1 < 0 &&
-                        x1 * linekb[4] - linekb[5] - y1 > 0 &&
-                        x1 * linekb[6] - linekb[7] - y1 > 0 &&
-                        x1 * linekb[8] - linekb[9] - y1 > 0 &&
-                        x1 * linekb[10] - linekb[11] - y1 < 0)
-                    {
-                        Thread.Sleep(2);
-                        field.FillRectangle(Settings.Instance.ShapeBrush,
-                            x1, y1,
-                            Settings.SPIRAL_SIZE, Settings.SPIRAL_SIZE);
+                    if (y1 <= points[0].Y && y1 >= points[3].Y)
+                     if (x1 < ((float) (y1 - lineb[5]) / linek[5]) &&
+                         x1 > ((float) (y1 - lineb[1]) / linek[1]) &&
+                         x1 < ((float) (y1 - lineb[4]) / linek[4]) &&
+                         x1 > ((float) (y1 - lineb[2]) / linek[2]))
+                     {
+                    Thread.Sleep(1);
+                    field.FillRectangle(Settings.Instance.ShapeBrush,
+                        x1, y1,
+                        Settings.SPIRAL_SIZE, Settings.SPIRAL_SIZE);
                     }
+
 
                     if (isx)
                     {
@@ -172,15 +109,16 @@ namespace DigitGraphics.Shapes
                         y1 += Settings.SPIRAL_SIZE * direction;
                     }
                 }
-                isx = isx ? false : true;
-                if (even)
-                {
-                    range++;
-                    direction *= -1;
-                }
 
-                even = even ? false : true;
-            } 
+                isx = isx ? false : true;
+                    if (even)
+                    {
+                        range++;
+                        direction *= -1;
+                    }
+
+                    even = even ? false : true;
+            }
         }
 
         public int RadiusOutCircle
@@ -190,10 +128,7 @@ namespace DigitGraphics.Shapes
             {
                 radiusOut = value;
                 radiusScale = value * Settings.CELLS_SIZE;
-                new Thread(delegate()
-                {
-                    drawCircleOnMap();
-                }).Start();
+
             }
         }
 
