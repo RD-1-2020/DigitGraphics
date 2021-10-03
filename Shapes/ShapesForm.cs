@@ -30,6 +30,11 @@ namespace DigitGraphics.Shapes
             {
                 shape.drawNormal();
             }
+
+            if (cbLine.Checked)
+            {
+                shape.drawLines();
+            }
         }
 
         private void pbMain_Paint(object sender, PaintEventArgs e)

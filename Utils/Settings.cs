@@ -21,11 +21,15 @@ namespace DigitGraphics.Utils
 
         private static Color _brezColor = Color.FromArgb(70, Color.Aqua);
 
+        private static Color _linesColor = Color.FromArgb(200, Color.LightSalmon);
+
         private static Pen _normalColor = new Pen(Color.DeepPink);
 
         private static SolidBrush _cdaBrush = new SolidBrush(_cdaColor);
 
         private static SolidBrush _brezBrush = new SolidBrush(_brezColor);
+
+        private static SolidBrush _linesBrush = new SolidBrush(_linesColor);
 
         public Pen CellsColor {
             get
@@ -96,6 +100,30 @@ namespace DigitGraphics.Utils
             set
             {
                 _normalColor = value;
+            }
+        }
+
+        public Color LinesColor
+        {
+            get
+            {
+                return _linesColor;
+            }
+            set
+            {
+                _linesColor = value;
+            }
+        }
+
+        public SolidBrush LinesBrush
+        {
+            get
+            {
+                return _linesBrush;
+            }
+            set
+            {
+                _linesBrush = value;
             }
         }
     }
