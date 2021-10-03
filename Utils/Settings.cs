@@ -23,7 +23,7 @@ namespace DigitGraphics.Utils
 
         private static Color _brezColor = Color.FromArgb(70, Color.Aqua);
 
-        private static Color _shapeColor = Color.FromArgb(70, Color.DarkOrchid);
+        private static Color _linesColor = Color.FromArgb(200, Color.LightSalmon);
 
         private static Pen _normalColor = new Pen(Color.DeepPink);
 
@@ -31,7 +31,7 @@ namespace DigitGraphics.Utils
 
         private static SolidBrush _brezBrush = new SolidBrush(_brezColor);
 
-        private static SolidBrush _shapeBrush = new SolidBrush(_shapeColor);
+        private static SolidBrush _linesBrush = new SolidBrush(_linesColor);
 
         public Pen CellsColor {
             get
@@ -105,27 +105,27 @@ namespace DigitGraphics.Utils
             }
         }
 
-        public Color ShapeColor
+        public Color LinesColor
         {
             get
             {
-                return _shapeColor;
+                return _linesColor;
             }
             set
             {
-                _shapeColor = value;
+                _linesColor = value;
             }
         }
 
-        public SolidBrush ShapeBrush
+        public SolidBrush LinesBrush
         {
             get
             {
-                return _shapeBrush;
+                return _linesBrush;
             }
             set
             {
-                _shapeBrush = value;
+                _linesBrush = value;
             }
         }
     }

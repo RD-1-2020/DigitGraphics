@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
 using DigitGraphics.Properties;
 using DigitGraphics.Utils;
@@ -19,14 +18,6 @@ namespace DigitGraphics.Shapes
 
         private void btDraw_Click(object sender, System.EventArgs e)
         {
-            Thread spiralThread = new Thread(delegate () {
-                shape.drawSpiral();
-            });
-
-            Thread lineThread = new Thread(delegate () {
-                shape.drawLines();
-            });
-
             if (shape == null)
             {
                 MessageBox.Show("Сначала выполните действия указанные в инструкции!");
@@ -38,16 +29,6 @@ namespace DigitGraphics.Shapes
             if (cbNormal.Checked)
             {
                 shape.drawNormal();
-            }
-
-            if (cbSpiral.Checked)
-            {
-                spiralThread.Start();
-            }
-
-            if (cbLine.Checked)
-            {
-                lineThread.Start();
             }
         }
 
