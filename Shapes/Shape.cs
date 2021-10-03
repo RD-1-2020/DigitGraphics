@@ -75,9 +75,9 @@ namespace DigitGraphics.Shapes
             bool even=false; //Если шаг четный, то меняется направление и увеличивается range
             bool isx = true; //true - движение по Х, false - движение по Y
             int direction = 1; //Множитель, который будет определять, какие квадраты закрашивать
-            float[] linek = new float[6];
+            float[] linek = new float[6]; // коэфф-ы K и B в уравнении прямой
             float[] lineb = new float[6];
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 6; i++)// заполнение массива по количеству прямых из которых составлен 6-иугольник
             {
                 linek[i] = (float)(points[(i + 1)%6].Y - points[i].Y) / (float)(points[(i + 1)%6].X - points[i].X); 
                 lineb[i] = -(float)(points[i].X * points[(i + 1)%6].Y - points[(i + 1)%6].X * points[i].Y)/ (float)(points[(i + 1)%6].X - points[i].X);
@@ -87,20 +87,20 @@ namespace DigitGraphics.Shapes
             {
                 for (int i = 0; i < range; i++)
                 {
-                    if (y1 <= points[0].Y && y1 >= points[3].Y)
+                    if (y1 <= points[0].Y && y1 >= points[3].Y) // проверка, находится ли точка, которую закрашиваем внутри шестиугольника путем сравнения через уравнение прямой
                      if (x1 < ((float) (y1 - lineb[5]) / linek[5]) &&
                          x1 > ((float) (y1 - lineb[1]) / linek[1]) &&
                          x1 < ((float) (y1 - lineb[4]) / linek[4]) &&
                          x1 > ((float) (y1 - lineb[2]) / linek[2]))
                      {
-                    Thread.Sleep(1);
+                    Thread.Sleep(2);
                     field.FillRectangle(Settings.Instance.ShapeBrush,
                         x1, y1,
                         Settings.SPIRAL_SIZE, Settings.SPIRAL_SIZE);
                     }
 
 
-                    if (isx)
+                    if (isx) // увеличение координаты в соответствии с направлением движения
                     {
                         x1 += Settings.SPIRAL_SIZE * direction;
                     }
@@ -110,10 +110,10 @@ namespace DigitGraphics.Shapes
                     }
                 }
 
-                isx = isx ? false : true;
-                    if (even)
+                isx = isx ? false : true; // смена направления с Х на У и наоборот
+                    if (even) // смена направления на противоположное (вперед\назад)
                     {
-                        range++;
+                        range++; // дальность отрисовки в клетках
                         direction *= -1;
                     }
 
