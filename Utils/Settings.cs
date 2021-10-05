@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DigitGraphics
+namespace DigitGraphics.Utils
 {
      class Settings
     {
@@ -19,7 +15,23 @@ namespace DigitGraphics
 
         public static int CELLS_SIZE = 20;
 
+        public static int SPIRAL_SIZE = 20;
+
         private static Pen _cellsColor = new Pen(Color.Black);
+
+        private static Color _cdaColor = Color.FromArgb(70, Color.Chocolate);
+
+        private static Color _brezColor = Color.FromArgb(70, Color.Aqua);
+
+        private static Color _linesColor = Color.FromArgb(200, Color.LightSalmon);
+
+        private static Pen _normalColor = new Pen(Color.DeepPink);
+
+        private static SolidBrush _cdaBrush = new SolidBrush(_cdaColor);
+
+        private static SolidBrush _brezBrush = new SolidBrush(_brezColor);
+
+        private static SolidBrush _linesBrush = new SolidBrush(_linesColor);
 
         public Pen CellsColor {
             get
@@ -31,8 +43,6 @@ namespace DigitGraphics
                 _cellsColor = value;
             }
         }
-
-        private static Color _cdaColor = Color.FromArgb(70, Color.Chocolate);
 
         public Color CDAColor
         {
@@ -46,8 +56,6 @@ namespace DigitGraphics
             }
         }
 
-        private static SolidBrush _cdaBrush = new SolidBrush(Settings.Instance.CDAColor);
-
         public SolidBrush CDABrush
         {
             get
@@ -60,7 +68,7 @@ namespace DigitGraphics
             }
         }
 
-        private static Color _brezColor = Color.FromArgb(70, Color.Aqua);
+        
 
         public Color BrezColor
         {
@@ -74,8 +82,6 @@ namespace DigitGraphics
             }
         }
 
-        private static SolidBrush _brezBrush = new SolidBrush(Settings.Instance.BrezColor);
-
         public SolidBrush BrezBrush
         {
             get
@@ -88,16 +94,38 @@ namespace DigitGraphics
             }
         }
 
-        private static Pen _normalLineColor = new Pen(Color.DeepPink);
-
-        public Pen NormalLineColor {
+        public Pen NormalColor {
             get
             {
-                return _normalLineColor;
+                return _normalColor;
             }
             set
             {
-                _normalLineColor = value;
+                _normalColor = value;
+            }
+        }
+
+        public Color LinesColor
+        {
+            get
+            {
+                return _linesColor;
+            }
+            set
+            {
+                _linesColor = value;
+            }
+        }
+
+        public SolidBrush LinesBrush
+        {
+            get
+            {
+                return _linesBrush;
+            }
+            set
+            {
+                _linesBrush = value;
             }
         }
     }
