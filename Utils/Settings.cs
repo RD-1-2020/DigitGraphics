@@ -15,7 +15,7 @@ namespace DigitGraphics.Utils
 
         public static int CELLS_SIZE = 20;
 
-        public static int SPIRAL_SIZE = 5;
+        public static int SPIRAL_SIZE = 20;
 
         private static Pen _cellsColor = new Pen(Color.Black);
 
