@@ -264,7 +264,7 @@ namespace DigitGraphics.Shapes
                          x1 > ((float) (y1 - lineb[2]) / linek[2]))
                      {
                     Thread.Sleep(2);
-                    field.FillRectangle(Settings.Instance.ShapeBrush,
+                    field.FillRectangle(Settings.Instance.LinesBrush,
                         x1, y1,
                         Settings.SPIRAL_SIZE, Settings.SPIRAL_SIZE);
                     }
