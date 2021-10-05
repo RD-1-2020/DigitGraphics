@@ -26,7 +26,7 @@ namespace DigitGraphics.Shapes
 
         private Graphics field;
 
-        private List<Point> points = new List<Point>();
+        private List<Point> points;
         public Shape(Graphics field)
         {
             this.field = field;
@@ -37,6 +37,8 @@ namespace DigitGraphics.Shapes
             X0 = x0;
             Y0 = y0;
             this.field = field;
+
+            int[] arrays = new int[16];
         }
 
         /// <summary>
@@ -49,6 +51,7 @@ namespace DigitGraphics.Shapes
         /// </summary>
         public void drawNormal()
         {
+            points = new List<Point>();
             for (int i = 1; i < 7; i++)
             {
                 points.Add(
