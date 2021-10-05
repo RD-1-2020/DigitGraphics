@@ -25,7 +25,7 @@ namespace DigitGraphics
         private void updateCBItems()
         {
             formsList = new Dictionary<string, Form>();
-            formsList.Add("Отрисовка линиий", new LinesForm());
+            formsList.Add("Отрисовка линий", new LinesForm());
             formsList.Add("Отрисовка фигур", new ShapesForm());
         }
 

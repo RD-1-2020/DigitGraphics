@@ -59,9 +59,179 @@ namespace DigitGraphics.Shapes
             field.DrawPolygon(Settings.Instance.NormalColor,points.ToArray());
         }
 
-        //TODO: Релизовать
+        //TODO: Реализовать
         public void drawLines()
         {
+            List<Point> points = new List<Point>();
+
+            for (int i = 1; i < 7; i++)                                                                          //вычисляет точки шестиугольника (как у Ксюши) 
+            {
+                points.Add(
+                    new Point(
+                        (int)(Math.Cos(i * Math.PI / 3) * radiusScale) + x0scale,
+                        (int)(Math.Sin(i * Math.PI / 3) * radiusScale) + y0scale
+                        ));
+            }
+
+            float k = ((float)points[3].Y - (float)points[2].Y) / ((float)points[3].X - (float)points[2].X);     //считает коэффицент k для уравнения прямой (стороны шестиугольника)
+            float b = points[3].Y - k * points[3].X;                                                             //считает b для уравнения прямой, которая идёт вверх
+            float b1 = points[4].Y + k * points[4].X;                                                            //считает b для уравнения прямой, которая идёт вниз
+            int xNew1 = (int)(((int)((Math.Sin(4 * Math.PI / 3) * RadiusOutCircle) + y0 + 1) * Settings.CELLS_SIZE - b) / k);        //X для нижней левой точки многоугольника в левом верхнем углу
+                                                                                                                                     //(подобные X я вычисляла при задании точек, это была первая, когда я пробовала,
+                                                                                                                                     //можно её убрать, поставить вместо неё в задании координат точки само вычисление) 
+            int xNew2 = (int)(((int)((Math.Sin(5 * Math.PI / 3) * RadiusOutCircle) + y0 + 1) * Settings.CELLS_SIZE - b1) / (-k));    //X для нижней левой точки многоугольника в правом верхнем углу
+                                                                                                                                     //(подобные X я вычисляла при задании точек,
+                                                                                                                                     //можно её убрать, поставить вместо неё в задании координат точки само вычисление) 
+
+            Point pointL1 = new Point(points[3].X, points[3].Y);
+            Point pointL2 = new Point((int)((Math.Cos(4 * (Math.PI / 3)) * RadiusOutCircle) + x0 + 1) * Settings.CELLS_SIZE,
+                points[3].Y);
+            Point pointL3 = new Point((int)((Math.Cos(4 * (Math.PI / 3)) * RadiusOutCircle) + x0 + 1) * Settings.CELLS_SIZE,
+                (int)((Math.Sin(4 * Math.PI / 3) * RadiusOutCircle) + y0 + 1) * Settings.CELLS_SIZE);
+            Point pointL4 = new Point(xNew1,
+                (int)((Math.Sin(4 * Math.PI / 3) * RadiusOutCircle) + y0 + 1) * Settings.CELLS_SIZE);
+
+            Point[] pointsLeft = { pointL1, pointL2, pointL3, pointL4 };
+
+            field.FillPolygon(Settings.Instance.LinesBrush, pointsLeft);                                           //закрашивается многоугольник в левом верхнем углу
+
+
+            for (int a = 0; 
+                ((int)((Math.Cos(4 * (Math.PI / 3)) * RadiusOutCircle) + x0 + 2 + a) * Settings.CELLS_SIZE) <= 
+                ((int)((Math.Cos(5 * (Math.PI / 3)) * RadiusOutCircle) + x0) * Settings.CELLS_SIZE); a++)          //закрашивается первая строка шестиугольника (неполная),
+                                                                                                                   //кроме многоугольников при верхних вершинах
+            {
+                Point p1 = new Point((int)((Math.Cos(4 * (Math.PI / 3)) * RadiusOutCircle) + x0 + 1 + a) * Settings.CELLS_SIZE,
+                points[3].Y);
+                Point p2 = new Point((int)((Math.Cos(4 * (Math.PI / 3)) * RadiusOutCircle) + x0 + 2 + a) * Settings.CELLS_SIZE,
+                    points[3].Y);
+                Point p3 = new Point((int)((Math.Cos(4 * (Math.PI / 3)) * RadiusOutCircle) + x0 + 2 + a) * Settings.CELLS_SIZE,
+                    (int)((Math.Sin(4 * Math.PI / 3) * RadiusOutCircle) + y0 + 1) * Settings.CELLS_SIZE);
+                Point p4 = new Point((int)((Math.Cos(4 * (Math.PI / 3)) * RadiusOutCircle) + x0 + 1 + a) * Settings.CELLS_SIZE,
+                    (int)((Math.Sin(4 * Math.PI / 3) * RadiusOutCircle) + y0 + 1) * Settings.CELLS_SIZE);
+
+                Point[] pointsUp = { p1, p2, p3, p4 };
+
+                field.FillPolygon(Settings.Instance.LinesBrush, pointsUp);                                          
+                System.Threading.Thread.Sleep(20);
+
+            }
+
+            Point pointR1 = new Point(points[4].X, points[3].Y);
+            Point pointR2 = new Point((int)((Math.Cos(5 * (Math.PI / 3)) * RadiusOutCircle) + x0) * Settings.CELLS_SIZE, 
+                points[3].Y);
+            Point pointR3 = new Point((int)((Math.Cos(5 * (Math.PI / 3)) * RadiusOutCircle) + x0) * Settings.CELLS_SIZE, 
+                (int)((Math.Sin(4 * Math.PI / 3) * RadiusOutCircle) + y0 + 1) * Settings.CELLS_SIZE);
+            Point pointR4 = new Point(xNew2, (int)((Math.Sin(4 * Math.PI / 3) * RadiusOutCircle) + y0 + 1) * Settings.CELLS_SIZE);
+
+            Point[] pointsRight = { pointR1, pointR2, pointR3, pointR4 };
+
+            field.FillPolygon(Settings.Instance.LinesBrush, pointsRight);                                         //закрашивается многоугольник в правом верхнем углу
+
+            int yBegin = (int)((Math.Sin(4 * Math.PI / 3) * RadiusOutCircle) + y0 + 1) * Settings.CELLS_SIZE;     //Y для второй строчки
+            int y1 = (int)((Math.Sin(2 * Math.PI / 3) * RadiusOutCircle) + y0) * Settings.CELLS_SIZE;             //Y для предпоследней строчки
+
+            int xBegin = (int)((Math.Cos(4 * (Math.PI / 3)) * RadiusOutCircle) + x0 + 1) * Settings.CELLS_SIZE;   //левый X для прямоугольника в шестиугольнике, который состоит из полноценных квадратов
+            int x1 = (int)((Math.Cos(5 * (Math.PI / 3)) * RadiusOutCircle) + x0 - 1) * Settings.CELLS_SIZE;       //правый X для прямоугольника в шестиугольнике, который состоит из полноценных квадратов
+
+            for (int j = 1; yBegin < y1; yBegin += Settings.CELLS_SIZE, j++)               //цикл основной закраски
+            {
+                if (pointL3.Y < y0scale)                                                   //вычисляются точки для закраски левой части шестиугольника (верхняя половина)
+                {
+                    pointL1.X = pointL4.X;
+                    pointL4.X = (int)(((int)((Math.Sin(4 * Math.PI / 3) * RadiusOutCircle) + y0 + 1 + j) * Settings.CELLS_SIZE - b) / k);
+                    pointL1.Y = pointL4.Y;
+                    pointL2.Y = pointL4.Y;
+                    pointL3.Y = pointL4.Y + Settings.CELLS_SIZE;
+                    pointL4.Y = pointL4.Y + Settings.CELLS_SIZE;
+                }
+                else                                                                       //вычисляются точки для закраски левой части шестиугольника (нижняя половина)
+                {
+                    pointL1.X = pointL4.X;
+                    pointL4.X = (int)(((int)((Math.Sin(2 * Math.PI / 3) * RadiusOutCircle) + y0 - j) * Settings.CELLS_SIZE - b) / k);
+                    pointL1.Y = pointL4.Y;
+                    pointL2.Y = pointL4.Y;
+                    pointL3.Y = pointL4.Y + Settings.CELLS_SIZE;
+                    pointL4.Y = pointL4.Y + Settings.CELLS_SIZE;
+                }
+
+                Point[] pointsLeft1 = { pointL1, pointL2, pointL3, pointL4 };
+
+                field.FillPolygon(Settings.Instance.LinesBrush, pointsLeft1);
+
+                for (int i = 0; xBegin + i <= x1; i += Settings.CELLS_SIZE)                //цикл закраски прямоугольника в шестиугольнике, который состоит из полноценных квадратов
+                {
+                    field.FillRectangle(Settings.Instance.LinesBrush, xBegin + i, yBegin, Settings.CELLS_SIZE, Settings.CELLS_SIZE);
+                    System.Threading.Thread.Sleep(20);
+                }
+
+                if (pointR3.Y < y0scale)                                                   //вычисляются точки для закраски правой части шестиугольника (верхняя половина)
+                {
+                    pointR1.X = pointR4.X;
+                    pointR4.X = (int)(((int)((Math.Sin(5 * Math.PI / 3) * RadiusOutCircle) + y0 + 1 + j) * Settings.CELLS_SIZE - b1) / (-k));
+                    pointR1.Y = pointR4.Y;
+                    pointR2.Y = pointR4.Y;
+                    pointR3.Y = pointR4.Y + Settings.CELLS_SIZE;
+                    pointR4.Y = pointR4.Y + Settings.CELLS_SIZE;
+                }
+                else                                                                       //вычисляются точки для закраски правой части шестиугольника (нижняя половина)
+                {
+                    pointR1.X = pointR4.X;
+                    pointR4.X = (int)(((int)((Math.Sin(1 * Math.PI / 3) * RadiusOutCircle) + y0 - j) * Settings.CELLS_SIZE - b1) / (-k));
+                    pointR1.Y = pointR4.Y;
+                    pointR2.Y = pointR4.Y;
+                    pointR3.Y = pointR4.Y + Settings.CELLS_SIZE;
+                    pointR4.Y = pointR4.Y + Settings.CELLS_SIZE;
+                }
+
+                Point[] pointsRight1 = { pointR1, pointR2, pointR3, pointR4 };
+
+                field.FillPolygon(Settings.Instance.LinesBrush, pointsRight1);
+            }                                                                              //конец основного цикла закраски
+
+            pointL1.X = pointL4.X;
+            pointL4.X = points[1].X;
+            pointL1.Y = pointL4.Y;
+            pointL2.Y = pointL3.Y;
+            pointL3.Y = points[1].Y;
+            pointL4.Y = points[1].Y;
+
+            Point[] pointsLeft2 = { pointL1, pointL2, pointL3, pointL4 };
+
+            field.FillPolygon(Settings.Instance.LinesBrush, pointsLeft2);                  //закрашивается многоугольник в левом нижнем углу
+
+            for (int a = 0;
+                ((int)((Math.Cos(4 * (Math.PI / 3)) * RadiusOutCircle) + x0 + 2 + a) * Settings.CELLS_SIZE) <=
+                ((int)((Math.Cos(5 * (Math.PI / 3)) * RadiusOutCircle) + x0) * Settings.CELLS_SIZE); a++)    //закрашивается последняя строка шестиугольника (неполная),
+                                                                                                             //кроме многоугольников при нижних вершинах
+            {
+                Point p1 = new Point((int)((Math.Cos(4 * (Math.PI / 3)) * RadiusOutCircle) + x0 + 1 + a) * Settings.CELLS_SIZE,
+                (int)((Math.Sin(2 * Math.PI / 3) * RadiusOutCircle) + y0) * Settings.CELLS_SIZE);
+                Point p2 = new Point((int)((Math.Cos(4 * (Math.PI / 3)) * RadiusOutCircle) + x0 + 2 + a) * Settings.CELLS_SIZE,
+                    (int)((Math.Sin(2 * Math.PI / 3) * RadiusOutCircle) + y0) * Settings.CELLS_SIZE);
+                Point p3 = new Point((int)((Math.Cos(4 * (Math.PI / 3)) * RadiusOutCircle) + x0 + 2 + a) * Settings.CELLS_SIZE,
+                    points[1].Y);
+                Point p4 = new Point((int)((Math.Cos(4 * (Math.PI / 3)) * RadiusOutCircle) + x0 + 1 + a) * Settings.CELLS_SIZE,
+                    points[1].Y);
+
+                Point[] pointsDown = { p1, p2, p3, p4 };
+
+                field.FillPolygon(Settings.Instance.LinesBrush, pointsDown);
+                System.Threading.Thread.Sleep(20);
+
+            }
+
+            pointR1.X = pointR4.X;
+            pointR4.X = points[0].X;
+            pointR1.Y = pointR4.Y;
+            pointR2.Y = pointR3.Y;
+            pointR3.Y = points[0].Y;
+            pointR4.Y = points[0].Y;
+
+            Point[] pointsRight2 = { pointR1, pointR2, pointR3, pointR4 };
+
+            field.FillPolygon(Settings.Instance.LinesBrush, pointsRight2);                  //закрашивается многоугольник в правом нижнем углу
+
         }
 
         //TODO: Релизовать
