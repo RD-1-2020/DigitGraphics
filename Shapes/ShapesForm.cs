@@ -60,9 +60,7 @@ namespace DigitGraphics.Shapes
 
         private void pbMain_MouseClick(object sender, MouseEventArgs e)
         {
-            if (isRad)
-            {
-                FormRadius radiusForm = new FormRadius(isRad);
+            FormRadius radiusForm = new FormRadius(isRad);
                 DialogResult formDialogResult = radiusForm.ShowDialog();
                 shape = new Shape(
                     (int) e.X / Settings.CELLS_SIZE + 1,
@@ -76,20 +74,19 @@ namespace DigitGraphics.Shapes
                 }
 
                 pgShapeSettings.SelectedObject = shape;
-                btDraw_Click(sender, EventArgs.Empty);
                 isRad = !isRad;
-            }
-            else
-            {
-                FormRadius holeForm = new FormRadius(isRad);
-                DialogResult formDialogResult = holeForm.ShowDialog();
-                if (formDialogResult == DialogResult.OK)
+                if (cbHole.Checked)
                 {
-                    shape.Hole = holeForm.HoleSize;
+                    FormRadius holeForm = new FormRadius(isRad);
+                    DialogResult formHoleDialogResult = holeForm.ShowDialog();
+                    if (formHoleDialogResult == DialogResult.OK)
+                    {
+                        shape.Hole = holeForm.HoleSize;
+                    }
                 }
+
                 btDraw_Click(sender,EventArgs.Empty);
                 isRad = !isRad;
-            }
         }
 
         private void pgShapeSettings_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)

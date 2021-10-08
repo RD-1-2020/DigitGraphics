@@ -26,6 +26,7 @@ namespace DigitGraphics.Shapes
         private int radiusScale;
 
         private int hole;
+        private int holeScale;
 
         private Graphics field;
 
@@ -335,7 +336,11 @@ namespace DigitGraphics.Shapes
         public int Hole
         {
             get => hole;
-            set => hole = value;
+            set
+            {
+                hole = value;
+                holeScale = value * Settings.CELLS_SIZE;
+            }
         }
     }
 }
