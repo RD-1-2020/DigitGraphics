@@ -263,16 +263,18 @@ namespace DigitGraphics.Shapes
                 for (int i = 0; i < range; i++)
                 {
                     if (y1 <= points[0].Y && y1 >= points[3].Y) // проверка, находится ли точка, которую закрашиваем внутри шестиугольника путем сравнения через уравнение прямой
-                     if (x1 < ((float) (y1 - lineb[5]) / linek[5]) &&
-                         x1 > ((float) (y1 - lineb[1]) / linek[1]) &&
-                         x1 < ((float) (y1 - lineb[4]) / linek[4]) &&
-                         x1 > ((float) (y1 - lineb[2]) / linek[2]))
-                     {
-                         Thread.Sleep(2);
-                    field.FillRectangle(Settings.Instance.LinesBrush,
-                        x1, y1,
-                        Settings.SPIRAL_SIZE, Settings.SPIRAL_SIZE);
-                    }
+                        if (x1 < ((float) (y1 - lineb[5]) / linek[5]) &&
+                            x1 > ((float) (y1 - lineb[1]) / linek[1]) &&
+                            x1 < ((float) (y1 - lineb[4]) / linek[4]) &&
+                            x1 > ((float) (y1 - lineb[2]) / linek[2]) &&
+                            !(x1 < x0scale + (holeScale / 2) && x1 > x0scale - (holeScale / 2) &&
+                              y1 < y0scale + (holeScale / 2) && y1 > y0scale - (holeScale / 2)))
+                        {
+                            Thread.Sleep(2);
+                                field.FillRectangle(Settings.Instance.LinesBrush,
+                                    x1, y1,
+                                    Settings.SPIRAL_SIZE, Settings.SPIRAL_SIZE);
+                        }
 
 
                     if (isx) // увеличение координаты в соответствии с направлением движения
