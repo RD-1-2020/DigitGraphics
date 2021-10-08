@@ -14,17 +14,42 @@ namespace DigitGraphics.Shapes
     {
         private Int32 _radius;
 
-        public FormRadius()
+        private Int32 _holeSize;
+
+        public FormRadius(bool isRad)
         {
             InitializeComponent();
+            if (isRad == false)
+            {
+                tbRadius.Text = "Введите размер отверстия";
+                lb1.Text = "S:";
+                this.Text = "Ввод размера отверстия";
+            }
+            else
+            {
+                tbRadius.Text = "Введите радиус описанной окружности";
+                lb1.Text = "R:";
+                this.Text = "Ввод радиуса описанной окружности";
+            }
         }
 
         private void btOk_Click(object sender, EventArgs e)
         {
-            if (!Int32.TryParse(tbRadius.Text, out _radius))
+            if (lb1.Text=="R:")
             {
-                MessageBox.Show("Вы ввели некорректные данные, повторите ввод");
-                return;
+                if (!Int32.TryParse(tbRadius.Text, out _radius))
+                {
+                    MessageBox.Show("Вы ввели некорректные данные, повторите ввод");
+                    return;
+                }
+            }
+            else
+            {
+                if (!Int32.TryParse(tbRadius.Text, out _holeSize))
+                {
+                    MessageBox.Show("Вы ввели некорректные данные, повторите ввод");
+                    return;
+                }
             }
 
             if (tbRadius.Text != null)
@@ -39,5 +64,10 @@ namespace DigitGraphics.Shapes
             set => _radius = value;
         }
 
+        public int HoleSize
+        {
+            get => _holeSize;
+            set => _holeSize = value;
+        }
     }
 }

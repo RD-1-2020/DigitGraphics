@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net.Configuration;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,6 +25,8 @@ namespace DigitGraphics.Shapes
         private int y0scale;
         private int radiusScale;
 
+        private int hole;
+
         private Graphics field;
 
         private List<Point> points;
@@ -37,8 +40,6 @@ namespace DigitGraphics.Shapes
             X0 = x0;
             Y0 = y0;
             this.field = field;
-
-            int[] arrays = new int[16];
         }
 
         /// <summary>
@@ -266,7 +267,7 @@ namespace DigitGraphics.Shapes
                          x1 < ((float) (y1 - lineb[4]) / linek[4]) &&
                          x1 > ((float) (y1 - lineb[2]) / linek[2]))
                      {
-                    Thread.Sleep(2);
+                         Thread.Sleep(2);
                     field.FillRectangle(Settings.Instance.LinesBrush,
                         x1, y1,
                         Settings.SPIRAL_SIZE, Settings.SPIRAL_SIZE);
@@ -293,6 +294,13 @@ namespace DigitGraphics.Shapes
                     even = even ? false : true;
             }
         }
+
+        public void drawHole(int size)
+        {
+            size *= Settings.CELLS_SIZE;
+            field.DrawRectangle(Settings.Instance.NormalColor, x0scale-(size/2),y0scale-(size/2),size,size);
+        }
+
 
         public int RadiusOutCircle
         {
@@ -322,6 +330,12 @@ namespace DigitGraphics.Shapes
             y0 = value;
             y0scale = value * Settings.CELLS_SIZE;
             }
+        }
+
+        public int Hole
+        {
+            get => hole;
+            set => hole = value;
         }
     }
 }
