@@ -35,13 +35,14 @@ namespace DigitGraphics.Shapes
             this.pbMain = new System.Windows.Forms.PictureBox();
             this.spMenu = new System.Windows.Forms.SplitContainer();
             this.spHelp = new System.Windows.Forms.SplitContainer();
+            this.lbHelpTitle = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btDraw = new System.Windows.Forms.Button();
             this.cbSpiral = new System.Windows.Forms.CheckBox();
             this.cbLine = new System.Windows.Forms.CheckBox();
             this.cbNormal = new System.Windows.Forms.CheckBox();
             this.pgShapeSettings = new System.Windows.Forms.PropertyGrid();
-            this.lbHelpTitle = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.cbHole = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.spMain)).BeginInit();
             this.spMain.Panel1.SuspendLayout();
             this.spMain.Panel2.SuspendLayout();
@@ -112,6 +113,7 @@ namespace DigitGraphics.Shapes
             // 
             // spMenu.Panel2
             // 
+            this.spMenu.Panel2.Controls.Add(this.cbHole);
             this.spMenu.Panel2.Controls.Add(this.pgShapeSettings);
             this.spMenu.Size = new System.Drawing.Size(461, 706);
             this.spMenu.SplitterDistance = 303;
@@ -135,6 +137,31 @@ namespace DigitGraphics.Shapes
             this.spHelp.SplitterDistance = 56;
             this.spHelp.SplitterWidth = 1;
             this.spHelp.TabIndex = 1;
+            // 
+            // lbHelpTitle
+            // 
+            this.lbHelpTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbHelpTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbHelpTitle.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbHelpTitle.Location = new System.Drawing.Point(0, 0);
+            this.lbHelpTitle.Name = "lbHelpTitle";
+            this.lbHelpTitle.Size = new System.Drawing.Size(461, 56);
+            this.lbHelpTitle.TabIndex = 0;
+            this.lbHelpTitle.Text = "Подсказка";
+            this.lbHelpTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(461, 126);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Пожалуйста нажмите мышкой на поле, а затем введите радиус описанной окружности, а" +
+    " затем выберите тип отрисовки.\r\n";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btDraw
             // 
@@ -189,37 +216,25 @@ namespace DigitGraphics.Shapes
             // 
             // pgShapeSettings
             // 
-            this.pgShapeSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pgShapeSettings.Location = new System.Drawing.Point(0, 0);
+            this.pgShapeSettings.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pgShapeSettings.Location = new System.Drawing.Point(0, 29);
             this.pgShapeSettings.Name = "pgShapeSettings";
-            this.pgShapeSettings.Size = new System.Drawing.Size(461, 399);
+            this.pgShapeSettings.Size = new System.Drawing.Size(461, 370);
             this.pgShapeSettings.TabIndex = 0;
             this.pgShapeSettings.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.pgShapeSettings_PropertyValueChanged);
             // 
-            // lbHelpTitle
+            // cbHole
             // 
-            this.lbHelpTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbHelpTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbHelpTitle.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbHelpTitle.Location = new System.Drawing.Point(0, 0);
-            this.lbHelpTitle.Name = "lbHelpTitle";
-            this.lbHelpTitle.Size = new System.Drawing.Size(461, 56);
-            this.lbHelpTitle.TabIndex = 0;
-            this.lbHelpTitle.Text = "Подсказка";
-            this.lbHelpTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(461, 126);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Пожалуйста нажмите мышкой на поле, а затем введите радиус описанной окружности, а" +
-    " затем выберите тип отрисовки.\r\n";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cbHole.AutoSize = true;
+            this.cbHole.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cbHole.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbHole.Location = new System.Drawing.Point(0, 0);
+            this.cbHole.Name = "cbHole";
+            this.cbHole.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.cbHole.Size = new System.Drawing.Size(461, 23);
+            this.cbHole.TabIndex = 1;
+            this.cbHole.Text = "Отрисовка отверстия";
+            this.cbHole.UseVisualStyleBackColor = true;
             // 
             // ShapesForm
             // 
@@ -239,6 +254,7 @@ namespace DigitGraphics.Shapes
             this.spMenu.Panel1.ResumeLayout(false);
             this.spMenu.Panel1.PerformLayout();
             this.spMenu.Panel2.ResumeLayout(false);
+            this.spMenu.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spMenu)).EndInit();
             this.spMenu.ResumeLayout(false);
             this.spHelp.Panel1.ResumeLayout(false);
@@ -264,5 +280,6 @@ namespace DigitGraphics.Shapes
         private System.Windows.Forms.SplitContainer spHelp;
         private System.Windows.Forms.Label lbHelpTitle;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox cbHole;
     }
 }
