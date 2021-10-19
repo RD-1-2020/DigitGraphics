@@ -66,7 +66,7 @@ namespace DigitGraphics.Shapes
         }
 
         //TODO: Реализовать
-        public void drawLines()
+        public async void drawLines()
         {
             if (radiusScale == 0 || radiusScale == holeScale / 2)                                     //выходит из функции, если радиус = 0 или = половине размера отверстия
                 return;
@@ -143,7 +143,7 @@ namespace DigitGraphics.Shapes
                 {
                     Point[] pointsUp = { p1, p2, p3, p4 };
                     field.FillPolygon(Settings.Instance.LinesBrush, pointsUp);
-                    System.Threading.Thread.Sleep(20);
+                    await Task.Delay(10);
                 }
                 else if (p1.Y <= y0scale - holeScale / 2)                                                   //если касается отверстия
                 {
@@ -151,7 +151,7 @@ namespace DigitGraphics.Shapes
                     p3.Y = p4.Y;
                     Point[] pointsUp = { p1, p2, p3, p4 };
                     field.FillPolygon(Settings.Instance.LinesBrush, pointsUp);
-                    System.Threading.Thread.Sleep(20);
+                    await Task.Delay(10);
                 }
             }
 
@@ -330,7 +330,7 @@ namespace DigitGraphics.Shapes
                         (xBegin + i >= x0scale + holeScale / 2))                                                                  //полноценные квадраты
                     {
                         field.FillRectangle(Settings.Instance.LinesBrush, xBegin + i, yBegin, Settings.CELLS_SIZE, Settings.CELLS_SIZE);
-                        System.Threading.Thread.Sleep(20);
+                        await Task.Delay(10);
                     }
                     else if ((xBegin + i < x0scale - holeScale / 2) && (xBegin + i + Settings.CELLS_SIZE > x0scale - holeScale / 2) &&
                         ((yBegin < y0scale - holeScale / 2) || (yBegin + Settings.CELLS_SIZE > y0scale + holeScale / 2)))   //при углах отверстия слева
@@ -601,7 +601,7 @@ namespace DigitGraphics.Shapes
                 {
                     Point[] pointsDown = { p1, p2, p3, p4 };
                     field.FillPolygon(Settings.Instance.LinesBrush, pointsDown);
-                    System.Threading.Thread.Sleep(20);
+                    await Task.Delay(10);
                 }
                 else if (p4.Y >= y0scale + holeScale / 2)                                                    //если касается отверстия
                 {
@@ -609,7 +609,7 @@ namespace DigitGraphics.Shapes
                     p2.Y = p1.Y;
                     Point[] pointsDown = { p1, p2, p3, p4 };
                     field.FillPolygon(Settings.Instance.LinesBrush, pointsDown);
-                    System.Threading.Thread.Sleep(20);
+                    await Task.Delay(10);
                 }
             }
 
@@ -653,7 +653,7 @@ namespace DigitGraphics.Shapes
 
 
         //TODO: Релизовать
-        public void drawSpiral()
+        public async void drawSpiral()
         {
             int x1 = x0scale;
             int y1 = y0scale;
@@ -663,6 +663,20 @@ namespace DigitGraphics.Shapes
             int direction = 1; //Множитель, который будет определять, какие квадраты закрашивать
             float[] linek = new float[6]; // коэфф-ы K и B в уравнении прямой
             float[] lineb = new float[6];
+            if (points == null)
+            {
+                points = new List<Point>();
+
+                for (int i = 1; i < 7; i++)                                                                          //вычисляет точки шестиугольника
+                {
+                    points.Add(
+                        new Point(
+                            (int)(Math.Cos(i * Math.PI / 3) * radiusScale) + x0scale,
+                            (int)(Math.Sin(i * Math.PI / 3) * radiusScale) + y0scale
+                        ));
+                }
+            }
+
             for (int i = 0; i < 6; i++)// заполнение массива по количеству прямых из которых составлен 6-иугольник
             {
                 linek[i] = (float)(points[(i + 1)%6].Y - points[i].Y) / (float)(points[(i + 1)%6].X - points[i].X); 
@@ -671,6 +685,7 @@ namespace DigitGraphics.Shapes
 
             while (x1>points[2].X && x1<points[5].X)
             {
+
                 for (int i = 0; i < range; i++)
                 {
                     if (y1 <= points[0].Y && y1 >= points[3].Y) // проверка, находится ли точка, которую закрашиваем внутри шестиугольника путем сравнения через уравнение прямой
@@ -681,12 +696,16 @@ namespace DigitGraphics.Shapes
                             !(x1 < x0scale + (holeScale / 2) && x1 > x0scale - (holeScale / 2) &&
                               y1 < y0scale + (holeScale / 2) && y1 > y0scale - (holeScale / 2)))
                         {
-                            Thread.Sleep(2);
-                                field.FillRectangle(Settings.Instance.LinesBrush,
+
+                            field.FillRectangle(Settings.Instance.LinesBrush,
                                     x1, y1,
                                     Settings.SPIRAL_SIZE, Settings.SPIRAL_SIZE);
+                            if (x1 % 5 == 0)
+                            {
+                                await Task.Delay(2);
+                            }
                         }
-
+                    
 
                     if (isx) // увеличение координаты в соответствии с направлением движения
                     {
@@ -706,6 +725,7 @@ namespace DigitGraphics.Shapes
                     }
 
                     even = even ? false : true;
+                    
             }
         }
 
