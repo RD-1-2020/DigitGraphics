@@ -27,6 +27,8 @@ namespace DigitGraphics.Utils
 
         private static Pen _normalColor = new Pen(Color.DeepPink);
 
+        private static Pen _normLineColor = new Pen(Color.RoyalBlue, 2);
+
         private static SolidBrush _cdaBrush = new SolidBrush(_cdaColor);
 
         private static SolidBrush _brezBrush = new SolidBrush(_brezColor);
@@ -102,6 +104,18 @@ namespace DigitGraphics.Utils
             set
             {
                 _normalColor = value;
+            }
+        }
+
+        public Pen NormLineColor
+        {
+            get
+            {
+                return _normLineColor;
+            }
+            set
+            {
+                _normLineColor = value;
             }
         }
 

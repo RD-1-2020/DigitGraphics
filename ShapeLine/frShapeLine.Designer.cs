@@ -37,8 +37,8 @@ namespace DigitGraphics.ShapeLine
             this.spHelp = new System.Windows.Forms.SplitContainer();
             this.lbHelpTitle = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.rbShape = new System.Windows.Forms.RadioButton();
             this.rbLine = new System.Windows.Forms.RadioButton();
+            this.rbShape = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.spMain)).BeginInit();
             this.spMain.Panel1.SuspendLayout();
             this.spMain.Panel2.SuspendLayout();
@@ -56,9 +56,11 @@ namespace DigitGraphics.ShapeLine
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 708);
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 874);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1177, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1569, 24);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -67,6 +69,7 @@ namespace DigitGraphics.ShapeLine
             this.spMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.spMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spMain.Location = new System.Drawing.Point(0, 0);
+            this.spMain.Margin = new System.Windows.Forms.Padding(4);
             this.spMain.Name = "spMain";
             // 
             // spMain.Panel1
@@ -76,8 +79,8 @@ namespace DigitGraphics.ShapeLine
             // spMain.Panel2
             // 
             this.spMain.Panel2.Controls.Add(this.spMenu);
-            this.spMain.Size = new System.Drawing.Size(1177, 708);
-            this.spMain.SplitterDistance = 713;
+            this.spMain.Size = new System.Drawing.Size(1569, 874);
+            this.spMain.SplitterDistance = 950;
             this.spMain.SplitterWidth = 1;
             this.spMain.TabIndex = 1;
             // 
@@ -85,16 +88,19 @@ namespace DigitGraphics.ShapeLine
             // 
             this.pbMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbMain.Location = new System.Drawing.Point(0, 0);
+            this.pbMain.Margin = new System.Windows.Forms.Padding(4);
             this.pbMain.Name = "pbMain";
-            this.pbMain.Size = new System.Drawing.Size(711, 706);
+            this.pbMain.Size = new System.Drawing.Size(948, 872);
             this.pbMain.TabIndex = 0;
             this.pbMain.TabStop = false;
             this.pbMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pbMain_Paint);
+            this.pbMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pbMain_MouseClick);
             // 
             // spMenu
             // 
             this.spMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spMenu.Location = new System.Drawing.Point(0, 0);
+            this.spMenu.Margin = new System.Windows.Forms.Padding(4);
             this.spMenu.Name = "spMenu";
             this.spMenu.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -106,14 +112,16 @@ namespace DigitGraphics.ShapeLine
             // 
             this.spMenu.Panel2.Controls.Add(this.rbLine);
             this.spMenu.Panel2.Controls.Add(this.rbShape);
-            this.spMenu.Size = new System.Drawing.Size(461, 706);
-            this.spMenu.SplitterDistance = 303;
+            this.spMenu.Size = new System.Drawing.Size(616, 872);
+            this.spMenu.SplitterDistance = 374;
+            this.spMenu.SplitterWidth = 5;
             this.spMenu.TabIndex = 0;
             // 
             // spHelp
             // 
             this.spHelp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spHelp.Location = new System.Drawing.Point(0, 0);
+            this.spHelp.Margin = new System.Windows.Forms.Padding(4);
             this.spHelp.Name = "spHelp";
             this.spHelp.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -124,8 +132,8 @@ namespace DigitGraphics.ShapeLine
             // spHelp.Panel2
             // 
             this.spHelp.Panel2.Controls.Add(this.label1);
-            this.spHelp.Size = new System.Drawing.Size(461, 303);
-            this.spHelp.SplitterDistance = 91;
+            this.spHelp.Size = new System.Drawing.Size(616, 374);
+            this.spHelp.SplitterDistance = 111;
             this.spHelp.SplitterWidth = 1;
             this.spHelp.TabIndex = 1;
             // 
@@ -135,8 +143,9 @@ namespace DigitGraphics.ShapeLine
             this.lbHelpTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbHelpTitle.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lbHelpTitle.Location = new System.Drawing.Point(0, 0);
+            this.lbHelpTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbHelpTitle.Name = "lbHelpTitle";
-            this.lbHelpTitle.Size = new System.Drawing.Size(461, 91);
+            this.lbHelpTitle.Size = new System.Drawing.Size(616, 111);
             this.lbHelpTitle.TabIndex = 0;
             this.lbHelpTitle.Text = "Подсказка";
             this.lbHelpTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -147,12 +156,28 @@ namespace DigitGraphics.ShapeLine
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(461, 211);
+            this.label1.Size = new System.Drawing.Size(616, 262);
             this.label1.TabIndex = 1;
             this.label1.Text = "Чтобы начать работу выбирите что вы будете рисовать, затем тыкните на поле (едино" +
     "жды - если фигура, дважды - если линия) ";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // rbLine
+            // 
+            this.rbLine.AutoSize = true;
+            this.rbLine.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rbLine.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rbLine.Location = new System.Drawing.Point(0, 27);
+            this.rbLine.Margin = new System.Windows.Forms.Padding(4);
+            this.rbLine.Name = "rbLine";
+            this.rbLine.Size = new System.Drawing.Size(616, 27);
+            this.rbLine.TabIndex = 1;
+            this.rbLine.TabStop = true;
+            this.rbLine.Text = "Отрисовка линий";
+            this.rbLine.UseVisualStyleBackColor = true;
+            this.rbLine.CheckedChanged += new System.EventHandler(this.rbLine_CheckedChanged);
             // 
             // rbShape
             // 
@@ -160,35 +185,23 @@ namespace DigitGraphics.ShapeLine
             this.rbShape.Dock = System.Windows.Forms.DockStyle.Top;
             this.rbShape.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rbShape.Location = new System.Drawing.Point(0, 0);
+            this.rbShape.Margin = new System.Windows.Forms.Padding(4);
             this.rbShape.Name = "rbShape";
-            this.rbShape.Size = new System.Drawing.Size(461, 23);
+            this.rbShape.Size = new System.Drawing.Size(616, 27);
             this.rbShape.TabIndex = 0;
             this.rbShape.TabStop = true;
             this.rbShape.Text = "Отрисовка фигур";
             this.rbShape.UseVisualStyleBackColor = true;
             // 
-            // rbLine
-            // 
-            this.rbLine.AutoSize = true;
-            this.rbLine.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rbLine.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rbLine.Location = new System.Drawing.Point(0, 23);
-            this.rbLine.Name = "rbLine";
-            this.rbLine.Size = new System.Drawing.Size(461, 23);
-            this.rbLine.TabIndex = 1;
-            this.rbLine.TabStop = true;
-            this.rbLine.Text = "Отрисовка линий";
-            this.rbLine.UseVisualStyleBackColor = true;
-            this.rbLine.CheckedChanged += new System.EventHandler(this.rbLine_CheckedChanged);
-            // 
             // frShapeLine
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1177, 730);
+            this.ClientSize = new System.Drawing.Size(1569, 898);
             this.Controls.Add(this.spMain);
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frShapeLine";
             this.Text = "Отрисовка шестиугольника";
             this.Load += new System.EventHandler(this.frShapeLine_Load);
