@@ -7,6 +7,7 @@ using DigitGraphics.Utils;
 using System.Collections.Generic;
 using Settings = DigitGraphics.Utils.Settings;
 using Shape = DigitGraphics.Shapes.Shape;
+using FormRadius = DigitGraphics.Shapes.FormRadius;
 
 namespace DigitGraphics.ShapeLine
 {
@@ -14,7 +15,7 @@ namespace DigitGraphics.ShapeLine
     {
         private Shape shape;
 
-        private Graphics field;
+        private bool isRad = true;
 
         private List<Point> linePoints=new List<Point>();
         public frShapeLine()
@@ -42,6 +43,35 @@ namespace DigitGraphics.ShapeLine
 
         private void pbMain_MouseClick(object sender, MouseEventArgs e)
         {
+
+
+
+
+            if (rbShape.Checked)
+            {
+                FormRadius radiusForm = new FormRadius(isRad);
+                DialogResult formDialogResult = radiusForm.ShowDialog();
+                shape = new Shape(
+                    (int)e.X / Settings.CELLS_SIZE + 1,
+                    (int)e.Y / Settings.CELLS_SIZE + 1,
+                    pbMain.CreateGraphics()
+                    );
+
+                if (formDialogResult == DialogResult.OK)
+                {
+                    shape.RadiusOutCircle = radiusForm.Radius;
+                }    
+            
+                if (shape == null)
+                {
+                    MessageBox.Show("Сначала выполните действия указанные в инструкции!");
+                    return;
+                }
+
+                Refresh(); 
+                shape.drawNormal();
+            }
+
             if (rbLine.Checked)
             {
                 linePoints.Add(e.Location);
