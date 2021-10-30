@@ -23,20 +23,14 @@ namespace DigitGraphics.ShapeLine
             DrawTools.drawField(e.Graphics, fieldWidth, fieldHeight);
         }
 
-        private void cbShape_CheckedChanged(object sender, EventArgs e)
+        private void frShapeLine_Load(object sender, EventArgs e)
         {
-            if (cbShape.Checked)
-            {
-                cbLine.Checked = false;
-            }
+
         }
 
-        private void cbLine_CheckedChanged(object sender, EventArgs e)
+        private void rbLine_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbLine.Checked)
-            {
-                cbShape.Checked = false;
-            }
+
         }
     }
 }

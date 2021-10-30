@@ -37,8 +37,8 @@ namespace DigitGraphics.ShapeLine
             this.spHelp = new System.Windows.Forms.SplitContainer();
             this.lbHelpTitle = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbShape = new System.Windows.Forms.CheckBox();
-            this.cbLine = new System.Windows.Forms.CheckBox();
+            this.rbShape = new System.Windows.Forms.RadioButton();
+            this.rbLine = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.spMain)).BeginInit();
             this.spMain.Panel1.SuspendLayout();
             this.spMain.Panel2.SuspendLayout();
@@ -101,11 +101,11 @@ namespace DigitGraphics.ShapeLine
             // spMenu.Panel1
             // 
             this.spMenu.Panel1.Controls.Add(this.spHelp);
-            this.spMenu.Panel1.Controls.Add(this.cbShape);
             // 
             // spMenu.Panel2
             // 
-            this.spMenu.Panel2.Controls.Add(this.cbLine);
+            this.spMenu.Panel2.Controls.Add(this.rbLine);
+            this.spMenu.Panel2.Controls.Add(this.rbShape);
             this.spMenu.Size = new System.Drawing.Size(461, 706);
             this.spMenu.SplitterDistance = 303;
             this.spMenu.TabIndex = 0;
@@ -124,8 +124,8 @@ namespace DigitGraphics.ShapeLine
             // spHelp.Panel2
             // 
             this.spHelp.Panel2.Controls.Add(this.label1);
-            this.spHelp.Size = new System.Drawing.Size(461, 280);
-            this.spHelp.SplitterDistance = 85;
+            this.spHelp.Size = new System.Drawing.Size(461, 303);
+            this.spHelp.SplitterDistance = 91;
             this.spHelp.SplitterWidth = 1;
             this.spHelp.TabIndex = 1;
             // 
@@ -136,7 +136,7 @@ namespace DigitGraphics.ShapeLine
             this.lbHelpTitle.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lbHelpTitle.Location = new System.Drawing.Point(0, 0);
             this.lbHelpTitle.Name = "lbHelpTitle";
-            this.lbHelpTitle.Size = new System.Drawing.Size(461, 85);
+            this.lbHelpTitle.Size = new System.Drawing.Size(461, 91);
             this.lbHelpTitle.TabIndex = 0;
             this.lbHelpTitle.Text = "Подсказка";
             this.lbHelpTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -148,39 +148,38 @@ namespace DigitGraphics.ShapeLine
             this.label1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(461, 194);
+            this.label1.Size = new System.Drawing.Size(461, 211);
             this.label1.TabIndex = 1;
             this.label1.Text = "Чтобы начать работу выбирите что вы будете рисовать, затем тыкните на поле (едино" +
     "жды - если фигура, дважды - если линия) ";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // cbShape
+            // rbShape
             // 
-            this.cbShape.AutoSize = true;
-            this.cbShape.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.cbShape.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cbShape.Location = new System.Drawing.Point(0, 280);
-            this.cbShape.Name = "cbShape";
-            this.cbShape.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.cbShape.Size = new System.Drawing.Size(461, 23);
-            this.cbShape.TabIndex = 2;
-            this.cbShape.Text = "Отрисовка фигур";
-            this.cbShape.UseVisualStyleBackColor = true;
-            this.cbShape.CheckedChanged += new System.EventHandler(this.cbShape_CheckedChanged);
+            this.rbShape.AutoSize = true;
+            this.rbShape.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rbShape.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rbShape.Location = new System.Drawing.Point(0, 0);
+            this.rbShape.Name = "rbShape";
+            this.rbShape.Size = new System.Drawing.Size(461, 23);
+            this.rbShape.TabIndex = 0;
+            this.rbShape.TabStop = true;
+            this.rbShape.Text = "Отрисовка фигур";
+            this.rbShape.UseVisualStyleBackColor = true;
             // 
-            // cbLine
+            // rbLine
             // 
-            this.cbLine.AutoSize = true;
-            this.cbLine.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cbLine.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cbLine.Location = new System.Drawing.Point(0, 0);
-            this.cbLine.Name = "cbLine";
-            this.cbLine.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.cbLine.Size = new System.Drawing.Size(461, 23);
-            this.cbLine.TabIndex = 1;
-            this.cbLine.Text = "Отрисовка линий";
-            this.cbLine.UseVisualStyleBackColor = true;
-            this.cbLine.CheckedChanged += new System.EventHandler(this.cbLine_CheckedChanged);
+            this.rbLine.AutoSize = true;
+            this.rbLine.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rbLine.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rbLine.Location = new System.Drawing.Point(0, 23);
+            this.rbLine.Name = "rbLine";
+            this.rbLine.Size = new System.Drawing.Size(461, 23);
+            this.rbLine.TabIndex = 1;
+            this.rbLine.TabStop = true;
+            this.rbLine.Text = "Отрисовка фигур";
+            this.rbLine.UseVisualStyleBackColor = true;
+            this.rbLine.CheckedChanged += new System.EventHandler(this.rbLine_CheckedChanged);
             // 
             // frShapeLine
             // 
@@ -192,13 +191,13 @@ namespace DigitGraphics.ShapeLine
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frShapeLine";
             this.Text = "Отрисовка шестиугольника";
+            this.Load += new System.EventHandler(this.frShapeLine_Load);
             this.spMain.Panel1.ResumeLayout(false);
             this.spMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spMain)).EndInit();
             this.spMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).EndInit();
             this.spMenu.Panel1.ResumeLayout(false);
-            this.spMenu.Panel1.PerformLayout();
             this.spMenu.Panel2.ResumeLayout(false);
             this.spMenu.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spMenu)).EndInit();
@@ -221,7 +220,7 @@ namespace DigitGraphics.ShapeLine
         private System.Windows.Forms.SplitContainer spHelp;
         private System.Windows.Forms.Label lbHelpTitle;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox cbShape;
-        private System.Windows.Forms.CheckBox cbLine;
+        private System.Windows.Forms.RadioButton rbLine;
+        private System.Windows.Forms.RadioButton rbShape;
     }
 }
