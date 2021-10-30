@@ -177,7 +177,7 @@ namespace DigitGraphics.ShapeLine
             this.rbLine.Size = new System.Drawing.Size(461, 23);
             this.rbLine.TabIndex = 1;
             this.rbLine.TabStop = true;
-            this.rbLine.Text = "Отрисовка фигур";
+            this.rbLine.Text = "Отрисовка линий";
             this.rbLine.UseVisualStyleBackColor = true;
             this.rbLine.CheckedChanged += new System.EventHandler(this.rbLine_CheckedChanged);
             // 
