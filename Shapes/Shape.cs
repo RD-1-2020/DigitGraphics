@@ -31,6 +31,7 @@ namespace DigitGraphics.Shapes
         private Graphics field;
 
         private List<Point> points;
+
         public Shape(Graphics field)
         {
             this.field = field;
@@ -734,6 +735,12 @@ namespace DigitGraphics.Shapes
             size *= Settings.CELLS_SIZE;
             field.DrawRectangle(Settings.Instance.NormalColor, x0scale-(size/2),y0scale-(size/2),size,size);
         }
+
+        public void drawCLine(List<Point> points)
+        {
+                field.DrawLine(Settings.Instance.NormalColor, points[0], points[1]);
+        }
+
 
 
         public int RadiusOutCircle
