@@ -738,7 +738,7 @@ namespace DigitGraphics.Shapes
 
         public void drawCLine(List<Point> points)
         {
-                field.DrawLine(Settings.Instance.NormalColor, points[0], points[1]);
+                field.DrawLine(Settings.Instance.NormLineColor, points[0], points[1]);
         }
 
 
