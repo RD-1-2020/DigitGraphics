@@ -44,14 +44,6 @@ namespace DigitGraphics.Shapes
             this.field = field;
         }
 
-        /// <summary>
-        /// В данной функции создаётся массив из 6 точек
-        /// Для построения правильного шестиугольника
-        /// Так как отклонение угла каждой точки от
-        /// предыдущий равен пи на 3 мы берём и в цикле
-        /// Используя полярные координаты получаем x;y
-        /// Нашего многоугольника
-        /// </summary>
         public void drawNormal()
         {
             points = new List<Point>();
@@ -66,7 +58,6 @@ namespace DigitGraphics.Shapes
             field.DrawPolygon(Settings.Instance.NormalColor,points.ToArray());
         }
 
-        //TODO: Реализовать
         public async void drawLines()
         {
             if (radiusScale == 0 || radiusScale == holeScale / 2)                                     //выходит из функции, если радиус = 0 или = половине размера отверстия
@@ -74,8 +65,7 @@ namespace DigitGraphics.Shapes
 
             List<Point> points = new List<Point>();
 
-            for (int i = 1; i < 7; i++)                                                                          //вычисляет точки шестиугольника
-            {
+            for (int i = 1; i < 7; i++) {
                 points.Add(
                     new Point(
                         (int)(Math.Cos(i * Math.PI / 3) * radiusScale) + x0scale,
@@ -652,10 +642,7 @@ namespace DigitGraphics.Shapes
             }
         }
 
-
-        //TODO: Релизовать
-        public async void drawSpiral()
-        {
+        public async void drawSpiral() {
             int x1 = x0scale;
             int y1 = y0scale;
             int range = 1;
@@ -664,11 +651,10 @@ namespace DigitGraphics.Shapes
             int direction = 1; //Множитель, который будет определять, какие квадраты закрашивать
             float[] linek = new float[6]; // коэфф-ы K и B в уравнении прямой
             float[] lineb = new float[6];
-            if (points == null)
-            {
+            if (points == null) {
                 points = new List<Point>();
 
-                for (int i = 1; i < 7; i++)                                                                          //вычисляет точки шестиугольника
+                for (int i = 1; i < 7; i++) //вычисляет точки шестиугольника
                 {
                     points.Add(
                         new Point(
@@ -684,11 +670,8 @@ namespace DigitGraphics.Shapes
                 lineb[i] = -(float)(points[i].X * points[(i + 1)%6].Y - points[(i + 1)%6].X * points[i].Y)/ (float)(points[(i + 1)%6].X - points[i].X);
             }
 
-            while (x1>points[2].X && x1<points[5].X)
-            {
-
-                for (int i = 0; i < range; i++)
-                {
+            while (x1>points[2].X && x1<points[5].X) {
+                for (int i = 0; i < range; i++) {
                     if (y1 <= points[0].Y && y1 >= points[3].Y) // проверка, находится ли точка, которую закрашиваем внутри шестиугольника путем сравнения через уравнение прямой
                         if (x1 < ((float) (y1 - lineb[5]) / linek[5]) &&
                             x1 > ((float) (y1 - lineb[1]) / linek[1]) &&
@@ -697,25 +680,17 @@ namespace DigitGraphics.Shapes
                             !(x1 < x0scale + (holeScale / 2) && x1 > x0scale - (holeScale / 2) &&
                               y1 < y0scale + (holeScale / 2) && y1 > y0scale - (holeScale / 2)))
                         {
-
                             field.FillRectangle(Settings.Instance.LinesBrush,
                                     x1, y1,
                                     Settings.SPIRAL_SIZE, Settings.SPIRAL_SIZE);
-                            if (x1 % 5 == 0)
-                            {
-                                await Task.Delay(2);
-                            }
+                            if (x1 % 5 == 0) { await Task.Delay(2); }
                         }
-                    
 
                     if (isx) // увеличение координаты в соответствии с направлением движения
                     {
                         x1 += Settings.SPIRAL_SIZE * direction;
                     }
-                    else
-                    {
-                        y1 += Settings.SPIRAL_SIZE * direction;
-                    }
+                    else y1 += Settings.SPIRAL_SIZE * direction;
                 }
 
                 isx = isx ? false : true; // смена направления с Х на У и наоборот
@@ -724,33 +699,149 @@ namespace DigitGraphics.Shapes
                         range++; // дальность отрисовки в клетках
                         direction *= -1;
                     }
-
-                    even = even ? false : true;
-                    
+                    even = even ? false : true;   
             }
         }
 
-        public void drawHole(int size)
-        {
+        public void drawHole(int size) {
             size *= Settings.CELLS_SIZE;
             field.DrawRectangle(Settings.Instance.NormalColor, x0scale-(size/2),y0scale-(size/2),size,size);
         }
 
-        public void drawCLine(List<Point> points)
-        {
-                field.DrawLine(Settings.Instance.NormLineColor, points[0], points[1]);
+        public void drawCLine(List<Point> points) {
+            field.DrawLine(Settings.Instance.NormLineColor, points[0], points[1]);
+
+               List <Point> points1 = new List<Point>();
+
+                //вычисляет точки шестиугольника
+                for (int i = 1; i < 7; i++) {
+                    points1.Add(new Point((int)(Math.Cos(i * Math.PI / 3) * radiusScale) + x0scale,
+                            (int)(Math.Sin(i * Math.PI / 3) * radiusScale) + y0scale));
+                }
+
+                // коэффициенты k для фигуры
+                float kF3 = ((float)points1[2].Y - (float)points1[3].Y)/(float)(points1[2].X - (float)points1[3].X);
+                float kF4 = ((float)points1[4].Y - (float)points1[5].Y)/((float)points1[4].X - (float)points1[5].X);
+                float kFUD= 0;
+                      
+
+                // коэффициенты b для фигуры
+                float bF0 = (float)points1[5].Y + kF4 * (float)points1[5].X;
+                float bF1 = (float)points1[2].Y + kF3 * (float)points1[2].X;
+                float bF3 = (float)points1[2].Y - kF3 * (float)points1[2].X;
+                float bF4 = (float)points1[5].Y - kF4 * (float)points1[5].X;
+                float bFUp = (float)points1[3].Y - kFUD * (float)points1[3].X;
+                float bFDown = (float)points1[0].Y - kFUD * (float)points1[0].X;
+                
+                // коэффициенты k для линии
+                float kL = ((float)points[0].Y - (float)points[1].Y)/((float)points[0].X - (float)points[1].X);
+                float bL = (float)points[0].Y - kL * (float)points[0].X;
+                             
+                Point p1 = new Point();
+                Point p2 = new Point();
+
+                if ((points[0].Y < points1[2].Y && points[0].X < points1[3].X) || (points[0].Y > points1[5].Y && points[0].X > points1[4].X)) {
+                    p1.X = (int)((bL - bF3)/(kF3 - kL));
+                    p2.X = (int)((bL - bF0)/(-kF4 - kL));
+                    p1.Y = (int)(kL * (float)p1.X + bL);
+                    p2.Y = (int)(kL * (float)p2.X + bL);
+
+                    if ((points[1].Y < points1[5].Y && points[1].X > points1[4].X)) {
+                        p2.X = (int)((bL - bF4)/(kF4 - kL));
+                        p2.Y = (int)(kL*(float)p2.X + bL);
+                    } 
+
+                    if ((points[1].Y > points1[1].Y && points[1].X < points1[0].X)) {
+                        p2.X = (int)((bL - bFDown)/(kFUD - kL));
+                        p2.Y = (int)(kL*(float)p2.X + bL);
+                    }
+
+                    if ((points[1].Y < points1[3].Y && points[1].X < points1[4].X)) {
+                        p2.X = (int)((bL - bFUp)/(kFUD - kL));
+                        p2.Y = (int)(kL*(float)p2.X + bL);
+                    }
+
+                     if ((points[1].Y > points1[2].Y && points[1].X < points1[1].X)) {
+                        p1.X = (int)((bL - bF3)/(kF3 - kL));
+                        p1.Y = (int)(kL * (float)p1.X + bL);
+                        p2.X = (int)((bL - bF1)/(-kF3 - kL));
+                        p2.Y = (int)(kL*(float)p2.X + bL);
+                     } 
+                }
+
+                else if ((points[0].Y > points1[2].Y && points[0].X < points1[3].X) || (points[0].Y < points1[5].Y && points[0].X > points1[4].X)) {
+                    p1.X = (int)((bL - bF1)/(-kF3 - kL));
+                    p1.Y = (int)(kL * (float)p1.X + bL);
+                    p2.X = (int)((bL - bF4)/(kF4 - kL));
+                    p2.Y = (int)(kL * (float)p2.X + bL);
+
+                    if ((points[1].Y < points1[2].Y && points[1].X < points1[3].X)) {
+                        p1.X = (int)((bL - bF4)/(kF4 - kL));
+                        p1.Y = (int)(kL * (float)p1.X + bL);
+                        p2.X = (int)((bL - bF3)/(kF3 - kL));
+                        p2.Y = (int)(kL*(float)p2.X + bL);
+                    } 
+
+                   if ((points[1].Y < points1[2].Y && points[1].X < points1[3].X && points[1].X > points1[2].X)) {
+                        p1.X = (int)((bL - bF1)/(-kF3 - kL));
+                        p1.Y = (int)(kL * (float)p1.X + bL);
+                        p2.X = (int)((bL - bF3)/(kF3 - kL));
+                        p2.Y = (int)(kL*(float)p2.X + bL);
+                   } 
+                }
+                
+                else if ((points[0].Y <= points1[3].Y && points[0].X >= points1[3].X) || (points[0].Y >= points1[1].Y && points[0].X >= points1[1].X)) {
+                    p1.X = (int)((bL - bFUp)/(kFUD - kL));
+                    p1.Y = (int)(kL * (float)p1.X + bL);
+                    p2.X = (int)((bL - bFDown)/(kFUD - kL));
+                    p2.Y = (int)(kL * (float)p2.X + bL);
+                    if (points[0].X == points[1].X)
+                    {
+                        p1.X = p2.X = points[0].X;
+                        p1.Y = points1[3].Y;
+                        p2.Y = points1[1].Y;
+                    }
+
+                    if ((points[1].Y < points1[2].Y && points[1].X < points1[3].X)) {
+                        p1.X = (int)((bL - bFUp)/(kFUD - kL));
+                        p1.Y = (int)(kL * (float)p1.X + bL);
+                        p2.X = (int)((bL - bF3)/(kF3 - kL));
+                        p2.Y = (int)(kL*(float)p2.X + bL);
+                    } 
+
+                     if ((points[1].Y < points1[2].Y && points[1].X < points1[3].X && points[1].X > points1[2].X) ) {
+                        p1.X = (int)((bL - bFDown)/(kFUD - kL));
+                        p1.Y = (int)(kL * (float)p1.X + bL);
+                        p2.X = (int)((bL - bF3)/(kF3 - kL));
+                        p2.Y = (int)(kL*(float)p2.X + bL);
+                     } 
+                } 
+             
+                // пыталась реализовать алгоритм частичного пересечения фигиры линией
+                /*else {
+                        p1.X = (int)(points[0].X); 
+                        p1.Y = (int)(kL*(float)p1.X + bL);
+                        p2.X = (int)(points[1].X); 
+                        p2.Y = (int)(kL*(float)p2.X + bL);
+                }*/
+
+                // внутри фигуры
+                /*else if (points[0].X > points1[3].X && points[0].X < points1[5].X && points[0].X > points1[2].X && points[0].Y < points1[1].Y && points[0].Y > points1[4].Y) {
+                        p1.X = (int)(points[0].X);
+                        p1.Y = (int)(kL*(float)p1.X + bL);
+                        p2.X = (int)(points[1].X);
+                        p2.Y = (int)(kL*(float)p2.X + bL);
+                }*/
+
+                field.DrawLine(Settings.Instance.NormalColor, p1, p2);
         }
-
-
 
         public int RadiusOutCircle
         {
             get => radiusOut;
-            set
-            {
+            set {
                 radiusOut = value;
                 radiusScale = value * Settings.CELLS_SIZE;
-
             }
         }
 
