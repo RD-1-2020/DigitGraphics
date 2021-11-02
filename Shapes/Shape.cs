@@ -769,7 +769,20 @@ namespace DigitGraphics.Shapes
             Point p1 = new Point();
             Point p2 = new Point();
 
-            if ((points[0].Y < points1[2].Y && points[0].X < points1[3].X))
+             if (!(points[0].Y <= points1[0].Y && points[0].Y >= points1[3].Y && points[1].Y <= points1[0].Y && points[1].Y >= points1[3].Y  
+                         && points[0].X < ((float) (points[0].Y - bF0) / -kF4) &&
+                            points[0].X > ((float) (points[0].Y - bF1) / -kF3) &&
+                            points[0].X < ((float) (points[0].Y - bF4) / kF4) &&
+                            points[0].X > ((float) (points[0].Y - bF3) / kF3) &&
+                            points[1].X < ((float) (points[1].Y - bF0) / -kF4) &&
+                            points[1].X > ((float) (points[1].Y - bF1) / -kF3) &&
+                            points[1].X < ((float) (points[1].Y - bF4) / kF4) &&
+                            points[1].X > ((float) (points[1].Y - bF3) / kF3)))
+                            {
+                              return;
+                            }
+
+            else if ((points[0].Y < points1[2].Y && points[0].X < points1[3].X))
             {
                 p1.X = (int)((bL - bF3) / (kF3 - kL));
                 p1.Y = (int)(kL * (float)p1.X + bL);
@@ -1019,6 +1032,123 @@ namespace DigitGraphics.Shapes
                     p2.Y = (int)(kL * (float)p2.X + bL);
                 }
             }
+             
+               else if (points[0].Y <= points1[0].Y && points[0].Y >= points1[3].Y && points[1].Y <= points1[0].Y && points[1].Y >= points1[3].Y  
+                         && points[0].X < ((float) (points[0].Y - bF0) / -kF4) &&
+                            points[0].X > ((float) (points[0].Y - bF1) / -kF3) &&
+                            points[0].X < ((float) (points[0].Y - bF4) / kF4) &&
+                            points[0].X > ((float) (points[0].Y - bF3) / kF3) &&
+                            points[1].X < ((float) (points[1].Y - bF0) / -kF4) &&
+                            points[1].X > ((float) (points[1].Y - bF1) / -kF3) &&
+                            points[1].X < ((float) (points[1].Y - bF4) / kF4) &&
+                            points[1].X > ((float) (points[1].Y - bF3) / kF3))
+                            {
+                p1 = points[0];
+                p2 = points[1];
+                            }
+            
+            
+               
+              
+
+            // частичная закраска
+            
+            else if ((points[1].Y < points1[2].Y && points[1].X < points1[3].X))
+             {
+                p2.X = (int)((bL - bF3) / (kF3 - kL));
+                p2.Y = (int)(kL * (float)p2.X + bL);
+
+                p1.X = (int)(points[0].X);
+                p1.Y = (int)(kL * (float)p1.X + bL);
+            }
+
+            else if ((points[1].Y > points1[2].Y && points[1].X <= points1[3].X )) // 1-2
+            {
+                
+                p2.X = (int)((bL - bF1) / (-kF3 - kL));
+                p2.Y = (int)(kL * (float)p2.X + bL);
+
+                if ((points[0].Y < points1[5].Y && points[0].X > points1[4].X))
+                {
+                    p1.X = (int)((bL - bF4) / (kF4 - kL));
+                    p1.Y = (int)(kL * (float)p1.X + bL);
+                }
+
+                else if ((points[0].Y < points1[2].Y && points[0].X < points1[3].X))
+                {
+                    p1.X = (int)((bL - bF3) / (kF3 - kL));
+                    p1.Y = (int)(kL * (float)p1.X + bL);
+                }
+
+                else if ((points[0].Y < points1[3].Y && points[0].X < points1[4].X))
+                {
+                    p1.X = (int)((bL - bFUp) / (kFUD - kL));
+                    p1.Y = (int)(kL * (float)p1.X + bL);
+                }
+
+                else if ((points[0].Y > points1[5].Y && points[0].X > points1[4].X))
+                {
+                    p1.X = (int)((bL - bF0) / (-kF4 - kL));
+                    p1.Y = (int)(kL * (float)p1.X + bL);
+                }
+
+                else if ((points[0].Y > points1[1].Y && points[0].X < points1[0].X))
+                {
+                    p1.X = (int)((bL - bFDown) / (kFUD - kL));
+                    p1.Y = (int)(kL * (float)p1.X + bL);
+                }
+                else
+                {
+                    p1.X = (int)(points[0].X);
+                    p1.Y = (int)(kL * (float)p1.X + bL);
+                }
+            }
+
+            else if ((points[1].Y < points1[3].Y && points[1].X < points1[4].X))
+            {
+                p2.X = (int)((bL - bFUp) / (kFUD - kL));
+                p2.Y = (int)(kL * (float)p2.X + bL);
+
+                
+                    p1.X = (int)(points[0].X);
+                    p1.Y = (int)(kL * (float)p1.X + bL);
+                
+            }
+
+            else if ((points[1].Y < points1[5].Y && points[1].X > points1[4].X))
+            {
+                p2.X = (int)((bL - bF4) / (kF4 - kL));
+                p2.Y = (int)(kL * (float)p2.X + bL);
+
+                
+                    p1.X = (int)(points[0].X);
+                    p1.Y = (int)(kL * (float)p1.X + bL);
+                
+            }
+
+            else if ((points[1].Y > points1[5].Y && points[1].X > points1[4].X)) // 5-0
+            {
+                p2.X = (int)((bL - bF0) / (-kF4 - kL));
+                p2.Y = (int)(kL * (float)p2.X + bL);
+
+               
+                    p1.X = (int)(points[0].X);
+                    p1.Y = (int)(kL * (float)p1.X + bL);
+               
+            }
+
+            else if ((points[1].Y > points1[1].Y && points[1].X < points1[0].X))
+            {
+                p2.X = (int)((bL - bFDown) / (kFUD - kL));
+                p2.Y = (int)(kL * (float)p2.X + bL);
+
+                
+                    p1.X = (int)(points[0].X);
+                    p1.Y = (int)(kL * (float)p1.X + bL);
+            }
+
+            
+            
 
             field.DrawLine(Settings.Instance.NormalColor, p1, p2);
         }
