@@ -825,7 +825,7 @@ namespace DigitGraphics.Shapes
                         p2.Y = (int)(kL*(float)p2.X + bL);
                 }*/
 
-                // внутри фигуры
+                // внутри 
                 /*else if (points[0].X > points1[3].X && points[0].X < points1[5].X && points[0].X > points1[2].X && points[0].Y < points1[1].Y && points[0].Y > points1[4].Y) {
                         p1.X = (int)(points[0].X);
                         p1.Y = (int)(kL*(float)p1.X + bL);
