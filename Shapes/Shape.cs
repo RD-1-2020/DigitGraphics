@@ -769,15 +769,8 @@ namespace DigitGraphics.Shapes
             Point p1 = new Point();
             Point p2 = new Point();
 
-             if (!(points[0].Y <= points1[0].Y && points[0].Y >= points1[3].Y && points[1].Y <= points1[0].Y && points[1].Y >= points1[3].Y  
-                         && points[0].X < ((float) (points[0].Y - bF0) / -kF4) &&
-                            points[0].X > ((float) (points[0].Y - bF1) / -kF3) &&
-                            points[0].X < ((float) (points[0].Y - bF4) / kF4) &&
-                            points[0].X > ((float) (points[0].Y - bF3) / kF3) &&
-                            points[1].X < ((float) (points[1].Y - bF0) / -kF4) &&
-                            points[1].X > ((float) (points[1].Y - bF1) / -kF3) &&
-                            points[1].X < ((float) (points[1].Y - bF4) / kF4) &&
-                            points[1].X > ((float) (points[1].Y - bF3) / kF3)))
+            if ((points[0].Y <= points1[3].Y && points[1].Y <= points1[3].Y) || (points[0].Y >= points1[1].Y && points[1].Y >= points1[1].Y) ||
+                (points[0].X <= points1[2].X && points[1].X <= points1[2].X) || (points[0].X >= points1[5].X && points[1].X >= points1[5].X))
                             {
                               return;
                             }
