@@ -63,6 +63,12 @@
     <Compile Include="MenuForm.Designer.cs">
       <DependentUpon>MenuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RGR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RGR.Designer.cs">
+      <DependentUpon>RGR.cs</DependentUpon>
+    </Compile>
     <Compile Include="ShapeLine\frShapeLine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,7 +107,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RGR.resx">
+      <DependentUpon>RGR.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ShapeLine\frShapeLine.resx">
       <DependentUpon>frShapeLine.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,6 +137,8 @@
   <ItemGroup>
     <Content Include="Images\digit_graphic_logo.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
