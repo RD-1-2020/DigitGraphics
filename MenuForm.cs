@@ -29,6 +29,7 @@ namespace DigitGraphics
             formsList.Add("Отрисовка линий", new LinesForm());
             formsList.Add("Отрисовка фигур", new ShapesForm());
             formsList.Add("Отрисовка фигуры с линиями", new frShapeLine());
+            formsList.Add("Вращение трехмерной фигуры", new RGR());
         }
 
         private void MenuForm_Load(object sender, EventArgs e)

@@ -41,9 +41,10 @@ namespace DigitGraphics
             // 
             this.exit.BackColor = System.Drawing.Color.Red;
             this.exit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.exit.Location = new System.Drawing.Point(1097, 12);
+            this.exit.Location = new System.Drawing.Point(731, 8);
+            this.exit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(49, 37);
+            this.exit.Size = new System.Drawing.Size(33, 24);
             this.exit.TabIndex = 0;
             this.exit.Text = "X";
             this.exit.UseVisualStyleBackColor = false;
@@ -53,46 +54,50 @@ namespace DigitGraphics
             // 
             this.manual.AutoSize = true;
             this.manual.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.manual.Font = new System.Drawing.Font("Mathcad UniMath", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manual.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manual.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.manual.Location = new System.Drawing.Point(938, 93);
+            this.manual.Location = new System.Drawing.Point(625, 60);
+            this.manual.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.manual.Name = "manual";
-            this.manual.Size = new System.Drawing.Size(158, 43);
+            this.manual.Size = new System.Drawing.Size(97, 29);
             this.manual.TabIndex = 1;
             this.manual.Text = "Manual ";
             // 
             // manual2
             // 
             this.manual2.AutoSize = true;
-            this.manual2.Font = new System.Drawing.Font("Mathcad UniMath", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manual2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manual2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.manual2.Location = new System.Drawing.Point(942, 149);
+            this.manual2.Location = new System.Drawing.Point(628, 97);
+            this.manual2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.manual2.Name = "manual2";
-            this.manual2.Size = new System.Drawing.Size(113, 120);
+            this.manual2.Size = new System.Drawing.Size(69, 85);
             this.manual2.TabIndex = 2;
-            this.manual2.Text = "U - up\r\nD - down\r\nR - right\r\nL - left\r\nR - return\r\n";
+            this.manual2.Text = "W - up\r\nS - down\r\nA - left\r\nD - right\r\nR - return\r\n";
             // 
             // manual_picture
             // 
             this.manual_picture.Image = ((System.Drawing.Image)(resources.GetObject("manual_picture.Image")));
-            this.manual_picture.Location = new System.Drawing.Point(856, 87);
+            this.manual_picture.Location = new System.Drawing.Point(571, 57);
+            this.manual_picture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.manual_picture.Name = "manual_picture";
-            this.manual_picture.Size = new System.Drawing.Size(86, 49);
+            this.manual_picture.Size = new System.Drawing.Size(57, 32);
             this.manual_picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.manual_picture.TabIndex = 3;
             this.manual_picture.TabStop = false;
             // 
             // RGR
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(1158, 638);
+            this.ClientSize = new System.Drawing.Size(772, 415);
             this.Controls.Add(this.manual_picture);
             this.Controls.Add(this.manual2);
             this.Controls.Add(this.manual);
             this.Controls.Add(this.exit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "RGR";
             this.Text = "RGR";
             ((System.ComponentModel.ISupportInitialize)(this.manual_picture)).EndInit();
