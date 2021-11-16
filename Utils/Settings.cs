@@ -35,6 +35,57 @@ namespace DigitGraphics.Utils
 
         private static SolidBrush _linesBrush = new SolidBrush(_linesColor);
 
+        private static SolidBrush _brushTriangle1 = new SolidBrush(Color.BlueViolet);
+        private static SolidBrush _brushTriangle2 = new SolidBrush(Color.YellowGreen);
+        private static SolidBrush _brushTriangle3 = new SolidBrush(Color.HotPink);
+        private static SolidBrush _brushTriangle4 = new SolidBrush(Color.SkyBlue);
+
+        public SolidBrush brushTriangle1
+        {
+            get
+            {
+                return _brushTriangle1;
+            }
+            set
+            {
+                _brushTriangle1 = value;
+            }
+        }
+
+        public SolidBrush brushTriangle2
+        {
+            get
+            {
+                return _brushTriangle2;
+            }
+            set
+            {
+                _brushTriangle2 = value;
+            }
+        }
+        public SolidBrush brushTriangle3
+        {
+            get
+            {
+                return _brushTriangle3;
+            }
+            set
+            {
+                _brushTriangle3 = value;
+            }
+        }
+        public SolidBrush brushTriangle4
+        {
+            get
+            {
+                return _brushTriangle4;
+            }
+            set
+            {
+                _brushTriangle4 = value;
+            }
+        }
+
         public Pen CellsColor {
             get
             {

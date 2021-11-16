@@ -1,5 +1,5 @@
 ﻿
-namespace DigitGraphics
+namespace DigitGraphics.PiramidRGR
 {
     partial class RGR
     {
@@ -42,7 +42,7 @@ namespace DigitGraphics
             this.exit.BackColor = System.Drawing.Color.Red;
             this.exit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.exit.Location = new System.Drawing.Point(731, 8);
-            this.exit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.exit.Margin = new System.Windows.Forms.Padding(2);
             this.exit.Name = "exit";
             this.exit.Size = new System.Drawing.Size(33, 24);
             this.exit.TabIndex = 0;
@@ -79,7 +79,7 @@ namespace DigitGraphics
             // 
             this.manual_picture.Image = ((System.Drawing.Image)(resources.GetObject("manual_picture.Image")));
             this.manual_picture.Location = new System.Drawing.Point(571, 57);
-            this.manual_picture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.manual_picture.Margin = new System.Windows.Forms.Padding(2);
             this.manual_picture.Name = "manual_picture";
             this.manual_picture.Size = new System.Drawing.Size(57, 32);
             this.manual_picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -97,9 +97,11 @@ namespace DigitGraphics
             this.Controls.Add(this.manual);
             this.Controls.Add(this.exit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "RGR";
             this.Text = "RGR";
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.RGR_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.manual_picture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

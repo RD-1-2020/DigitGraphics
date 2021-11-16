@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using DigitGraphics.Lines;
 using DigitGraphics.ShapeLine;
 using DigitGraphics.Shapes;
+using DigitGraphics.PiramidRGR;
 
 namespace DigitGraphics
 {
