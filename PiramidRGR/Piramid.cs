@@ -19,7 +19,7 @@ namespace DigitGraphics.PiramidRGR
         {
             float Winth = 772;
             float Height = 415;
-            Point[] pTriangle1 = { new Point(0, 0), new Point(0, 0), new Point(0, 0) };
+            Point[] pTriangle1 = new Point[3];
             for (int i = 0; i < 3; i++)
             {
                 pTriangle1[i] =
