@@ -7,18 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DigitGraphics.Utils;
+using Settings = DigitGraphics.Utils.Settings;
 
-namespace DigitGraphics
+namespace DigitGraphics.PiramidRGR
 {
     public partial class RGR : Form
     {
+        private Piramid shape;
         public RGR()
         {
             InitializeComponent();
         }
-
         private void exit_Click(object sender, EventArgs e) {
             this.Close();
+        }
+        private void RGR_Paint(object sender, PaintEventArgs e)
+        {
+            shape = new Piramid(e.Graphics);
+            shape.drawPiramid();
         }
     }
 }

@@ -63,10 +63,11 @@
     <Compile Include="MenuForm.Designer.cs">
       <DependentUpon>MenuForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="RGR.cs">
+    <Compile Include="PiramidRGR\Piramid.cs" />
+    <Compile Include="PiramidRGR\RGR.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RGR.Designer.cs">
+    <Compile Include="PiramidRGR\RGR.Designer.cs">
       <DependentUpon>RGR.cs</DependentUpon>
     </Compile>
     <Compile Include="ShapeLine\frShapeLine.cs">
@@ -109,7 +110,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="RGR.resx">
+    <EmbeddedResource Include="PiramidRGR\RGR.resx">
       <DependentUpon>RGR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ShapeLine\frShapeLine.resx">
