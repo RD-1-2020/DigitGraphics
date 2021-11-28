@@ -25,18 +25,12 @@ namespace DigitGraphics.PiramidRGR
         private float rotationX = 0.0f;
         private float rotationZ = 0.0f;
 
-        private Piramid shape;
         public RGR()
         {
             InitializeComponent();
         }
         private void exit_Click(object sender, EventArgs e) {
             this.Close();
-        }
-        private void RGR_Paint(object sender, PaintEventArgs e)
-        {
-            shape = new Piramid(e.Graphics);
-            shape.drawPiramid();
         }
 
         private void glControl_OpenGLDraw(object sender, SharpGL.RenderEventArgs args)
@@ -56,82 +50,34 @@ namespace DigitGraphics.PiramidRGR
             // рисуем крышу
             gl.Begin(OpenGL.GL_TRIANGLES);
 
-            gl.Color(1f, 0.2f, 0.0f); // здесь задаём цвет для каждой плоскости
-            gl.Vertex(0.0f, 2.5f, 0.0f);
-            gl.Vertex(2.0f, 1.5f, -2.0f);
-            gl.Vertex(2.0f, 1.5f, 2.0f);
+            //1 плоскость
+            gl.Color(1f, 0.0f, 0.0f); // здесь задаём цвет для каждой плоскости
 
-            gl.Color(1f, 0.3f, 0.0f);
-            gl.Vertex(-2.0f, 1.5f, -2.0f);
-            gl.Vertex(-2.0f, 1.5f, 2.0f);
-            gl.Vertex(0.0f, 2.5f, 0.0f);
+            gl.Vertex(0.0f, 2.0f, 0.0f);
+            gl.Vertex(-2.0f, 0.0f, 0.0f);
+            gl.Vertex(2.0f, 0.0f, 0.0f);
 
-            gl.Color(1f, 0.4f, 0.0f);
-            gl.Vertex(0.0f, 2.5f, 0.0f);
-            gl.Vertex(2.0f, 1.5f, -2.0f);
-            gl.Vertex(-2.0f, 1.5f, -2.0f);
+            //вторая плоскость
+            gl.Color(0f, 1f, 0.0f);
 
-            gl.Color(1f, 0.1f, 0.0f);
-            gl.Vertex(0.0f, 2.5f, 0.0f);
-            gl.Vertex(-2.0f, 1.5f, 2.0f);
-            gl.Vertex(2.0f, 1.5f, 2.0f);
+            gl.Vertex(2.0f, 0.0f, 0.0f);
+            gl.Vertex(0.0f, 2.0f, 0.0f);
+            gl.Vertex(0.0f, 0.0f, 2.0f);
 
-            gl.End();
+            //третья плоскость
+            gl.Color(0f, 0f, 1f);
 
+            gl.Vertex(-2.0f, 0.0f, 0.0f);
+            gl.Vertex(0.0f, 2.0f, 0.0f);
+            gl.Vertex(0.0f, 0.0f, 2.0f);
 
-            // передняя часть дома
-            gl.Begin(OpenGL.GL_POLYGON);
-            gl.Color(1f, 1f, 0f);
-            gl.Vertex(2f, 1.5f, -2f);
-            gl.Vertex(2f, 0f, -2f);
-            gl.Vertex(-2f, 0f, -2f);
-            gl.Vertex(-2f, 1.5f, -2f);
+            //четвертая плоскость
+            gl.Color(1f, 0.0f, 1f);
 
-            gl.End();
+            gl.Vertex(2.0f, 0.0f, 0.0f);
+            gl.Vertex(-2.0f, 0.0f, 0.0f);
+            gl.Vertex(0.0f, 0.0f, 2.0f);
 
-            // правая часть дома
-            gl.Begin(OpenGL.GL_POLYGON);
-            gl.Color(1f, 0.8f, 0f);
-            gl.Vertex(2f, 0f, -2f);
-            gl.Vertex(2f, 0f, 2f);
-            gl.Vertex(2f, 1.5f, 2f);
-            gl.Vertex(2f, 1.5f, -2f);
-            gl.End();
-
-            // задняя часть дома
-            gl.Begin(OpenGL.GL_POLYGON);
-            gl.Color(1f, 0.7f, 0f);
-            gl.Vertex(2f, 0f, 2f);
-            gl.Vertex(-2f, 0f, 2f);
-            gl.Vertex(-2f, 1.5f, 2f);
-            gl.Vertex(2f, 1.5f, 2f);
-            gl.End();
-
-            // левая часть дома
-            gl.Begin(OpenGL.GL_POLYGON);
-            gl.Color(1f, 0.9f, 0f);
-            gl.Vertex(-2f, 0f, -2f);
-            gl.Vertex(-2f, 0f, 2f);
-            gl.Vertex(-2f, 1.5f, 2f);
-            gl.Vertex(-2f, 1.5f, -2f);
-            gl.End();
-
-            // дверь (передняя стена)
-            gl.Begin(OpenGL.GL_POLYGON);
-            gl.Color(1f, 0.5f, 0f);
-            gl.Vertex(0.3f, 0f, -2.01f);
-            gl.Vertex(-0.3f, 0f, -2.01f);
-            gl.Vertex(-0.3f, 1.2f, -2.01f);
-            gl.Vertex(0.3f, 1.2f, -2.01f);
-            gl.End();
-
-            // рисуем землю            
-            gl.Begin(OpenGL.GL_POLYGON);
-            gl.Color(0f, 1f, 0f);
-            gl.Vertex(-10f, 0f, -10f);
-            gl.Vertex(10f, 0f, -10f);
-            gl.Vertex(10f, 0f, 10f);
-            gl.Vertex(-10f, 0f, 10f);
             gl.End();
         }
 

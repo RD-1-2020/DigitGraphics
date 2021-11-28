@@ -73,9 +73,9 @@ namespace DigitGraphics.PiramidRGR
             this.manual2.Location = new System.Drawing.Point(628, 97);
             this.manual2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.manual2.Name = "manual2";
-            this.manual2.Size = new System.Drawing.Size(69, 85);
+            this.manual2.Size = new System.Drawing.Size(63, 68);
             this.manual2.TabIndex = 2;
-            this.manual2.Text = "W - up\r\nS - down\r\nA - left\r\nD - right\r\nR - return\r\n";
+            this.manual2.Text = "W - up\r\nS - down\r\nA - left\r\nD - right";
             // 
             // manual_picture
             // 
@@ -121,7 +121,6 @@ namespace DigitGraphics.PiramidRGR
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "RGR";
             this.Text = "RGR";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.RGR_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.manual_picture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glControl)).EndInit();
             this.ResumeLayout(false);
