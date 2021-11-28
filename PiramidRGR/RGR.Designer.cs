@@ -34,7 +34,9 @@ namespace DigitGraphics.PiramidRGR
             this.manual = new System.Windows.Forms.Label();
             this.manual2 = new System.Windows.Forms.Label();
             this.manual_picture = new System.Windows.Forms.PictureBox();
+            this.glControl = new SharpGL.OpenGLControl();
             ((System.ComponentModel.ISupportInitialize)(this.manual_picture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glControl)).BeginInit();
             this.SuspendLayout();
             // 
             // exit
@@ -86,6 +88,23 @@ namespace DigitGraphics.PiramidRGR
             this.manual_picture.TabIndex = 3;
             this.manual_picture.TabStop = false;
             // 
+            // glControl
+            // 
+            this.glControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.glControl.DrawFPS = false;
+            this.glControl.Location = new System.Drawing.Point(0, 0);
+            this.glControl.Name = "glControl";
+            this.glControl.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
+            this.glControl.RenderContextType = SharpGL.RenderContextType.DIBSection;
+            this.glControl.RenderTrigger = SharpGL.RenderTrigger.TimerBased;
+            this.glControl.Size = new System.Drawing.Size(772, 415);
+            this.glControl.TabIndex = 4;
+            this.glControl.OpenGLInitialized += new System.EventHandler(this.glControl_OpenGLInitialized);
+            this.glControl.OpenGLDraw += new SharpGL.RenderEventHandler(this.glControl_OpenGLDraw);
+            this.glControl.Resized += new System.EventHandler(this.glControl_Resized);
+            this.glControl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.glControl_KeyDown);
+            this.glControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.glControl_MouseDown);
+            // 
             // RGR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -96,6 +115,7 @@ namespace DigitGraphics.PiramidRGR
             this.Controls.Add(this.manual2);
             this.Controls.Add(this.manual);
             this.Controls.Add(this.exit);
+            this.Controls.Add(this.glControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -103,6 +123,7 @@ namespace DigitGraphics.PiramidRGR
             this.Text = "RGR";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.RGR_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.manual_picture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glControl)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,5 +135,6 @@ namespace DigitGraphics.PiramidRGR
         private System.Windows.Forms.Label manual;
         private System.Windows.Forms.Label manual2;
         private System.Windows.Forms.PictureBox manual_picture;
+        private SharpGL.OpenGLControl glControl;
     }
 }
