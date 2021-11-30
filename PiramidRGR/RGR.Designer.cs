@@ -30,27 +30,14 @@ namespace DigitGraphics.PiramidRGR
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RGR));
-            this.exit = new System.Windows.Forms.Button();
             this.manual = new System.Windows.Forms.Label();
-            this.manual2 = new System.Windows.Forms.Label();
             this.manual_picture = new System.Windows.Forms.PictureBox();
             this.glControl = new SharpGL.OpenGLControl();
+            this.button_close = new System.Windows.Forms.Button();
+            this.manual2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.manual_picture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glControl)).BeginInit();
             this.SuspendLayout();
-            // 
-            // exit
-            // 
-            this.exit.BackColor = System.Drawing.Color.Red;
-            this.exit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.exit.Location = new System.Drawing.Point(731, 8);
-            this.exit.Margin = new System.Windows.Forms.Padding(2);
-            this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(33, 24);
-            this.exit.TabIndex = 0;
-            this.exit.Text = "X";
-            this.exit.UseVisualStyleBackColor = false;
-            this.exit.Click += new System.EventHandler(this.exit_Click);
             // 
             // manual
             // 
@@ -58,32 +45,18 @@ namespace DigitGraphics.PiramidRGR
             this.manual.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.manual.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manual.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.manual.Location = new System.Drawing.Point(625, 60);
-            this.manual.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.manual.Location = new System.Drawing.Point(921, 92);
             this.manual.Name = "manual";
-            this.manual.Size = new System.Drawing.Size(97, 29);
+            this.manual.Size = new System.Drawing.Size(182, 40);
             this.manual.TabIndex = 1;
-            this.manual.Text = "Manual ";
-            // 
-            // manual2
-            // 
-            this.manual2.AutoSize = true;
-            this.manual2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.manual2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.manual2.Location = new System.Drawing.Point(628, 97);
-            this.manual2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.manual2.Name = "manual2";
-            this.manual2.Size = new System.Drawing.Size(63, 68);
-            this.manual2.TabIndex = 2;
-            this.manual2.Text = "W - up\r\nS - down\r\nA - left\r\nD - right";
+            this.manual.Text = "Instruction";
             // 
             // manual_picture
             // 
             this.manual_picture.Image = ((System.Drawing.Image)(resources.GetObject("manual_picture.Image")));
-            this.manual_picture.Location = new System.Drawing.Point(571, 57);
-            this.manual_picture.Margin = new System.Windows.Forms.Padding(2);
+            this.manual_picture.Location = new System.Drawing.Point(849, 92);
             this.manual_picture.Name = "manual_picture";
-            this.manual_picture.Size = new System.Drawing.Size(57, 32);
+            this.manual_picture.Size = new System.Drawing.Size(75, 40);
             this.manual_picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.manual_picture.TabIndex = 3;
             this.manual_picture.TabStop = false;
@@ -93,11 +66,12 @@ namespace DigitGraphics.PiramidRGR
             this.glControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.glControl.DrawFPS = false;
             this.glControl.Location = new System.Drawing.Point(0, 0);
+            this.glControl.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.glControl.Name = "glControl";
             this.glControl.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
             this.glControl.RenderContextType = SharpGL.RenderContextType.DIBSection;
             this.glControl.RenderTrigger = SharpGL.RenderTrigger.TimerBased;
-            this.glControl.Size = new System.Drawing.Size(772, 415);
+            this.glControl.Size = new System.Drawing.Size(1158, 638);
             this.glControl.TabIndex = 4;
             this.glControl.OpenGLInitialized += new System.EventHandler(this.glControl_OpenGLInitialized);
             this.glControl.OpenGLDraw += new SharpGL.RenderEventHandler(this.glControl_OpenGLDraw);
@@ -105,20 +79,42 @@ namespace DigitGraphics.PiramidRGR
             this.glControl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.glControl_KeyDown);
             this.glControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.glControl_MouseDown);
             // 
+            // button_close
+            // 
+            this.button_close.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button_close.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button_close.Location = new System.Drawing.Point(1071, 12);
+            this.button_close.Name = "button_close";
+            this.button_close.Size = new System.Drawing.Size(75, 39);
+            this.button_close.TabIndex = 5;
+            this.button_close.Text = "X";
+            this.button_close.UseVisualStyleBackColor = false;
+            this.button_close.Click += new System.EventHandler(this.button_close_Click);
+            // 
+            // manual2
+            // 
+            this.manual2.AutoSize = true;
+            this.manual2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manual2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.manual2.Location = new System.Drawing.Point(985, 151);
+            this.manual2.Name = "manual2";
+            this.manual2.Size = new System.Drawing.Size(118, 150);
+            this.manual2.TabIndex = 2;
+            this.manual2.Text = "W - up\r\nS - down\r\nA - left\r\nD - right\r\nQ - distance\r\nE - zoom\r\n";
+            // 
             // RGR
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(772, 415);
+            this.ClientSize = new System.Drawing.Size(1158, 638);
+            this.Controls.Add(this.button_close);
             this.Controls.Add(this.manual_picture);
             this.Controls.Add(this.manual2);
             this.Controls.Add(this.manual);
-            this.Controls.Add(this.exit);
             this.Controls.Add(this.glControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "RGR";
             this.Text = "RGR";
             ((System.ComponentModel.ISupportInitialize)(this.manual_picture)).EndInit();
@@ -129,11 +125,10 @@ namespace DigitGraphics.PiramidRGR
         }
 
         #endregion
-
-        private System.Windows.Forms.Button exit;
         private System.Windows.Forms.Label manual;
-        private System.Windows.Forms.Label manual2;
         private System.Windows.Forms.PictureBox manual_picture;
         private SharpGL.OpenGLControl glControl;
+        private System.Windows.Forms.Button button_close;
+        private System.Windows.Forms.Label manual2;
     }
 }

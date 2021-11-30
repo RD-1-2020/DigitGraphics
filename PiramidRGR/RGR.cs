@@ -23,66 +23,66 @@ namespace DigitGraphics.PiramidRGR
         private static extern int SendMessage(IntPtr hWnd, int Msg, int wp, int lp);
 
         private float rotationX = 0.0f;
+        private float rotationY = 0.0f;
         private float rotationZ = 0.0f;
+        private float zoom = 1.0f;
+        
 
         public RGR()
         {
             InitializeComponent();
         }
-        private void exit_Click(object sender, EventArgs e) {
-            this.Close();
-        }
-
+      
         private void glControl_OpenGLDraw(object sender, SharpGL.RenderEventArgs args)
         {
-            //  Возьмём OpenGL объект
             OpenGL gl = glControl.OpenGL;
-
-            //  Очищаем буфер цвета и глубины
-            gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
-
-            //  Загружаем единичную матрицу
-            gl.LoadIdentity();
+            gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT); // очистка буфера цвета и глубины
+            gl.LoadIdentity(); // единичная матрица
+            gl.PushMatrix();
 
             gl.Rotate(rotationX, 1.0f, 0.0f, 0.0f);
+            gl.Rotate(rotationY, 0.0f, 1.0f, 0.0f);
             gl.Rotate(rotationZ, 0.0f, 0.0f, 1.0f);
 
-            // рисуем крышу
+            gl.Scale(zoom, zoom, zoom);
+
             gl.Begin(OpenGL.GL_TRIANGLES);
 
-            //1 плоскость
-            gl.Color(1f, 0.0f, 0.0f); // здесь задаём цвет для каждой плоскости
+            // первая грань
+            gl.Color(0.98f, 0.74f, 0.1f); 
 
-            gl.Vertex(0.0f, 2.0f, 0.0f);
+            gl.Vertex(0.0f, 3.5f, 1.0f);
             gl.Vertex(-2.0f, 0.0f, 0.0f);
             gl.Vertex(2.0f, 0.0f, 0.0f);
 
-            //вторая плоскость
-            gl.Color(0f, 1f, 0.0f);
+            // вторая плоскость
+            gl.Color(1f, 0.63f, 0.48f);
 
             gl.Vertex(2.0f, 0.0f, 0.0f);
-            gl.Vertex(0.0f, 2.0f, 0.0f);
-            gl.Vertex(0.0f, 0.0f, 2.0f);
+            gl.Vertex(0.0f, 3.5f, 1.0f);
+            gl.Vertex(0.0f, 0.0f, 3.5f);
 
-            //третья плоскость
-            gl.Color(0f, 0f, 1f);
+            // третья плоскость
+            gl.Color(0.98f, 0.85f, 0.75f);
 
             gl.Vertex(-2.0f, 0.0f, 0.0f);
-            gl.Vertex(0.0f, 2.0f, 0.0f);
-            gl.Vertex(0.0f, 0.0f, 2.0f);
+            gl.Vertex(0.0f, 3.5f, 1.0f);
+            gl.Vertex(0.0f, 0.0f, 3.5f);
 
             //четвертая плоскость
-            gl.Color(1f, 0.0f, 1f);
+            gl.Color(0.88f, 0.65f, 0.5f);
 
             gl.Vertex(2.0f, 0.0f, 0.0f);
             gl.Vertex(-2.0f, 0.0f, 0.0f);
-            gl.Vertex(0.0f, 0.0f, 2.0f);
+            gl.Vertex(0.0f, 0.0f, 3.5f);
 
             gl.End();
+            gl.PopMatrix();
+            gl.Flush();
         }
 
         private void glControl_MouseDown(object sender, MouseEventArgs e)
-        {
+        { // после клика мыши крутится фигура
             base.OnMouseDown(e);
             if (e.Button == MouseButtons.Left)
             {
@@ -93,56 +93,40 @@ namespace DigitGraphics.PiramidRGR
 
         private void glControl_Resized(object sender, EventArgs e)
         {
-            //  Возьмём OpenGL объект
             OpenGL gl = glControl.OpenGL;
-
-            //  Зададим матрицу проекции
-            gl.MatrixMode(OpenGL.GL_PROJECTION);
-
-            //  Единичная матрица для последующих преобразований
+            gl.MatrixMode(OpenGL.GL_PROJECTION); // матрица проекции
             gl.LoadIdentity();
 
-            //  Преобразование
             gl.Perspective(60.0f, (double)Width / (double)Height, 0.01, 100.0);
 
-            //  Данная функция позволяет установить камеру и её положение
-            gl.LookAt(5, 6, -7,    // Позиция самой камеры
-                0, 1, 0,     // Направление, куда мы смотрим
-                0, 1, 0);    // Верх камеры
+            // устанавливаем камеру 
+            gl.LookAt(2, 6, -7,    // позиция камеры
+                0, 1, 0,     // куда мы смотрим
+                0, 1, 0);    // верх камеры
 
-            //  Зададим модель отображения
-            gl.MatrixMode(OpenGL.GL_MODELVIEW);
+            gl.MatrixMode(OpenGL.GL_MODELVIEW); // модель отображения
         }
 
         private void glControl_OpenGLInitialized(object sender, EventArgs e)
         {
-            //  Возьмём OpenGL объект
             OpenGL gl = glControl.OpenGL;
-
-            //  Фоновый цвет по умолчанию (в данном случае цвет голубой)
-            gl.ClearColor(0.1f, 0.5f, 1.0f, 0);
+            gl.ClearColor(0.0f, 0.0f, 0.0f, 0); // цвет фона 
         }
 
         private void glControl_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.W)
-            {
-                rotationZ += 1.5f;
-            }
+        { // вращение
+            if (e.KeyCode == Keys.W) rotationX += 1.5f;
+            if (e.KeyCode == Keys.S) rotationX -= 1.5f;
+            if (e.KeyCode == Keys.A) rotationY -= 1.5f;
+            if (e.KeyCode == Keys.D) rotationY += 1.5f;
 
-            if (e.KeyCode == Keys.S)
-            {
-                rotationZ -= 1.5f;
-            }
+            if (e.KeyCode == Keys.Q && zoom > 0.4f) zoom -= 0.2f;
+            if (e.KeyCode == Keys.E && zoom < 1.8f) zoom += 0.2f;
+        }
 
-            if (e.KeyCode == Keys.A)
-            {
-                rotationX += 1.5f;
-            }
-            if (e.KeyCode == Keys.D)
-            {
-                rotationX -= 1.5f;
-            }
+        private void button_close_Click(object sender, EventArgs e)
+        { // закрыть форму
+            this.Close();
         }
     }
 }
