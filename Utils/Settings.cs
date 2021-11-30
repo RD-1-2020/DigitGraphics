@@ -15,7 +15,7 @@ namespace DigitGraphics.Utils
 
         public static int CELLS_SIZE = 20;
 
-        public static int SPIRAL_SIZE = 2;
+        public static int SPIRAL_SIZE = 3;
 
         private static Pen _cellsColor = new Pen(Color.Black);
 
@@ -27,11 +27,64 @@ namespace DigitGraphics.Utils
 
         private static Pen _normalColor = new Pen(Color.DeepPink);
 
+        private static Pen _normLineColor = new Pen(Color.RoyalBlue, 2);
+
         private static SolidBrush _cdaBrush = new SolidBrush(_cdaColor);
 
         private static SolidBrush _brezBrush = new SolidBrush(_brezColor);
 
         private static SolidBrush _linesBrush = new SolidBrush(_linesColor);
+
+        private static SolidBrush _brushTriangle1 = new SolidBrush(Color.BlueViolet);
+        private static SolidBrush _brushTriangle2 = new SolidBrush(Color.YellowGreen);
+        private static SolidBrush _brushTriangle3 = new SolidBrush(Color.HotPink);
+        private static SolidBrush _brushTriangle4 = new SolidBrush(Color.SkyBlue);
+
+        public SolidBrush brushTriangle1
+        {
+            get
+            {
+                return _brushTriangle1;
+            }
+            set
+            {
+                _brushTriangle1 = value;
+            }
+        }
+
+        public SolidBrush brushTriangle2
+        {
+            get
+            {
+                return _brushTriangle2;
+            }
+            set
+            {
+                _brushTriangle2 = value;
+            }
+        }
+        public SolidBrush brushTriangle3
+        {
+            get
+            {
+                return _brushTriangle3;
+            }
+            set
+            {
+                _brushTriangle3 = value;
+            }
+        }
+        public SolidBrush brushTriangle4
+        {
+            get
+            {
+                return _brushTriangle4;
+            }
+            set
+            {
+                _brushTriangle4 = value;
+            }
+        }
 
         public Pen CellsColor {
             get
@@ -102,6 +155,18 @@ namespace DigitGraphics.Utils
             set
             {
                 _normalColor = value;
+            }
+        }
+
+        public Pen NormLineColor
+        {
+            get
+            {
+                return _normLineColor;
+            }
+            set
+            {
+                _normLineColor = value;
             }
         }
 

@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>9</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,11 +32,21 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>9</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Images\digit_graphic_logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SharpGL">
+      <HintPath>packages\SharpGLCore.2.3.0.1\SharpGL.WinForms\SharpGL.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpGL.SceneGraph">
+      <HintPath>packages\SharpGLCore.2.3.0.1\SharpGL.WinForms\SharpGL.SceneGraph.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpGL.WinForms">
+      <HintPath>packages\SharpGLCore.2.3.0.1\SharpGL.WinForms\SharpGL.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Messaging" />
@@ -62,6 +73,18 @@
     </Compile>
     <Compile Include="MenuForm.Designer.cs">
       <DependentUpon>MenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PiramidRGR\RGR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PiramidRGR\RGR.Designer.cs">
+      <DependentUpon>RGR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShapeLine\frShapeLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShapeLine\frShapeLine.Designer.cs">
+      <DependentUpon>frShapeLine.cs</DependentUpon>
     </Compile>
     <Compile Include="Shapes\FormRadius.cs">
       <SubType>Form</SubType>
@@ -95,7 +118,14 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="PiramidRGR\RGR.resx">
+      <DependentUpon>RGR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShapeLine\frShapeLine.resx">
+      <DependentUpon>frShapeLine.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Shapes\FormRadius.resx">
       <DependentUpon>FormRadius.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,6 +148,8 @@
   <ItemGroup>
     <Content Include="Images\digit_graphic_logo.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

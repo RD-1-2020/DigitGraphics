@@ -48,7 +48,6 @@ namespace DigitGraphics
             this.spMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.spMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spMain.Location = new System.Drawing.Point(0, 0);
-            this.spMain.Margin = new System.Windows.Forms.Padding(4);
             this.spMain.Name = "spMain";
             this.spMain.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -60,8 +59,8 @@ namespace DigitGraphics
             // spMain.Panel2
             // 
             this.spMain.Panel2.Controls.Add(this.spMenu);
-            this.spMain.Size = new System.Drawing.Size(793, 341);
-            this.spMain.SplitterDistance = 296;
+            this.spMain.Size = new System.Drawing.Size(595, 277);
+            this.spMain.SplitterDistance = 240;
             this.spMain.SplitterWidth = 1;
             this.spMain.TabIndex = 0;
             // 
@@ -70,7 +69,6 @@ namespace DigitGraphics
             this.spMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.spMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spMenu.Location = new System.Drawing.Point(0, 0);
-            this.spMenu.Margin = new System.Windows.Forms.Padding(4);
             this.spMenu.Name = "spMenu";
             // 
             // spMenu.Panel1
@@ -81,8 +79,8 @@ namespace DigitGraphics
             // spMenu.Panel2
             // 
             this.spMenu.Panel2.Controls.Add(this.btStart);
-            this.spMenu.Size = new System.Drawing.Size(793, 44);
-            this.spMenu.SplitterDistance = 430;
+            this.spMenu.Size = new System.Drawing.Size(595, 36);
+            this.spMenu.SplitterDistance = 322;
             this.spMenu.SplitterWidth = 1;
             this.spMenu.TabIndex = 0;
             // 
@@ -94,11 +92,10 @@ namespace DigitGraphics
             this.cbFormsList.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cbFormsList.FormattingEnabled = true;
             this.cbFormsList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cbFormsList.ItemHeight = 28;
+            this.cbFormsList.ItemHeight = 22;
             this.cbFormsList.Location = new System.Drawing.Point(0, 0);
-            this.cbFormsList.Margin = new System.Windows.Forms.Padding(4);
             this.cbFormsList.Name = "cbFormsList";
-            this.cbFormsList.Size = new System.Drawing.Size(428, 36);
+            this.cbFormsList.Size = new System.Drawing.Size(320, 30);
             this.cbFormsList.TabIndex = 0;
             // 
             // btStart
@@ -109,9 +106,8 @@ namespace DigitGraphics
             this.btStart.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btStart.ForeColor = System.Drawing.Color.OrangeRed;
             this.btStart.Location = new System.Drawing.Point(0, 0);
-            this.btStart.Margin = new System.Windows.Forms.Padding(4);
             this.btStart.Name = "btStart";
-            this.btStart.Size = new System.Drawing.Size(360, 42);
+            this.btStart.Size = new System.Drawing.Size(270, 34);
             this.btStart.TabIndex = 0;
             this.btStart.Text = "Открыть для себя Digit!";
             this.btStart.UseVisualStyleBackColor = false;
@@ -119,14 +115,13 @@ namespace DigitGraphics
             // 
             // MenuForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(793, 341);
+            this.ClientSize = new System.Drawing.Size(595, 277);
             this.Controls.Add(this.spMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MenuForm";
             this.Text = "MenuForm";
             this.Load += new System.EventHandler(this.MenuForm_Load);

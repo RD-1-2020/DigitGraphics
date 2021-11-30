@@ -9,7 +9,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DigitGraphics.Lines;
+using DigitGraphics.ShapeLine;
 using DigitGraphics.Shapes;
+using DigitGraphics.PiramidRGR;
 
 namespace DigitGraphics
 {
@@ -27,6 +29,8 @@ namespace DigitGraphics
             formsList = new Dictionary<string, Form>();
             formsList.Add("Отрисовка линий", new LinesForm());
             formsList.Add("Отрисовка фигур", new ShapesForm());
+            formsList.Add("Отрисовка фигуры с линиями", new frShapeLine());
+            formsList.Add("Вращение трехмерной фигуры", new RGR());
         }
 
         private void MenuForm_Load(object sender, EventArgs e)
